@@ -1,6 +1,6 @@
-import 'package:cargoshuttle/screens/WelcomeScreen.dart';
+import 'package:cargoshuttle/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:cargoshuttle/components/roundedButton.dart';
+import 'package:cargoshuttle/components/rounded_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     print(e);
                   }
                 },
-                color: Colors.white24,
+                color: themeColor,
               ),
             ],
           ),

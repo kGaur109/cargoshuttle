@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'screens/WelcomeScreen.dart';
-import 'screens/LoginScreen.dart';
-import 'screens/RegistrationHomeScreen.dart';
+import 'screens/welcome_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/registration_home_screen.dart';
+import 'screens/customer_registration_screen.dart';
+import 'screens/owner_registration_screen.dart';
+import 'screens/chat_screen.dart';
 
 void main() {
   runApp(Cargoshuttle());
@@ -16,6 +19,10 @@ class Cargoshuttle extends StatelessWidget {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationHomeScreen.id: (context) => RegistrationHomeScreen(),
+        CustomerRegistrationScreen.id: (context) =>
+            CustomerRegistrationScreen(),
+        OwnerRegistrationScreen.id: (context) => OwnerRegistrationScreen(),
+        ChatScreen.id: (context) => ChatScreen(),
       },
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cargoshuttle/components/roundedButton.dart';
+import 'package:cargoshuttle/components/rounded_button.dart';
+import 'package:cargoshuttle/constants.dart';
 
 class RegistrationHomeScreen extends StatelessWidget {
   static const String id = 'registration_home_screen';
@@ -8,7 +9,7 @@ class RegistrationHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
           height: size.height,
@@ -21,7 +22,7 @@ class RegistrationHomeScreen extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(
                     Icons.keyboard_backspace,
-                    color: Colors.white,
+                    color: themeColor,
                     size: 50,
                   ),
                   onPressed: () {
@@ -30,17 +31,17 @@ class RegistrationHomeScreen extends StatelessWidget {
                 ),
               ),
               Image(
-                image: AssetImage('images/Truck Logo white.png'),
+                image: AssetImage('images/Truck Logo black.png'),
               ),
               RoundButton(
                 text: "As a Fleet Owner",
                 onPressed: () {},
-                color: Colors.white24,
+                color: themeColor,
               ),
               RoundButton(
                 text: "As a Customer",
                 onPressed: () {},
-                color: Colors.white24,
+                color: themeColor,
               ),
             ],
           ),

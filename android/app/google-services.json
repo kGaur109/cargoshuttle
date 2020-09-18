@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "641783945345",
+    "firebase_url": "https://cargoshuttle-e2149.firebaseio.com",
+    "project_id": "cargoshuttle-e2149",
+    "storage_bucket": "cargoshuttle-e2149.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641783945345:android:2cc57658a6f09ca9715580",
+        "android_client_info": {
+          "package_name": "com.kartikey.cargoshuttle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641783945345-48dsmvl36f6uskjfk5mvnd8ikivbo0pd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbSqE3g-kF6NkvWH05m9-37wfGB2ZhANs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641783945345-48dsmvl36f6uskjfk5mvnd8ikivbo0pd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
