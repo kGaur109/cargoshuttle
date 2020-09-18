@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
+import 'home_screen.dart';
+
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
 
@@ -78,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     final currentUser = await _auth.signInWithEmailAndPassword(
                         email: email, password: password);
                     if (currentUser != null) {
-                      Navigator.pushNamed(context, WelcomeScreen.id);
+                      Navigator.pushNamed(context, HomeScreen.id);
                     }
                     setState(() {
                       showSpinner = false;

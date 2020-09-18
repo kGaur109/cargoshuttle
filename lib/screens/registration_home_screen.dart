@@ -1,3 +1,4 @@
+import 'package:cargoshuttle/screens/customer_registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 import 'package:cargoshuttle/constants.dart';
@@ -40,8 +41,10 @@ class RegistrationHomeScreen extends StatelessWidget {
               ),
               RoundButton(
                 text: "As a Customer",
-                onPressed: () {},
-                color: themeColor,
+                onPressed: () {
+                  Navigator.pushNamed(context, CustomerRegistrationScreen.id);
+                },
+                color: Colors.white,
               ),
             ],
           ),

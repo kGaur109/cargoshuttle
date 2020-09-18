@@ -1,3 +1,4 @@
+import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/login_screen.dart';
@@ -22,6 +23,7 @@ class Cargoshuttle extends StatelessWidget {
         CustomerRegistrationScreen.id: (context) =>
             CustomerRegistrationScreen(),
         OwnerRegistrationScreen.id: (context) => OwnerRegistrationScreen(),
+        HomeScreen.id: (context) => HomeScreen(),
         ChatScreen.id: (context) => ChatScreen(),
       },
     );

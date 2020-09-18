@@ -34,7 +34,7 @@ class WelcomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, RegistrationHomeScreen.id);
               },
-              color: themeColor,
+              color: Colors.white,
             ),
           ],
         ),
