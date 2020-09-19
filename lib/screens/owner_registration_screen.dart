@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  static const String id = 'login_screen';
+class OwnerRegistrationScreen extends StatelessWidget {
+  static const String id = 'owner_registration_screen';
 
   @override
   Widget build(BuildContext context) {
