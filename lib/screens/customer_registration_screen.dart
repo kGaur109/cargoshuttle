@@ -1,5 +1,4 @@
 import 'package:cargoshuttle/screens/customer_info_screen.dart';
-import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cargoshuttle/screens/registration_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';

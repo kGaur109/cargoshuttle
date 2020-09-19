@@ -5,19 +5,20 @@ import 'package:flutter/cupertino.dart';
 import '../constants.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 
-class OwnerInfoScreen extends StatefulWidget {
-  static const String id = 'owner_info_screen';
+import 'owner_info_screen2.dart';
+
+class OwnerInfoScreen1 extends StatefulWidget {
+  static const String id = 'owner_info_screen1';
 
   @override
-  _OwnerInfoScreenState createState() => _OwnerInfoScreenState();
+  _OwnerInfoScreen1State createState() => _OwnerInfoScreen1State();
 }
 
-class _OwnerInfoScreenState extends State<OwnerInfoScreen> {
-  String address;
-  String city;
-  String pin;
-  String state;
-  String dob;
+class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
+  String ownerName;
+  String contactNumber;
+  String email;
+  String password;
 
   @override
   Widget build(BuildContext context) {
@@ -79,90 +80,67 @@ class _OwnerInfoScreenState extends State<OwnerInfoScreen> {
                 keyboardType: TextInputType.text,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  address = value;
+                  ownerName = value;
                 },
                 decoration: kTextFieldDecorationWhite.copyWith(
-                  hintText: 'Address',
+                  hintText: 'Owner Name',
                 ),
               ),
               SizedBox(
-                height: 12.0,
+                height: 10.0,
               ),
-              Row(
-                children: <Widget>[
-                  Flexible(
-                    child: TextField(
-                      keyboardType: TextInputType.text,
-                      textAlign: TextAlign.center,
-                      onChanged: (value) {
-                        address = value;
-                      },
-                      decoration: kTextFieldDecorationWhite.copyWith(
-                        hintText: 'City',
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Flexible(
-                    child: TextField(
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      onChanged: (value) {
-                        pin = value;
-                      },
-                      decoration: kTextFieldDecorationWhite.copyWith(
-                        hintText: 'Pin code',
-                      ),
-                    ),
-                  ),
-                ],
+              TextField(
+                keyboardType: TextInputType.phone,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  contactNumber = value;
+                },
+                decoration: kTextFieldDecorationWhite.copyWith(
+                  hintText: 'Contact Number',
+                ),
               ),
               SizedBox(
-                height: 12.0,
+                height: 10.0,
               ),
-              Row(
-                children: <Widget>[
-                  Flexible(
-                    child: TextField(
-                      keyboardType: TextInputType.text,
-                      textAlign: TextAlign.center,
-                      onChanged: (value) {
-                        state = value;
-                      },
-                      decoration: kTextFieldDecorationWhite.copyWith(
-                        hintText: 'State',
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Flexible(
-                    child: TextField(
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      onChanged: (value) {
-                        dob = value;
-                      },
-                      decoration: kTextFieldDecorationWhite.copyWith(
-                        hintText: 'DOB',
-                      ),
-                    ),
-                  ),
-                ],
+              TextField(
+                keyboardType: TextInputType.emailAddress,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  email = value;
+                },
+                decoration: kTextFieldDecorationWhite.copyWith(
+                  hintText: 'Email Address',
+                ),
               ),
               SizedBox(
-                height: 24.0,
+                height: 34.0,
               ),
               RoundButton(
-                text: "Complete Profile",
+                text: "Proceed",
                 color: themeColor,
                 onPressed: () {
-                  Navigator.pushNamed(context, HomeScreen.id);
+                  Navigator.pushNamed(context, OwnerInfoScreen2.id);
                 },
               ),
+              // SizedBox(
+              //   height: 10.0,
+              // ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   crossAxisAlignment: CrossAxisAlignment.end,
+              //   children: <Widget>[
+              //     FloatingActionButton(
+              //       backgroundColor: themeColor,
+              //       child: Icon(
+              //         Icons.arrow_forward,
+              //       ),
+              //       onPressed: () {
+              //         Navigator.pushNamed(
+              //             context, CustomerRegistrationScreen.id);
+              //       },
+              //     )
+              //   ],
+              // ),
             ],
           ),
         ),

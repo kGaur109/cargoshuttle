@@ -1,5 +1,3 @@
-import 'package:cargoshuttle/screens/customer_info_screen.dart';
-import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cargoshuttle/screens/registration_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';
@@ -7,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 
-import 'owner_info_screen.dart';
+import 'owner_info_screen1.dart';
 
 class OwnerRegistrationScreen extends StatefulWidget {
   static const String id = 'owner_registration_screen';
@@ -123,7 +121,7 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                 text: 'Register',
                 color: Colors.white,
                 onPressed: () async {
-                  Navigator.pushNamed(context, OwnerInfoScreen.id);
+                  Navigator.pushNamed(context, OwnerInfoScreen1.id);
                   // setState(() {
                   //   showSpinner = true;
                   // });
