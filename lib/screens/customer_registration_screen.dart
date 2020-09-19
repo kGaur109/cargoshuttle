@@ -1,20 +1,22 @@
+import 'package:cargoshuttle/screens/customer_info_screen.dart';
 import 'package:cargoshuttle/screens/home_screen.dart';
+import 'package:cargoshuttle/screens/registration_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 
-class CustomerRegistrationScreen1 extends StatefulWidget {
+class CustomerRegistrationScreen extends StatefulWidget {
   static const String id = 'customer_registration_screen';
 
   @override
-  _CustomerRegistrationScreen1State createState() =>
-      _CustomerRegistrationScreen1State();
+  _CustomerRegistrationScreenState createState() =>
+      _CustomerRegistrationScreenState();
 }
 
-class _CustomerRegistrationScreen1State
-    extends State<CustomerRegistrationScreen1> {
+class _CustomerRegistrationScreenState
+    extends State<CustomerRegistrationScreen> {
   final _auth = FirebaseAuth.instance;
 
   bool showSpinner = false;
@@ -35,6 +37,25 @@ class _CustomerRegistrationScreen1State
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              SizedBox(
+                height: 10.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: themeColor,
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, RegistrationHomeScreen.id);
+                    },
+                  )
+                ],
+              ),
               Flexible(
                 child: Hero(
                   tag: 'logo',
@@ -101,21 +122,22 @@ class _CustomerRegistrationScreen1State
                 text: 'Register',
                 color: Colors.white,
                 onPressed: () async {
-                  setState(() {
-                    showSpinner = true;
-                  });
-                  try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
-                    if (newUser != null) {
-                      Navigator.pushNamed(context, HomeScreen.id);
-                    }
-                    setState(() {
-                      showSpinner = false;
-                    });
-                  } catch (e) {
-                    print(e);
-                  }
+                  Navigator.pushNamed(context, CustomerInfoScreen.id);
+                  // setState(() {
+                  //   showSpinner = true;
+                  // });
+                  // try {
+                  //   final newUser = await _auth.createUserWithEmailAndPassword(
+                  //       email: email, password: password);
+                  //   if (newUser != null) {
+                  //     Navigator.pushNamed(context, CustomerInfoScreen.id);
+                  //   }
+                  //   setState(() {
+                  //     showSpinner = false;
+                  //   });
+                  // } catch (e) {
+                  //   print(e);
+                  // }
                 },
               ),
             ],

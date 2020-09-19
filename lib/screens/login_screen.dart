@@ -33,15 +33,30 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-//              Flexible(
-//                child: Hero(
-//                  tag: 'logo',
-//                  child: Container(
-//                    height: 200.0,
-//                    child: Image.asset('images/logo.png'),
-//                  ),
-//                ),
-//              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  FloatingActionButton(
+                    backgroundColor: themeColor,
+                    child: Icon(
+                      Icons.arrow_back,
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, WelcomeScreen.id);
+                    },
+                  )
+                ],
+              ),
+              Flexible(
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 48.0,
               ),
@@ -51,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onChanged: (value) {
                   email = value;
                 },
-                decoration: kTextFieldDecoration.copyWith(
+                decoration: kTextFieldDecorationWhite.copyWith(
                   hintText: 'Enter your email',
                 ),
               ),
@@ -64,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onChanged: (value) {
                   password = value;
                 },
-                decoration: kTextFieldDecoration.copyWith(
+                decoration: kTextFieldDecorationWhite.copyWith(
                     hintText: 'Enter your password'),
               ),
               SizedBox(

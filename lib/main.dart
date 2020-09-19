@@ -1,5 +1,6 @@
 import 'package:cargoshuttle/screens/customer_info_screen.dart';
 import 'package:cargoshuttle/screens/home_screen.dart';
+import 'package:cargoshuttle/screens/owner_info_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/login_screen.dart';
@@ -16,15 +17,16 @@ class Cargoshuttle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: CustomerInfoScreen.id,
+      initialRoute: WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationHomeScreen.id: (context) => RegistrationHomeScreen(),
-        CustomerRegistrationScreen1.id: (context) =>
-            CustomerRegistrationScreen1(),
+        CustomerRegistrationScreen.id: (context) =>
+            CustomerRegistrationScreen(),
         CustomerInfoScreen.id: (context) => CustomerInfoScreen(),
         OwnerRegistrationScreen.id: (context) => OwnerRegistrationScreen(),
+        OwnerInfoScreen.id: (context) => OwnerInfoScreen(),
         HomeScreen.id: (context) => HomeScreen(),
         ChatScreen.id: (context) => ChatScreen(),
       },

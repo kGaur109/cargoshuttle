@@ -2,6 +2,7 @@ import 'package:cargoshuttle/screens/customer_registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 import 'package:cargoshuttle/constants.dart';
+import 'owner_registration_screen.dart';
 
 class RegistrationHomeScreen extends StatelessWidget {
   static const String id = 'registration_home_screen';
@@ -36,13 +37,15 @@ class RegistrationHomeScreen extends StatelessWidget {
               ),
               RoundButton(
                 text: "As a Fleet Owner",
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, OwnerRegistrationScreen.id);
+                },
                 color: themeColor,
               ),
               RoundButton(
                 text: "As a Customer",
                 onPressed: () {
-                  Navigator.pushNamed(context, CustomerRegistrationScreen1.id);
+                  Navigator.pushNamed(context, CustomerRegistrationScreen.id);
                 },
                 color: Colors.white,
               ),

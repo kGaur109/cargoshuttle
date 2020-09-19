@@ -5,14 +5,14 @@ import 'package:flutter/cupertino.dart';
 import '../constants.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 
-class CustomerInfoScreen extends StatefulWidget {
-  static const String id = 'customer_info_screen';
+class OwnerInfoScreen extends StatefulWidget {
+  static const String id = 'owner_info_screen';
 
   @override
-  _CustomerInfoScreenState createState() => _CustomerInfoScreenState();
+  _OwnerInfoScreenState createState() => _OwnerInfoScreenState();
 }
 
-class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
+class _OwnerInfoScreenState extends State<OwnerInfoScreen> {
   String address;
   String city;
   String pin;
