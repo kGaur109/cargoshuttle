@@ -42,7 +42,7 @@ class RegistrationHomeScreen extends StatelessWidget {
               RoundButton(
                 text: "As a Customer",
                 onPressed: () {
-                  Navigator.pushNamed(context, CustomerRegistrationScreen.id);
+                  Navigator.pushNamed(context, CustomerRegistrationScreen1.id);
                 },
                 color: Colors.white,
               ),
