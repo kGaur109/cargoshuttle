@@ -51,7 +51,9 @@ class WelcomeScreen extends StatelessWidget {
               width: 180,
               height: 50,
               child: RaisedButton(child: Text("LOGIN"),
-                onPressed: () {},
+                onPressed: () {
+                Navigator.pushNamed(context, '/LoginScreen');
+                },
                 color: Colors.white,
                 textColor: Colors.black,
                 shape: RoundedRectangleBorder(
