@@ -1,90 +1,143 @@
+import 'package:cargoshuttle/screens/registration_home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:cargoshuttle/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:cargoshuttle/components/rounded_button.dart';
 
-class OwnerRegistrationScreen extends StatelessWidget {
+import 'owner_info_screen1.dart';
+
+class OwnerRegistrationScreen extends StatefulWidget {
   static const String id = 'owner_registration_screen';
 
   @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Container(
-          alignment: Alignment.topCenter,
-          height: size.height,
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                  icon: Icon(Icons.keyboard_backspace,
-                    color: Colors.white,
-                    size: 50,
-                  ),
-                  onPressed: () {Navigator.pop(context);},
-                ),
-              ),
-              Container(
-                alignment: Alignment.topCenter,
-                child: Image(
-                  image: AssetImage('images/Truck Logo black.png',),
-               ),
-              ),
-              Container(
-                width: 180,
-                height: 50,
-                child: RaisedButton(child: Text("As a fleet owner?"),
-                  onPressed: () {},
-                  color: Colors.black,
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(color: Colors.white)),
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  splashColor: Colors.black,
-                  elevation: 12,
-                ),
-                decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color:Colors.grey.withOpacity(0.7),
+  _OwnerRegistrationScreenState createState() =>
+      _OwnerRegistrationScreenState();
+}
 
-                        spreadRadius: 0,
-                        blurRadius: 3,
-                        offset: Offset(6,5),
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(10)
+class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
+  final _auth = FirebaseAuth.instance;
+
+  bool showSpinner = false;
+  String password;
+  String email;
+  String name;
+  String phone;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: themeColor,
+      body: ModalProgressHUD(
+        inAsyncCall: showSpinner,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              SizedBox(
+                height: 10.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: themeColor,
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, RegistrationHomeScreen.id);
+                    },
+                  )
+                ],
+              ),
+              Flexible(
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
                 ),
               ),
-              SizedBox(height: 30),
-              Container(
-                width: 180,
-                height: 50,
-                child: RaisedButton(child: Text("As a customer?"),
-                  onPressed: () {},
-                  color: Colors.white,
-                  textColor: Colors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  splashColor: Colors.white,
-                  elevation: 12,
+              SizedBox(
+                height: 48.0,
+              ),
+              TextField(
+                keyboardType: TextInputType.text,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  name = value;
+                },
+                decoration: kTextFieldDecoration.copyWith(
+                  hintText: 'Full Name',
                 ),
-                decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color:Colors.grey.withOpacity(0.7),
-                        spreadRadius: 0,
-                        blurRadius: 3,
-                        offset: Offset(6,5),
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(10)
+              ),
+              SizedBox(
+                height: 12.0,
+              ),
+              TextField(
+                keyboardType: TextInputType.emailAddress,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  email = value;
+                },
+                decoration: kTextFieldDecoration.copyWith(
+                  hintText: 'Email address',
                 ),
+              ),
+              SizedBox(
+                height: 12.0,
+              ),
+              TextField(
+                keyboardType: TextInputType.phone,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  phone = value;
+                },
+                decoration:
+                    kTextFieldDecoration.copyWith(hintText: 'Contact Number'),
+              ),
+              SizedBox(
+                height: 12.0,
+              ),
+              TextField(
+                obscureText: true,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  password = value;
+                },
+                decoration:
+                    kTextFieldDecoration.copyWith(hintText: 'Create Password'),
+              ),
+              SizedBox(
+                height: 30.0,
+              ),
+              RoundButton(
+                text: 'Register',
+                color: Colors.white,
+                onPressed: () async {
+                  Navigator.pushNamed(context, OwnerInfoScreen1.id);
+                  // setState(() {
+                  //   showSpinner = true;
+                  // });
+                  // try {
+                  //   final newUser = await _auth.createUserWithEmailAndPassword(
+                  //       email: email, password: password);
+                  //   if (newUser != null) {
+                  //     Navigator.pushNamed(context, HomeScreen.id);
+                  //   }
+                  //   setState(() {
+                  //     showSpinner = false;
+                  //   });
+                  // } catch (e) {
+                  //   print(e);
+                  // }
+                },
               ),
             ],
           ),
