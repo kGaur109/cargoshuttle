@@ -20,9 +20,29 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image(
-              image: AssetImage('images/Truck Logo black.png'),
+            SizedBox(height: 100,),
+            Container(
+              child: Image.asset("assets/images/cargoshuttle logo3.png",
+              height: 150,
+              width: 150,),
             ),
+            SizedBox(height:10,),
+            Text("Cargo Shuttle",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'Arbutus Slab',
+              fontSize: 30,
+            ),),
+            SizedBox(height: 3,),
+            Text('your logistics genie',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'Playfair Display',
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 40,),
             RoundButton(
               text: "REGISTER",
               onPressed: () {
