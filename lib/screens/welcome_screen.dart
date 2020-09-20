@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static const String id = 'welcome_screen';
@@ -23,18 +24,19 @@ class WelcomeScreen extends StatelessWidget {
               image: AssetImage('images/Truck Logo black.png'),
             ),
             RoundButton(
-              text: "Login",
+              text: "REGISTER",
               onPressed: () {
-                Navigator.pushNamed(context, LoginScreen.id);
+                Navigator.pushNamed(context, RegistrationHomeScreen.id);
               },
               color: themeColor,
             ),
             RoundButton(
-              text: "Register",
+              text: "LOGIN",
               onPressed: () {
-                Navigator.pushNamed(context, RegistrationHomeScreen.id);
+                Navigator.pushNamed(context, LoginScreen.id);
               },
               color: Colors.white,
+
             ),
           ],
         ),
