@@ -9,6 +9,7 @@ import 'screens/registration_home_screen.dart';
 import 'screens/customer_registration_screen.dart';
 import 'screens/owner_registration_screen.dart';
 import 'screens/chat_screen.dart';
+import 'screens/StaticScreenFleet.dart';
 
 void main() {
   runApp(Cargoshuttle());
@@ -18,13 +19,14 @@ class Cargoshuttle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: OwnerInfoScreen1.id,
+      initialRoute: WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationHomeScreen.id: (context) => RegistrationHomeScreen(),
         CustomerRegistrationScreen.id: (context) =>
             CustomerRegistrationScreen(),
+        StaticScreenFleet.id: (context) => StaticScreenFleet(),
         CustomerInfoScreen.id: (context) => CustomerInfoScreen(),
         OwnerRegistrationScreen.id: (context) => OwnerRegistrationScreen(),
         OwnerInfoScreen1.id: (context) => OwnerInfoScreen1(),

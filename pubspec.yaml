@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^0.19.0
 
   cupertino_icons: ^0.1.3
   animated_text_kit: ^2.2.0
@@ -20,6 +21,7 @@ dependencies:
   cloud_firestore: ^0.13.7
   modal_progress_hud: ^0.1.3
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -28,6 +30,17 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-
   assets:
-     - images/
+     - assets/images/
+
+  fonts:
+
+    - family: Arbutus Slab
+      fonts:
+        - asset: assets/fonts/ArbutusSlab-Regular.ttf
+
+    - family: Playfair Display
+      fonts:
+        - asset: assets/fonts/PlayfairDisplay-Regular.ttf
+
+

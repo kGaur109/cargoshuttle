@@ -2,8 +2,9 @@ import 'package:cargoshuttle/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class RoundButton extends StatelessWidget {
-  RoundButton({this.text, @required this.onPressed, this.color});
+// ignore: camel_case_types
+class RoundButton_outline extends StatelessWidget {
+  RoundButton_outline({this.text, @required this.onPressed, this.color});
 
   final String text;
   final Function onPressed;
@@ -25,7 +26,6 @@ class RoundButton extends StatelessWidget {
             child: Text(
               text,
               style: TextStyle(
-                fontSize: 18.0,
                 color: (color == themeColor) ? Colors.white : Colors.black,
               ),
             ),
