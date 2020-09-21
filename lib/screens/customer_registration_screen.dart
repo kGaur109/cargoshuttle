@@ -34,7 +34,6 @@ class _CustomerRegistrationScreenState
         inAsyncCall: showSpinner,
         child: Column(
           children: [
-
             SizedBox(
               height: 10.0,
             ),
@@ -60,9 +59,11 @@ class _CustomerRegistrationScreenState
                   Hero(
                     tag: 'logo',
                     child: Container(
-                      child: SvgPicture.asset('assets/images/registration image.svg',
-                      height: 300,
-                      width: 300,),
+                      child: SvgPicture.asset(
+                        'assets/images/registration image.svg',
+                        height: 300,
+                        width: 300,
+                      ),
                     ),
                   ),
                   TextField(
@@ -97,8 +98,8 @@ class _CustomerRegistrationScreenState
                     onChanged: (value) {
                       phone = value;
                     },
-                    decoration:
-                        kTextFieldDecoration.copyWith(hintText: 'Contact Number'),
+                    decoration: kTextFieldDecoration.copyWith(
+                        hintText: 'Contact Number'),
                   ),
                   SizedBox(
                     height: 10.0,
@@ -109,8 +110,8 @@ class _CustomerRegistrationScreenState
                     onChanged: (value) {
                       password = value;
                     },
-                    decoration:
-                        kTextFieldDecoration.copyWith(hintText: 'Create Password'),
+                    decoration: kTextFieldDecoration.copyWith(
+                        hintText: 'Create Password'),
                   ),
                   SizedBox(
                     height: 15.0,
