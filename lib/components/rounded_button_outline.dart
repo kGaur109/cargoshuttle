@@ -27,7 +27,7 @@ class RoundButton_outline extends StatelessWidget {
               text,
               style: TextStyle(
                 fontSize: 18,
-                color: (color == themeColor) ? Colors.white : Colors.black,
+                color: (color == themeColor) ? Colors.white : themeColor,
 
               ),
             ),
@@ -45,7 +45,7 @@ class RoundButton_outline extends StatelessWidget {
           ],
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-            color: Colors.black,
+            color: themeColor,
           ),
         ),
       ),
