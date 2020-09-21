@@ -52,7 +52,7 @@ class _CustomerRegistrationScreenState
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              padding: EdgeInsets.symmetric(horizontal: 40.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -67,12 +67,22 @@ class _CustomerRegistrationScreenState
                   ),
                   TextField(
                     keyboardType: TextInputType.text,
-                    textAlign: TextAlign.center,
                     onChanged: (value) {
                       name = value;
                     },
-                    decoration: kTextFieldDecoration.copyWith(
-                      hintText: 'Full Name',
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.perm_identity, color: Colors.white,),
+                      hintText: "Fullname",
+                      hintStyle: TextStyle(color: Colors.white),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: misc, width: 5,
+                        )
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: misc,
+                        width: 5,),
+                      )
                     ),
                   ),
                   SizedBox(
@@ -80,37 +90,78 @@ class _CustomerRegistrationScreenState
                   ),
                   TextField(
                     keyboardType: TextInputType.emailAddress,
-                    textAlign: TextAlign.center,
                     onChanged: (value) {
                       email = value;
                     },
-                    decoration: kTextFieldDecoration.copyWith(
-                      hintText: 'Email address',
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.email , color: Colors.white,),
+                      hintText: "Email address",
+                      hintStyle: TextStyle(color: Colors.white),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: misc, width: 5,
+                        )
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: misc, width: 5,
+                        )
+                      )
+
                     ),
+
                   ),
                   SizedBox(
                     height: 10.0,
                   ),
                   TextField(
                     keyboardType: TextInputType.phone,
-                    textAlign: TextAlign.center,
+
                     onChanged: (value) {
                       phone = value;
                     },
-                    decoration:
-                        kTextFieldDecoration.copyWith(hintText: 'Contact Number'),
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.call , color: Colors.white,),
+                        hintText: "Contact Number",
+                        hintStyle: TextStyle(color: Colors.white),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: misc, width: 5,
+                            )
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: misc, width: 5,
+                            )
+                        )
+
+                    ),
+
                   ),
                   SizedBox(
                     height: 10.0,
                   ),
                   TextField(
                     obscureText: true,
-                    textAlign: TextAlign.center,
                     onChanged: (value) {
                       password = value;
                     },
-                    decoration:
-                        kTextFieldDecoration.copyWith(hintText: 'Create Password'),
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.lock , color: Colors.white,),
+                        hintText: "Create Password",
+                        hintStyle: TextStyle(color: Colors.white),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: misc, width: 5,
+                            )
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: misc, width: 5,
+                            )
+                        )
+
+                    ),
                   ),
                   SizedBox(
                     height: 15.0,
