@@ -10,6 +10,7 @@ import 'screens/customer_registration_screen.dart';
 import 'screens/owner_registration_screen.dart';
 import 'screens/chat_screen.dart';
 import 'screens/StaticScreenFleet.dart';
+import 'screens/Static_screen_customer.dart';
 
 void main() {
   runApp(Cargoshuttle());
@@ -27,6 +28,7 @@ class Cargoshuttle extends StatelessWidget {
         CustomerRegistrationScreen.id: (context) =>
             CustomerRegistrationScreen(),
         StaticScreenFleet.id: (context) => StaticScreenFleet(),
+        StaticScreen_customer.id: (context) => StaticScreen_customer(),
         CustomerInfoScreen.id: (context) => CustomerInfoScreen(),
         OwnerRegistrationScreen.id: (context) => OwnerRegistrationScreen(),
         OwnerInfoScreen1.id: (context) => OwnerInfoScreen1(),

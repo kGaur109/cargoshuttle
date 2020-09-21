@@ -1,8 +1,11 @@
+import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/customer_registration_screen.dart';
+import 'package:cargoshuttle/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:cargoshuttle/screens/StaticScreenFleet.dart';
+import 'package:cargoshuttle/screens/Static_screen_customer.dart';
 
 class RegistrationHomeScreen extends StatelessWidget {
   static const String id = 'registration_home_screen';
@@ -28,7 +31,7 @@ class RegistrationHomeScreen extends StatelessWidget {
                     size: 50,
                   ),
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, WelcomeScreen.id);
                   },
                 ),
               ),
@@ -56,7 +59,7 @@ class RegistrationHomeScreen extends StatelessWidget {
               ),
               SizedBox(height: 40,),
 
-              RoundButton(
+              RoundButton_outline(
                 text: "As a fleet owner?",
                 onPressed: () {
                   Navigator.pushNamed(context, StaticScreenFleet.id );
@@ -66,7 +69,7 @@ class RegistrationHomeScreen extends StatelessWidget {
               RoundButton(
                 text: "As a customer?",
                 onPressed: () {
-                  Navigator.pushNamed(context, CustomerRegistrationScreen.id);
+                  Navigator.pushNamed(context, StaticScreen_customer.id);
                 },
                 color: themeColor,
               ),

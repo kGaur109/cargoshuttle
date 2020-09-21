@@ -1,3 +1,4 @@
+import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/login_screen.dart';
 import 'package:cargoshuttle/screens/registration_home_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -50,7 +51,7 @@ class WelcomeScreen extends StatelessWidget {
               },
               color: themeColor,
             ),
-            RoundButton(
+            RoundButton_outline(
               text: "LOGIN",
               onPressed: () {
                 Navigator.pushNamed(context, LoginScreen.id);
