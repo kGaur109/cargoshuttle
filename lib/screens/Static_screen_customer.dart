@@ -2,12 +2,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';
-import 'package:cargoshuttle/screens/owner_registration_screen.dart';
+import 'package:cargoshuttle/screens/customer_registration_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
-class StaticScreenFleet extends StatelessWidget {
-  static const String id = 'Static_Fleet';
+// ignore: camel_case_types
+class StaticScreen_customer extends StatelessWidget {
+  static const String id = 'Static_Customer';
 
 
   @override
@@ -25,20 +26,20 @@ class StaticScreenFleet extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 30),
-              width: 420,
+              width: 400,
               child: Text.rich(
                 TextSpan(
-                  text: 'Transform you business with us, serve to a ',
+                  text: 'Let us handle your logistics, calculate your ',
                   style: TextStyle(fontSize: 28 , color: Colors.blue[900]),// default text style
                   children: <TextSpan>[
-                    TextSpan(text: 'greater audience', style: TextStyle(fontWeight: FontWeight.bold)),
-                    TextSpan(text: ', with our platform you can '),
-                    TextSpan(text: 'grow ', style: TextStyle(fontWeight: FontWeight.bold),),
-                    TextSpan(text: 'your ', ),
-                    TextSpan(text: 'business ', style: TextStyle(fontWeight: FontWeight.bold),),
-                    TextSpan(text: 'using '),
-                    TextSpan(text: 'latest technology ', style: TextStyle(fontWeight: FontWeight.bold),),
-                    TextSpan(text: 'with no hassle. ',)
+                    TextSpan(text: 'toll, ', style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: 'calculate your '),
+                    TextSpan(text: 'distance ', style: TextStyle(fontWeight: FontWeight.bold),),
+                    TextSpan(text: 'just ', ),
+                    TextSpan(text: 'at one tap ', style: TextStyle(fontWeight: FontWeight.bold),),
+                    TextSpan(text: 'with '),
+                    TextSpan(text: 'live tracking ', style: TextStyle(fontWeight: FontWeight.bold),),
+                    TextSpan(text: 'of your package. ',)
                   ],
                 ),
               ),
@@ -47,7 +48,7 @@ class StaticScreenFleet extends StatelessWidget {
 
             Container(
               alignment: Alignment.centerRight,
-              padding: EdgeInsets.only(right: 50),
+              padding: EdgeInsets.fromLTRB(0,20, 60,0),
               child: FloatingActionButton(
                 backgroundColor: themeColor,
                 child: Icon(
@@ -55,15 +56,13 @@ class StaticScreenFleet extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.pushNamed(
-                      context, OwnerRegistrationScreen.id);
+                      context, CustomerRegistrationScreen.id);
                 },
               ),
             ),
-            SizedBox(height: 20,),
-            Container(child: Image.asset('assets/images/scootyboy.png'),
-            height: 300,
-            width: 400,
-            alignment: Alignment.bottomCenter,),
+            SizedBox(height:100,),
+            Image.asset('assets/images/customer-truck.png',
+            ),
 
           ],
         ),
