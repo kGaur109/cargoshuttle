@@ -1,4 +1,5 @@
 import 'package:cargoshuttle/screens/home_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../constants.dart';
@@ -13,7 +14,9 @@ class OwnerInfoScreen2 extends StatefulWidget {
   _OwnerInfoScreen2State createState() => _OwnerInfoScreen2State();
 }
 
-class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
+final userRef = Firestore.instance.collection('fleet owners');
+
+class _OwnerInfoScreen2State extends State<OwnerInfoScreen2>  {
   String companyName;
   String address;
   String city;
@@ -22,6 +25,24 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
   String phone;
   String pan;
   String gst;
+
+ /* void createRecord() async {
+    await userRef
+        .document(email1).collection('Company Data').document(email1)
+        .setData({
+      'companyName': companyName,
+      'address': address,
+      'city': city,
+      'pin': pin,
+      'state': state,
+      'phone': phone,
+      'pan': pan,
+      'gst': gst
+    });
+  } */
+
+  final email1;
+  _OwnerInfoScreen2State({this.email1});
 
   @override
   Widget build(BuildContext context) {

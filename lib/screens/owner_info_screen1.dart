@@ -1,4 +1,6 @@
 import 'package:cargoshuttle/screens/customer_registration_screen.dart';
+import 'package:cargoshuttle/screens/fleet_owner.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../constants.dart';
@@ -18,6 +20,10 @@ class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
   String contactNumber;
   String email;
   String password;
+
+  final email1;
+  _OwnerInfoScreen1State({@required this.email1});
+
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +124,10 @@ class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
                 text: "Proceed",
                 color: themeColor,
                 onPressed: () {
-                  Navigator.pushNamed(context, OwnerInfoScreen2.id);
+                  var email_passed = email1.text;
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => OwnerInfoScreen2(),
+                  ));
                 },
               ),
               // SizedBox(

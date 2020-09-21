@@ -1,10 +1,12 @@
 import 'package:cargoshuttle/screens/registration_home_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 
+import 'fleet_owner.dart';
 import 'owner_info_screen1.dart';
 
 class OwnerRegistrationScreen extends StatefulWidget {
@@ -15,14 +17,30 @@ class OwnerRegistrationScreen extends StatefulWidget {
       _OwnerRegistrationScreenState();
 }
 
+final userRef = Firestore.instance.collection('fleet owners');
+
 class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
-  final _auth = FirebaseAuth.instance;
+ // final _auth = FirebaseAuth.instance;
 
   bool showSpinner = false;
   String password;
   String email;
   String name;
   String phone;
+
+  final email1 = new TextEditingController();
+
+ /* void createRecord() async {
+    await userRef
+        .document(email).collection('Basic Data').document(email)
+        .setData({
+      'ownerName': name,
+      'contactNumber': phone,
+      'email': email,
+      'password': password
+    });
+  } */
+
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +99,7 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                 height: 12.0,
               ),
               TextField(
+                controller: email1,
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
@@ -121,7 +140,11 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                 text: 'Register',
                 color: Colors.white,
                 onPressed: () async {
-                  Navigator.pushNamed(context, OwnerInfoScreen1.id);
+                  var email_entered = email1.text;
+                //  createRecord();
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => OwnerInfoScreen1(),
+                  ));//(context, OwnerInfoScreen1.id);
                   // setState(() {
                   //   showSpinner = true;
                   // });
