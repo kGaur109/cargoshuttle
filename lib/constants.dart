@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const Color themeColor = Color.fromRGBO(80, 103, 255, 1);
+const Color misc = Color.fromRGBO(101, 150, 230, 1);
 
 const kSendButtonTextStyle = TextStyle(
   color: themeColor,
