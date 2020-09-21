@@ -1,5 +1,4 @@
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
-import 'package:cargoshuttle/screens/customer_registration_screen.dart';
 import 'package:cargoshuttle/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
@@ -20,7 +19,8 @@ class RegistrationHomeScreen extends StatelessWidget {
           height: size.height,
           width: double.infinity,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 alignment: Alignment.topLeft,
@@ -35,21 +35,32 @@ class RegistrationHomeScreen extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: 30,),
-              Container(
-                child: Image.asset("assets/images/cargoshuttle logo3.png",
-                  height: 150,
-                  width: 150,),
+              SizedBox(
+                height: 30,
               ),
-              SizedBox(height:10,),
-              Text("Cargo Shuttle",
+              Container(
+                child: Image.asset(
+                  "assets/images/cargoshuttle logo3.png",
+                  height: 150,
+                  width: 150,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Cargo Shuttle",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Arbutus Slab',
                   fontSize: 30,
-                ),),
-              SizedBox(height: 3,),
-              Text('your logistics genie',
+                ),
+              ),
+              SizedBox(
+                height: 3,
+              ),
+              Text(
+                'your logistics genie',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Playfair Display',
@@ -57,12 +68,13 @@ class RegistrationHomeScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 40,),
-
+              SizedBox(
+                height: 40,
+              ),
               RoundButton_outline(
                 text: "As a fleet owner?",
                 onPressed: () {
-                  Navigator.pushNamed(context, StaticScreenFleet.id );
+                  Navigator.pushNamed(context, StaticScreenFleet.id);
                 },
                 color: Colors.white,
               ),
