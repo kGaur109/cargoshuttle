@@ -19,8 +19,7 @@ class RegistrationHomeScreen extends StatelessWidget {
           height: size.height,
           width: double.infinity,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
                 alignment: Alignment.topLeft,
@@ -69,7 +68,7 @@ class RegistrationHomeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 40,
+                height: 65,
               ),
               RoundButton_outline(
                 text: "As a fleet owner?",

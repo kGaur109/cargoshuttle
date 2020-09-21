@@ -19,8 +19,7 @@ class WelcomeScreen extends StatelessWidget {
         height: size.height,
         width: double.infinity,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
               height: 100,
@@ -56,7 +55,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 70,
             ),
             RoundButton(
               text: "REGISTER",
