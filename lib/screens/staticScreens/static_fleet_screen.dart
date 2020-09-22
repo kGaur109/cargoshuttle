@@ -1,7 +1,8 @@
+import 'package:cargoshuttle/screens/ownerRegistration/owner_registration_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';
-import 'file:///C:/Users/karti/Desktop/3rd%20Semester/Design%20Thinking%20and%20Innovation/Cargoshuttle/cargoshuttle/lib/screens/ownerRegistration/owner_registration_screen.dart';
+
 
 class StaticScreenFleet extends StatelessWidget {
   static const String id = 'Static_Fleet';
