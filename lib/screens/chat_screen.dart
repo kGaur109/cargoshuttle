@@ -50,7 +50,7 @@ class _ChatScreenState extends State<ChatScreen> {
               }),
         ],
         title: Text('⚡️Chat'),
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: themeColor,
       ),
       body: SafeArea(
         child: Column(
@@ -104,7 +104,7 @@ class MessagesStream extends StatelessWidget {
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(
-              backgroundColor: Colors.lightBlueAccent,
+              backgroundColor: themeColor,
             ),
           );
         }
@@ -161,7 +161,7 @@ class MessageBubble extends StatelessWidget {
             ),
           ),
           Material(
-            color: isMe ? Colors.lightBlueAccent : Colors.blue,
+            color: isMe ? themeColor : Colors.blue,
             borderRadius: isMe
                 ? BorderRadius.only(
                     topLeft: Radius.circular(30.0),

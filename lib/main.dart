@@ -1,16 +1,16 @@
-import 'package:cargoshuttle/screens/customer_info_screen.dart';
+import 'file:///C:/Users/karti/Desktop/3rd%20Semester/Design%20Thinking%20and%20Innovation/Cargoshuttle/cargoshuttle/lib/screens/customerRegistration/customer_info_screen.dart';
 import 'package:cargoshuttle/screens/home_screen.dart';
-import 'package:cargoshuttle/screens/owner_info_screen1.dart';
-import 'package:cargoshuttle/screens/owner_info_screen2.dart';
+import 'package:cargoshuttle/screens/staticScreens/static_fleet_screen.dart';
+import 'file:///C:/Users/karti/Desktop/3rd%20Semester/Design%20Thinking%20and%20Innovation/Cargoshuttle/cargoshuttle/lib/screens/ownerRegistration/owner_info_screen1.dart';
+import 'file:///C:/Users/karti/Desktop/3rd%20Semester/Design%20Thinking%20and%20Innovation/Cargoshuttle/cargoshuttle/lib/screens/ownerRegistration/owner_info_screen2.dart';
 import 'package:flutter/material.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/registration_home_screen.dart';
-import 'screens/customer_registration_screen.dart';
-import 'screens/owner_registration_screen.dart';
+import 'screens/customerRegistration/customer_registration_screen.dart';
+import 'screens/ownerRegistration/owner_registration_screen.dart';
 import 'screens/chat_screen.dart';
-import 'screens/StaticScreenFleet.dart';
-import 'screens/Static_screen_customer.dart';
+import 'screens/staticScreens/static_screen_customer.dart';
 
 void main() {
   runApp(Cargoshuttle());
@@ -28,7 +28,7 @@ class Cargoshuttle extends StatelessWidget {
         CustomerRegistrationScreen.id: (context) =>
             CustomerRegistrationScreen(),
         StaticScreenFleet.id: (context) => StaticScreenFleet(),
-        StaticScreen_customer.id: (context) => StaticScreen_customer(),
+        StaticScreenCustomer.id: (context) => StaticScreenCustomer(),
         CustomerInfoScreen.id: (context) => CustomerInfoScreen(),
         OwnerRegistrationScreen.id: (context) => OwnerRegistrationScreen(),
         OwnerInfoScreen1.id: (context) => OwnerInfoScreen1(),

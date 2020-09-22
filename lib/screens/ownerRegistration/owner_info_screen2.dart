@@ -1,41 +1,50 @@
-import 'package:cargoshuttle/screens/customer_registration_screen.dart';
 import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import '../constants.dart';
+import '../../constants.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 
-class CustomerInfoScreen extends StatefulWidget {
-  static const String id = 'customer_info_screen';
+import 'owner_info_screen1.dart';
+
+final userRef = Firestore.instance.collection('fleet owners');
+
+class OwnerInfoScreen2 extends StatefulWidget {
+  static const String id = 'owner_info_screen2';
   final email1;
-  CustomerInfoScreen({this.email1});
+  OwnerInfoScreen2({this.email1});
 
   @override
-  _CustomerInfoScreenState createState() => _CustomerInfoScreenState(email1);
+  _OwnerInfoScreen2State createState() => _OwnerInfoScreen2State(email1);
 }
 
-final userRef = Firestore.instance.collection('customer');
-
-class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
+class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
+  String companyName;
   String address;
   String city;
   String pin;
   String state;
-  String dob;
+  String phone;
+  String pan;
+  String gst;
 
   final email1;
-  _CustomerInfoScreenState(this.email1);
+  _OwnerInfoScreen2State(this.email1);
 
   void createRecord() async {
     await userRef
-        .document(email1).collection('Address Data').document(email1)
+        .document(email1)
+        .collection('Company Data')
+        .document(email1)
         .setData({
+      'companyName': companyName,
       'address': address,
       'city': city,
       'pin': pin,
       'state': state,
-      'dob': dob
+      'phone': phone,
+      'pan': pan,
+      'gst': gst
     });
   }
 
@@ -54,28 +63,44 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                 SizedBox(
                   height: 40.0,
                 ),
-                CircleAvatar(
-                  backgroundColor: themeColor,
-                  child: Icon(
-                    Icons.account_circle,
-                    size: 100.0,
-                  ),
-                  radius: 80.0,
+
+                // SizedBox(
+                //   height: 24.0,
+                // ),
+                // CircleAvatar(
+                //   backgroundColor: themeColor,
+                //   child: Icon(
+                //     Icons.account_circle,
+                //     size: 100.0,
+                //   ),
+                //   radius: 80.0,
+                // ),
+                // SizedBox(
+                //   height: 12.0,
+                // ),
+                // Text(
+                //   "User Profile",
+                //   textAlign: TextAlign.center,
+                //   style: TextStyle(
+                //     color: themeColor,
+                //     fontWeight: FontWeight.bold,
+                //     fontSize: 20.0,
+                //   ),
+                // ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                TextField(
+                  keyboardType: TextInputType.text,
+                  onChanged: (value) {
+                    companyName = value;
+                  },
+                  decoration: kTextFieldDecorationWhite.copyWith(
+                      hintText: 'company name',
+                      hintStyle: TextStyle(color: Colors.grey.shade600)),
                 ),
                 SizedBox(
                   height: 12.0,
-                ),
-                Text(
-                  "ADD A PROFILE PICTURE",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: themeColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0,
-                  ),
-                ),
-                SizedBox(
-                  height: 30.0,
                 ),
                 TextField(
                   keyboardType: TextInputType.text,
@@ -83,12 +108,11 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                     address = value;
                   },
                   decoration: kTextFieldDecorationWhite.copyWith(
-                    hintText: 'address line 1',
-                    hintStyle: TextStyle(color: Colors.grey),
-                  ),
+                      hintText: 'company address',
+                      hintStyle: TextStyle(color: Colors.grey.shade600)),
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 12.0,
                 ),
                 Row(
                   children: <Widget>[
@@ -96,12 +120,11 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                       child: TextField(
                         keyboardType: TextInputType.text,
                         onChanged: (value) {
-                          address = value;
+                          city = value;
                         },
                         decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'city',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
+                            hintText: 'city',
+                            hintStyle: TextStyle(color: Colors.grey.shade600)),
                       ),
                     ),
                     SizedBox(
@@ -110,32 +133,32 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                     Flexible(
                       child: TextField(
                         keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
                         onChanged: (value) {
                           pin = value;
                         },
                         decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'pincode',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
+                            hintText: 'pincode',
+                            hintStyle: TextStyle(color: Colors.grey.shade600)),
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 12.0,
                 ),
                 Row(
                   children: <Widget>[
                     Flexible(
                       child: TextField(
                         keyboardType: TextInputType.text,
+                        textAlign: TextAlign.center,
                         onChanged: (value) {
                           state = value;
                         },
                         decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'state',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
+                            hintText: 'state',
+                            hintStyle: TextStyle(color: Colors.grey.shade600)),
                       ),
                     ),
                     SizedBox(
@@ -145,15 +168,38 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                       child: TextField(
                         keyboardType: TextInputType.number,
                         onChanged: (value) {
-                          dob = value;
+                          phone = value;
                         },
                         decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'DOB',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
+                            hintText: 'phone number',
+                            hintStyle: TextStyle(color: Colors.grey.shade600)),
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 12.0,
+                ),
+                TextField(
+                  keyboardType: TextInputType.text,
+                  onChanged: (value) {
+                    pan = value;
+                  },
+                  decoration: kTextFieldDecorationWhite.copyWith(
+                      hintText: 'PAN number',
+                      hintStyle: TextStyle(color: Colors.grey.shade600)),
+                ),
+                SizedBox(
+                  height: 12.0,
+                ),
+                TextField(
+                  keyboardType: TextInputType.text,
+                  onChanged: (value) {
+                    gst = value;
+                  },
+                  decoration: kTextFieldDecorationWhite.copyWith(
+                      hintText: 'GST number',
+                      hintStyle: TextStyle(color: Colors.grey.shade600)),
                 ),
                 SizedBox(
                   height: 24.0,
@@ -166,7 +212,9 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                     Navigator.pushNamed(context, HomeScreen.id);
                   },
                 ),
-                SizedBox(height: 25,),
+                SizedBox(
+                  height: 40,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -177,8 +225,7 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                         Icons.arrow_back,
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, CustomerRegistrationScreen.id);
+                        Navigator.pushNamed(context, OwnerInfoScreen1.id);
                       },
                     )
                   ],

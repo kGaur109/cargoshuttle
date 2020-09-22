@@ -1,7 +1,6 @@
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:cargoshuttle/components/rounded_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -30,7 +29,9 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               Container(
                 alignment: Alignment.topLeft,
                 child: IconButton(
@@ -44,19 +45,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
               ),
-
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-
                     Hero(
                       tag: 'logo',
                       child: Container(
-                        child: Image.asset('assets/images/login screen image new.png',
-                        height: 300,width: 300,),
+                        child: Image.asset(
+                          'assets/images/login screen image new.png',
+                          height: 300,
+                          width: 300,
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -69,19 +71,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         email = value;
                       },
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.email, color: Colors.white,),
+                          prefixIcon: Icon(
+                            Icons.email,
+                            color: Colors.white,
+                          ),
                           hintText: "enter your email",
                           hintStyle: TextStyle(color: Colors.white),
                           focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: misc, width: 5,
-                              )
-                          ),
+                            color: misc,
+                            width: 5,
+                          )),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: misc,
-                              width: 5,),
-                          )
-                      ),
+                            borderSide: BorderSide(
+                              color: misc,
+                              width: 5,
+                            ),
+                          )),
                     ),
                     SizedBox(
                       height: 25,
@@ -93,19 +99,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         password = value;
                       },
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.lock, color: Colors.white,),
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: Colors.white,
+                          ),
                           hintText: "password",
                           hintStyle: TextStyle(color: Colors.white),
                           focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: misc, width: 5,
-                              )
-                          ),
+                            color: misc,
+                            width: 5,
+                          )),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: misc,
-                              width: 5,),
-                          )
-                      ),
+                            borderSide: BorderSide(
+                              color: misc,
+                              width: 5,
+                            ),
+                          )),
                     ),
                     SizedBox(
                       height: 35.0,
@@ -117,8 +127,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           showSpinner = true;
                         });
                         try {
-                          final currentUser = await _auth.signInWithEmailAndPassword(
-                              email: email, password: password);
+                          final currentUser =
+                              await _auth.signInWithEmailAndPassword(
+                                  email: email, password: password);
                           if (currentUser != null) {
                             Navigator.pushNamed(context, HomeScreen.id);
                           }
@@ -129,7 +140,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           print(e);
                         }
                       },
-
                     ),
                   ],
                 ),
