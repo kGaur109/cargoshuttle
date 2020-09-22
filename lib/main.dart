@@ -1,8 +1,9 @@
-import 'file:///C:/Users/karti/Desktop/3rd%20Semester/Design%20Thinking%20and%20Innovation/Cargoshuttle/cargoshuttle/lib/screens/customerRegistration/customer_info_screen.dart';
+
+import 'package:cargoshuttle/screens/customerRegistration/customer_info_screen.dart';
 import 'package:cargoshuttle/screens/home_screen.dart';
+import 'package:cargoshuttle/screens/ownerRegistration/owner_info_screen1.dart';
+import 'package:cargoshuttle/screens/ownerRegistration/owner_info_screen2.dart';
 import 'package:cargoshuttle/screens/staticScreens/static_fleet_screen.dart';
-import 'file:///C:/Users/karti/Desktop/3rd%20Semester/Design%20Thinking%20and%20Innovation/Cargoshuttle/cargoshuttle/lib/screens/ownerRegistration/owner_info_screen1.dart';
-import 'file:///C:/Users/karti/Desktop/3rd%20Semester/Design%20Thinking%20and%20Innovation/Cargoshuttle/cargoshuttle/lib/screens/ownerRegistration/owner_info_screen2.dart';
 import 'package:flutter/material.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/login_screen.dart';
