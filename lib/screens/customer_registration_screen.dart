@@ -1,12 +1,15 @@
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/customer_info_screen.dart';
 import 'package:cargoshuttle/screens/registration_home_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
+
+import 'customer_info_screen.dart';
 
 class CustomerRegistrationScreen extends StatefulWidget {
   static const String id = 'customer_registration_screen';
@@ -15,6 +18,8 @@ class CustomerRegistrationScreen extends StatefulWidget {
   _CustomerRegistrationScreenState createState() =>
       _CustomerRegistrationScreenState();
 }
+
+final userRef = Firestore.instance.collection('customer');
 
 class _CustomerRegistrationScreenState
     extends State<CustomerRegistrationScreen> {
@@ -25,6 +30,19 @@ class _CustomerRegistrationScreenState
   String email;
   String name;
   String phone;
+
+  final email1 = new TextEditingController();
+
+  void createRecord() async {
+    await userRef
+        .document(email).collection('Basic Data').document(email)
+        .setData({
+      'password': password,
+      'name': name,
+      'email': email,
+      'phone': phone
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +112,7 @@ class _CustomerRegistrationScreenState
                       height: 10.0,
                     ),
                     TextField(
+                      controller: email1,
                       style: TextStyle(color: Colors.white),
                       keyboardType: TextInputType.emailAddress,
                       onChanged: (value) {
@@ -181,7 +200,11 @@ class _CustomerRegistrationScreenState
                     RoundButton_outline(
                       text: 'REGISTER',
                       onPressed: () async {
-                        Navigator.pushNamed(context, CustomerInfoScreen.id);
+                        var email_entered = email1.text;
+                        createRecord();
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => CustomerInfoScreen(email1: email_entered)
+                        ));
                         // setState(() {
                         //   showSpinner = true;
                         // });

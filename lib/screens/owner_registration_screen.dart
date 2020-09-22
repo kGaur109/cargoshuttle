@@ -1,5 +1,6 @@
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/registration_home_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 
+import 'owner_info_screen1.dart';
 import 'owner_info_screen1.dart';
 
 class OwnerRegistrationScreen extends StatefulWidget {
@@ -17,6 +19,8 @@ class OwnerRegistrationScreen extends StatefulWidget {
       _OwnerRegistrationScreenState();
 }
 
+final userRef = Firestore.instance.collection('fleet owners');
+
 class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
   final _auth = FirebaseAuth.instance;
 
@@ -24,7 +28,20 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
   String password;
   String email;
   String name;
-  String phone;
+  String contact_no;
+
+  final email1 = new TextEditingController();
+
+  void createRecord() async {
+    await userRef
+        .document(email).collection('Basic Data').document(email)
+        .setData({
+      'password': password,
+      'name': name,
+      'email': email,
+      'contact_no': contact_no
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +111,7 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                       height: 10.0,
                     ),
                     TextField(
+                      controller: email1,
                       keyboardType: TextInputType.emailAddress,
                       style: TextStyle(color: Colors.white),
                       onChanged: (value) {
@@ -122,7 +140,7 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                       keyboardType: TextInputType.phone,
                       style: TextStyle(color: Colors.white),
                       onChanged: (value) {
-                        phone = value;
+                        contact_no= value;
                       },
 
                       decoration: InputDecoration(
@@ -172,7 +190,11 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                     RoundButton_outline(
                       text: 'REGISTER',
                       onPressed: () async {
-                        Navigator.pushNamed(context, OwnerInfoScreen1.id);
+                        var email_entered = email1.text;
+                        createRecord();
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => OwnerInfoScreen1(email1: email_entered,)
+                        ));
                         // setState(() {
                         //   showSpinner = true;
                         // });

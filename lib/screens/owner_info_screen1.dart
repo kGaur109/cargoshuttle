@@ -5,12 +5,15 @@ import '../constants.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 
 import 'owner_info_screen2.dart';
+import 'owner_info_screen2.dart';
 
 class OwnerInfoScreen1 extends StatefulWidget {
   static const String id = 'owner_info_screen1';
+  final email1;
+  OwnerInfoScreen1({this.email1});
 
   @override
-  _OwnerInfoScreen1State createState() => _OwnerInfoScreen1State();
+  _OwnerInfoScreen1State createState() => _OwnerInfoScreen1State(email1);
 }
 
 class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
@@ -18,6 +21,9 @@ class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
   String contactNumber;
   String email;
   String password;
+
+  final email1;
+  _OwnerInfoScreen1State(this.email1);
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +106,10 @@ class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
                 text: "ENTER COMPANY INFO",
                 color: themeColor,
                 onPressed: () {
-                  Navigator.pushNamed(context, OwnerInfoScreen2.id);
+                  var email_passed = email1;
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => OwnerInfoScreen2(email1: email_passed)
+                  ));
                 },
               ),
               // SizedBox(

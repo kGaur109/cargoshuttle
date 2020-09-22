@@ -1,5 +1,6 @@
 import 'package:cargoshuttle/screens/customer_registration_screen.dart';
 import 'package:cargoshuttle/screens/home_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../constants.dart';
@@ -7,10 +8,14 @@ import 'package:cargoshuttle/components/rounded_button.dart';
 
 class CustomerInfoScreen extends StatefulWidget {
   static const String id = 'customer_info_screen';
+  final email1;
+  CustomerInfoScreen({this.email1});
 
   @override
-  _CustomerInfoScreenState createState() => _CustomerInfoScreenState();
+  _CustomerInfoScreenState createState() => _CustomerInfoScreenState(email1);
 }
+
+final userRef = Firestore.instance.collection('customer');
 
 class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
   String address;
@@ -18,6 +23,21 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
   String pin;
   String state;
   String dob;
+
+  final email1;
+  _CustomerInfoScreenState(this.email1);
+
+  void createRecord() async {
+    await userRef
+        .document(email1).collection('Address Data').document(email1)
+        .setData({
+      'address': address,
+      'city': city,
+      'pin': pin,
+      'state': state,
+      'dob': dob
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -142,6 +162,7 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                   text: "COMPLETE PROFILE",
                   color: themeColor,
                   onPressed: () {
+                    createRecord();
                     Navigator.pushNamed(context, HomeScreen.id);
                   },
                 ),
