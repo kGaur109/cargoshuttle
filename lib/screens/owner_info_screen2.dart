@@ -1,4 +1,5 @@
 import 'package:cargoshuttle/screens/home_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../constants.dart';
@@ -6,11 +7,15 @@ import 'package:cargoshuttle/components/rounded_button.dart';
 
 import 'owner_info_screen1.dart';
 
+final userRef = Firestore.instance.collection('fleet owners');
+
 class OwnerInfoScreen2 extends StatefulWidget {
   static const String id = 'owner_info_screen2';
+  final email1;
+  OwnerInfoScreen2({this.email1});
 
   @override
-  _OwnerInfoScreen2State createState() => _OwnerInfoScreen2State();
+  _OwnerInfoScreen2State createState() => _OwnerInfoScreen2State(email1);
 }
 
 class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
@@ -22,6 +27,24 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
   String phone;
   String pan;
   String gst;
+
+  final email1;
+  _OwnerInfoScreen2State(this.email1);
+
+  void createRecord() async {
+    await userRef
+        .document(email1).collection('Company Data').document(email1)
+        .setData({
+      'companyName': companyName,
+      'address': address,
+      'city': city,
+      'pin': pin,
+      'state': state,
+      'phone': phone,
+      'pan': pan,
+      'gst': gst
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -191,8 +214,10 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
                   text: "COMPLETE PROFILE",
                   color: themeColor,
                   onPressed: () {
+                    createRecord();
                     Navigator.pushNamed(context, HomeScreen.id);
                   },
+
                 ),
                 SizedBox(height: 40,),
                 Row(
