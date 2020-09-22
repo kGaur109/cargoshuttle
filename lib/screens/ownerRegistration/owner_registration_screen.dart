@@ -1,12 +1,11 @@
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/registration_home_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:cargoshuttle/components/rounded_button.dart';
-
 import 'owner_info_screen1.dart';
 
 class OwnerRegistrationScreen extends StatefulWidget {
@@ -17,6 +16,8 @@ class OwnerRegistrationScreen extends StatefulWidget {
       _OwnerRegistrationScreenState();
 }
 
+final userRef = Firestore.instance.collection('fleet owners');
+
 class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
   final _auth = FirebaseAuth.instance;
 
@@ -24,7 +25,22 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
   String password;
   String email;
   String name;
-  String phone;
+  String contactNumber;
+
+  final email1 = new TextEditingController();
+
+  void createRecord() async {
+    await userRef
+        .document(email)
+        .collection('Basic Data')
+        .document(email)
+        .setData({
+      'password': password,
+      'name': name,
+      'email': email,
+      'contact_no': contactNumber
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,19 +69,18 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40.0),
-
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-
                     Hero(
                       tag: 'logo',
                       child: Container(
-
-                        child: SvgPicture.asset('assets/images/registration image.svg',
-                        height: 300,
-                        width: 300,),
+                        child: SvgPicture.asset(
+                          'assets/images/registration image.svg',
+                          height: 300,
+                          width: 300,
+                        ),
                       ),
                     ),
                     TextField(
@@ -74,47 +89,54 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                       onChanged: (value) {
                         name = value;
                       },
-
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.perm_identity, color: Colors.white,),
+                          prefixIcon: Icon(
+                            Icons.perm_identity,
+                            color: Colors.white,
+                          ),
                           hintText: "fullname",
                           hintStyle: TextStyle(color: Colors.white),
                           focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: misc, width: 5,
-                              )
-                          ),
+                            color: misc,
+                            width: 5,
+                          )),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: misc,
-                              width: 5,),
-                          )
-                      ),
+                            borderSide: BorderSide(
+                              color: misc,
+                              width: 5,
+                            ),
+                          )),
                     ),
                     SizedBox(
                       height: 10.0,
                     ),
                     TextField(
+                      controller: email1,
                       keyboardType: TextInputType.emailAddress,
                       style: TextStyle(color: Colors.white),
                       onChanged: (value) {
                         email = value;
                       },
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.email, color: Colors.white,),
+                          prefixIcon: Icon(
+                            Icons.email,
+                            color: Colors.white,
+                          ),
                           hintText: "email address",
                           hintStyle: TextStyle(color: Colors.white),
                           focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: misc, width: 5,
-                              )
-                          ),
+                            color: misc,
+                            width: 5,
+                          )),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: misc,
-                              width: 5,),
-                          )
-                      ),
+                            borderSide: BorderSide(
+                              color: misc,
+                              width: 5,
+                            ),
+                          )),
                     ),
-
                     SizedBox(
                       height: 10.0,
                     ),
@@ -122,29 +144,30 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                       keyboardType: TextInputType.phone,
                       style: TextStyle(color: Colors.white),
                       onChanged: (value) {
-                        phone = value;
+                        contactNumber = value;
                       },
-
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.phone, color: Colors.white,),
+                          prefixIcon: Icon(
+                            Icons.phone,
+                            color: Colors.white,
+                          ),
                           hintText: "contact number",
                           hintStyle: TextStyle(color: Colors.white),
                           focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: misc, width: 5,
-                              )
-                          ),
+                            color: misc,
+                            width: 5,
+                          )),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: misc,
-                              width: 5,),
-                          )
-                      ),
+                            borderSide: BorderSide(
+                              color: misc,
+                              width: 5,
+                            ),
+                          )),
                     ),
-
                     SizedBox(
                       height: 10.0,
                     ),
-
                     TextField(
                       obscureText: true,
                       style: TextStyle(color: Colors.white),
@@ -152,19 +175,23 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                         password = value;
                       },
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.lock, color: Colors.white,),
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: Colors.white,
+                          ),
                           hintText: "create password",
                           hintStyle: TextStyle(color: Colors.white),
                           focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: misc, width: 5,
-                              )
-                          ),
+                            color: misc,
+                            width: 5,
+                          )),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: misc,
-                              width: 5,),
-                          )
-                      ),
+                            borderSide: BorderSide(
+                              color: misc,
+                              width: 5,
+                            ),
+                          )),
                     ),
                     SizedBox(
                       height: 15.0,
@@ -172,22 +199,40 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                     RoundButton_outline(
                       text: 'REGISTER',
                       onPressed: () async {
-                        Navigator.pushNamed(context, OwnerInfoScreen1.id);
-                        // setState(() {
-                        //   showSpinner = true;
-                        // });
-                        // try {
-                        //   final newUser = await _auth.createUserWithEmailAndPassword(
-                        //       email: email, password: password);
-                        //   if (newUser != null) {
-                        //     Navigator.pushNamed(context, HomeScreen.id);
-                        //   }
-                        //   setState(() {
-                        //     showSpinner = false;
-                        //   });
-                        // } catch (e) {
-                        //   print(e);
-                        // }
+                        var emailEntered = email1.text;
+                        // createRecord();
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => OwnerInfoScreen1(
+                        //       email1: emailEntered,
+                        //     ),
+                        //   ),
+                        // );
+                        setState(() {
+                          showSpinner = true;
+                        });
+                        try {
+                          final newUser =
+                              await _auth.createUserWithEmailAndPassword(
+                                  email: email, password: password);
+                          if (newUser != null) {
+                            createRecord();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => OwnerInfoScreen1(
+                                  email1: emailEntered,
+                                ),
+                              ),
+                            );
+                          }
+                          setState(() {
+                            showSpinner = false;
+                          });
+                        } catch (e) {
+                          print(e);
+                        }
                       },
                     ),
                   ],

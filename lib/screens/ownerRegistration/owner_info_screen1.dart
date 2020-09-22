@@ -1,16 +1,17 @@
-import 'package:cargoshuttle/screens/customer_registration_screen.dart';
+import 'file:///C:/Users/karti/Desktop/3rd%20Semester/Design%20Thinking%20and%20Innovation/Cargoshuttle/cargoshuttle/lib/screens/customerRegistration/customer_registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import '../constants.dart';
+import '../../constants.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
-
 import 'owner_info_screen2.dart';
 
 class OwnerInfoScreen1 extends StatefulWidget {
   static const String id = 'owner_info_screen1';
+  final email1;
+  OwnerInfoScreen1({this.email1});
 
   @override
-  _OwnerInfoScreen1State createState() => _OwnerInfoScreen1State();
+  _OwnerInfoScreen1State createState() => _OwnerInfoScreen1State(email1);
 }
 
 class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
@@ -18,6 +19,9 @@ class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
   String contactNumber;
   String email;
   String password;
+
+  final email1;
+  _OwnerInfoScreen1State(this.email1);
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +66,8 @@ class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
                   ownerName = value;
                 },
                 decoration: kTextFieldDecorationWhite.copyWith(
-                  hintText: 'owner name',
-                  hintStyle: TextStyle(color: Colors.grey.shade600)
-
-                ),
+                    hintText: 'owner name',
+                    hintStyle: TextStyle(color: Colors.grey.shade600)),
               ),
               SizedBox(
                 height: 20.0,
@@ -89,9 +91,8 @@ class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
                   email = value;
                 },
                 decoration: kTextFieldDecorationWhite.copyWith(
-                  hintText: 'email address',
-                  hintStyle: TextStyle(color: Colors.grey.shade600)
-                ),
+                    hintText: 'email address',
+                    hintStyle: TextStyle(color: Colors.grey.shade600)),
               ),
               SizedBox(
                 height: 10.0,
@@ -100,7 +101,12 @@ class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
                 text: "ENTER COMPANY INFO",
                 color: themeColor,
                 onPressed: () {
-                  Navigator.pushNamed(context, OwnerInfoScreen2.id);
+                  var emailPassed = email1;
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              OwnerInfoScreen2(email1: emailPassed)));
                 },
               ),
               // SizedBox(
@@ -122,7 +128,9 @@ class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
               //     )
               //   ],
               // ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
