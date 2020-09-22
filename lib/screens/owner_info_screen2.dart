@@ -10,8 +10,11 @@ import 'owner_info_screen1.dart';
 class OwnerInfoScreen2 extends StatefulWidget {
   static const String id = 'owner_info_screen2';
 
+  String email1;
+  OwnerInfoScreen2({this.email1});
+
   @override
-  _OwnerInfoScreen2State createState() => _OwnerInfoScreen2State();
+  _OwnerInfoScreen2State createState() => _OwnerInfoScreen2State(email1);
 }
 
 final userRef = Firestore.instance.collection('fleet owners');
@@ -26,7 +29,10 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2>  {
   String pan;
   String gst;
 
- /* void createRecord() async {
+  String email1;
+  _OwnerInfoScreen2State(this.email1);
+
+  void createRecord() async {
     await userRef
         .document(email1).collection('Company Data').document(email1)
         .setData({
@@ -39,10 +45,8 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2>  {
       'pan': pan,
       'gst': gst
     });
-  } */
+  }
 
-  final email1;
-  _OwnerInfoScreen2State({this.email1});
 
   @override
   Widget build(BuildContext context) {
@@ -223,6 +227,7 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2>  {
                 text: "Complete Profile",
                 color: themeColor,
                 onPressed: () {
+                  createRecord();
                   Navigator.pushNamed(context, HomeScreen.id);
                 },
               ),

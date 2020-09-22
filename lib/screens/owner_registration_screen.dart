@@ -30,7 +30,7 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
 
   final email1 = new TextEditingController();
 
- /* void createRecord() async {
+  void createRecord() async {
     await userRef
         .document(email).collection('Basic Data').document(email)
         .setData({
@@ -39,7 +39,7 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
       'email': email,
       'password': password
     });
-  } */
+  }
 
 
   @override
@@ -141,9 +141,9 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                 color: Colors.white,
                 onPressed: () async {
                   var email_entered = email1.text;
-                //  createRecord();
+                  createRecord();
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => OwnerInfoScreen1(),
+                    builder: (context) => OwnerInfoScreen1(email1: email_entered),
                   ));//(context, OwnerInfoScreen1.id);
                   // setState(() {
                   //   showSpinner = true;

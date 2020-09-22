@@ -10,9 +10,10 @@ import 'owner_info_screen2.dart';
 
 class OwnerInfoScreen1 extends StatefulWidget {
   static const String id = 'owner_info_screen1';
-
+  String email1;
+  OwnerInfoScreen1({this.email1});
   @override
-  _OwnerInfoScreen1State createState() => _OwnerInfoScreen1State();
+  _OwnerInfoScreen1State createState() => _OwnerInfoScreen1State(email1);
 }
 
 class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
@@ -21,9 +22,8 @@ class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
   String email;
   String password;
 
-  final email1;
-  _OwnerInfoScreen1State({@required this.email1});
-
+  String email1;
+  _OwnerInfoScreen1State(this.email1);
 
   @override
   Widget build(BuildContext context) {
@@ -124,9 +124,8 @@ class _OwnerInfoScreen1State extends State<OwnerInfoScreen1> {
                 text: "Proceed",
                 color: themeColor,
                 onPressed: () {
-                  var email_passed = email1.text;
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => OwnerInfoScreen2(),
+                    builder: (context) => OwnerInfoScreen2(email1: email1),
                   ));
                 },
               ),
