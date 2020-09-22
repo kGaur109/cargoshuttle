@@ -42,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     Navigator.pushNamed(context, WelcomeScreen.id);
                   },
+                  
                 ),
               ),
 
