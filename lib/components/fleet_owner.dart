@@ -1,9 +1,8 @@
-class Fleet_Owner
-{
+class FleetOwner {
   String password;
   String email;
   String name;
-  String contact_no;
+  String contactNumber;
   String companyName;
   String address;
   String city;
@@ -13,6 +12,17 @@ class Fleet_Owner
   String pan;
   String gst;
 
-  Fleet_Owner({this.name, this.password, this.email, this.contact_no, this.companyName, this.address, this.city, this.pin, this.state, this.phone, this.pan, this.gst});
-
+  FleetOwner(
+      {this.name,
+      this.password,
+      this.email,
+      this.contactNumber,
+      this.companyName,
+      this.address,
+      this.city,
+      this.pin,
+      this.state,
+      this.phone,
+      this.pan,
+      this.gst});
 }

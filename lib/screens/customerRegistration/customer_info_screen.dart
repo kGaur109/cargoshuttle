@@ -1,10 +1,11 @@
-import 'file:///C:/Users/karti/Desktop/3rd%20Semester/Design%20Thinking%20and%20Innovation/Cargoshuttle/cargoshuttle/lib/screens/customerRegistration/customer_registration_screen.dart';
 import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../../constants.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
+
+import 'customer_registration_screen.dart';
 
 class CustomerInfoScreen extends StatefulWidget {
   static const String id = 'customer_info_screen';

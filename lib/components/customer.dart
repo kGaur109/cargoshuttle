@@ -1,5 +1,4 @@
-class Customer
-{
+class Customer {
   String password;
   String email;
   String name;
@@ -10,5 +9,14 @@ class Customer
   String state;
   String dob;
 
-  Customer({this.password, this.email, this.name, this.phone, this.address, this.city, this.pin, this.state, this.dob});
+  Customer(
+      {this.password,
+      this.email,
+      this.name,
+      this.phone,
+      this.address,
+      this.city,
+      this.pin,
+      this.state,
+      this.dob});
 }
