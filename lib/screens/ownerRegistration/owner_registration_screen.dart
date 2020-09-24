@@ -6,7 +6,6 @@ import 'package:cargoshuttle/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import '../home_screen.dart';
 import 'owner_info_screen1.dart';
 
 class OwnerRegistrationScreen extends StatefulWidget {
@@ -218,7 +217,7 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                               ),
                             )),
                         validator: (value) => value.length < 6
-                            ? "Enter Minimum 6 digits password"
+                            ? "Enter Minimum 6 character password"
                             : null,
                       ),
                       SizedBox(

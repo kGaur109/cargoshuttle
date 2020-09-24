@@ -216,7 +216,7 @@ class _CustomerRegistrationScreenState
                               width: 5,
                             ))),
                         validator: (value) => value.length < 6
-                            ? "Enter Minimum 6 digits password"
+                            ? "Enter Minimum 6 character password"
                             : null,
                       ),
                       SizedBox(
