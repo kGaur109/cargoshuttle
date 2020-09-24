@@ -6,6 +6,7 @@ import 'package:cargoshuttle/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import '../home_screen.dart';
 import 'owner_info_screen1.dart';
 
 class OwnerRegistrationScreen extends StatefulWidget {
@@ -17,6 +18,7 @@ class OwnerRegistrationScreen extends StatefulWidget {
 }
 
 final userRef = Firestore.instance.collection('fleet owners');
+final _formKey = GlobalKey<FormState>();
 
 class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
   final _auth = FirebaseAuth.instance;
@@ -49,196 +51,216 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 10.0,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.keyboard_backspace,
-                    color: Colors.white,
-                    size: 50,
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, RegistrationHomeScreen.id);
-                  },
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 10.0,
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Hero(
-                      tag: 'logo',
-                      child: Container(
-                        child: SvgPicture.asset(
-                          'assets/images/registration image.svg',
-                          height: 300,
-                          width: 300,
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.keyboard_backspace,
+                      color: Colors.white,
+                      size: 50,
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, RegistrationHomeScreen.id);
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 40.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Hero(
+                        tag: 'logo',
+                        child: Container(
+                          child: SvgPicture.asset(
+                            'assets/images/registration image.svg',
+                            height: 300,
+                            width: 300,
+                          ),
                         ),
                       ),
-                    ),
-                    TextField(
-                      keyboardType: TextInputType.text,
-                      style: TextStyle(color: Colors.white),
-                      onChanged: (value) {
-                        name = value;
-                      },
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.perm_identity,
-                            color: Colors.white,
-                          ),
-                          hintText: "fullname",
-                          hintStyle: TextStyle(color: Colors.white),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                            color: misc,
-                            width: 5,
-                          )),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
+                      TextFormField(
+                        keyboardType: TextInputType.text,
+                        style: TextStyle(color: Colors.white),
+                        onChanged: (value) {
+                          name = value;
+                        },
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.perm_identity,
+                              color: Colors.white,
+                            ),
+                            hintText: "fullname",
+                            hintStyle: TextStyle(color: Colors.white),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
                               color: misc,
                               width: 5,
-                            ),
-                          )),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    TextField(
-                      controller: email1,
-                      keyboardType: TextInputType.emailAddress,
-                      style: TextStyle(color: Colors.white),
-                      onChanged: (value) {
-                        email = value;
-                      },
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.email,
-                            color: Colors.white,
-                          ),
-                          hintText: "email address",
-                          hintStyle: TextStyle(color: Colors.white),
-                          focusedBorder: UnderlineInputBorder(
+                            )),
+                            enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                            color: misc,
-                            width: 5,
-                          )),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: misc,
-                              width: 5,
-                            ),
-                          )),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    TextField(
-                      keyboardType: TextInputType.phone,
-                      style: TextStyle(color: Colors.white),
-                      onChanged: (value) {
-                        contactNumber = value;
-                      },
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.phone,
-                            color: Colors.white,
-                          ),
-                          hintText: "contact number",
-                          hintStyle: TextStyle(color: Colors.white),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                            color: misc,
-                            width: 5,
-                          )),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: misc,
-                              width: 5,
-                            ),
-                          )),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    TextField(
-                      obscureText: true,
-                      style: TextStyle(color: Colors.white),
-                      onChanged: (value) {
-                        password = value;
-                      },
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.lock,
-                            color: Colors.white,
-                          ),
-                          hintText: "create password",
-                          hintStyle: TextStyle(color: Colors.white),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                            color: misc,
-                            width: 5,
-                          )),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: misc,
-                              width: 5,
-                            ),
-                          )),
-                    ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    RoundButton_outline(
-                      text: 'REGISTER',
-                      onPressed: () async {
-                        var emailEntered = email1.text;
-                        // createRecord();
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => OwnerInfoScreen1(
-                        //       email1: emailEntered,
-                        //     ),
-                        //   ),
-                        // );
-                        setState(() {
-                          showSpinner = true;
-                        });
-                        try {
-                          final newUser =
-                              await _auth.createUserWithEmailAndPassword(
-                                  email: email, password: password);
-                          if (newUser != null) {
-                            createRecord();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => OwnerInfoScreen1(
-                                  email1: emailEntered,
-                                ),
+                                color: misc,
+                                width: 5,
                               ),
-                            );
+                            )),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter your full name';
                           }
-                          setState(() {
-                            showSpinner = false;
-                          });
-                        } catch (e) {
-                          print(e);
-                        }
-                      },
-                    ),
-                  ],
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      TextFormField(
+                        controller: email1,
+                        keyboardType: TextInputType.emailAddress,
+                        style: TextStyle(color: Colors.white),
+                        onChanged: (value) {
+                          email = value;
+                        },
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: Colors.white,
+                            ),
+                            hintText: "email address",
+                            hintStyle: TextStyle(color: Colors.white),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: misc,
+                              width: 5,
+                            )),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: misc,
+                                width: 5,
+                              ),
+                            )),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Enter Correct email';
+                          }
+                          if (!RegExp(
+                                  r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                              .hasMatch(value)) {
+                            return 'Please enter a valid email Address';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.phone,
+                        style: TextStyle(color: Colors.white),
+                        onChanged: (value) {
+                          contactNumber = value;
+                        },
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.phone,
+                              color: Colors.white,
+                            ),
+                            hintText: "contact number",
+                            hintStyle: TextStyle(color: Colors.white),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: misc,
+                              width: 5,
+                            )),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: misc,
+                                width: 5,
+                              ),
+                            )),
+                        validator: (value) => value.length != 10
+                            ? "Enter Correct Contact Number"
+                            : null,
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      TextFormField(
+                        obscureText: true,
+                        style: TextStyle(color: Colors.white),
+                        onChanged: (value) {
+                          password = value;
+                        },
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Colors.white,
+                            ),
+                            hintText: "create password",
+                            hintStyle: TextStyle(color: Colors.white),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: misc,
+                              width: 5,
+                            )),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: misc,
+                                width: 5,
+                              ),
+                            )),
+                        validator: (value) => value.length < 6
+                            ? "Enter Minimum 6 digits password"
+                            : null,
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      RoundButton_outline(
+                        text: 'REGISTER',
+                        onPressed: () async {
+                          if (_formKey.currentState.validate()) {
+                            setState(() {
+                              showSpinner = true;
+                            });
+                            try {
+                              final newUser =
+                                  await _auth.createUserWithEmailAndPassword(
+                                      email: email, password: password);
+                              if (newUser != null) {
+                                var emailEntered = email1.text;
+                                createRecord();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => OwnerInfoScreen1(
+                                      email1: emailEntered,
+                                    ),
+                                  ),
+                                );
+                              }
+                              setState(() {
+                                showSpinner = false;
+                              });
+                            } catch (e) {
+                              print(e);
+                            }
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

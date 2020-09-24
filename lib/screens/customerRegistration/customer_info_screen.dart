@@ -2,10 +2,9 @@ import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import '../../constants.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
-
 import 'customer_registration_screen.dart';
+import 'package:cargoshuttle/constants.dart';
 
 class CustomerInfoScreen extends StatefulWidget {
   static const String id = 'customer_info_screen';
@@ -17,6 +16,7 @@ class CustomerInfoScreen extends StatefulWidget {
 }
 
 final userRef = Firestore.instance.collection('customer');
+final _formKey = GlobalKey<FormState>();
 
 class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
   String address;
@@ -47,148 +47,179 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-          child: Flexible(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                SizedBox(
-                  height: 40.0,
-                ),
-                CircleAvatar(
-                  backgroundColor: themeColor,
-                  child: Icon(
-                    Icons.account_circle,
-                    size: 100.0,
+        child: Form(
+          key: _formKey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+            child: Flexible(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  SizedBox(
+                    height: 40.0,
                   ),
-                  radius: 80.0,
-                ),
-                SizedBox(
-                  height: 12.0,
-                ),
-                Text(
-                  "ADD A PROFILE PICTURE",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
+                  CircleAvatar(
+                    backgroundColor: themeColor,
+                    child: Icon(
+                      Icons.account_circle,
+                      size: 100.0,
+                    ),
+                    radius: 80.0,
+                  ),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  Text(
+                    "ADD A PROFILE PICTURE",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: themeColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.text,
+                    onChanged: (value) {
+                      address = value;
+                    },
+                    decoration: kTextFieldDecorationWhite.copyWith(
+                      hintText: 'address line 1',
+                      hintStyle: TextStyle(color: Colors.grey),
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Please enter The field';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Flexible(
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          onChanged: (value) {
+                            address = value;
+                          },
+                          decoration: kTextFieldDecorationWhite.copyWith(
+                            hintText: 'city',
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Please enter The field';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Flexible(
+                        child: TextFormField(
+                          keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            pin = value;
+                          },
+                          decoration: kTextFieldDecorationWhite.copyWith(
+                            hintText: 'pincode',
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                          validator: (value) =>
+                              value.length != 6 ? "Enter Pin Number" : null,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Flexible(
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          onChanged: (value) {
+                            state = value;
+                          },
+                          decoration: kTextFieldDecorationWhite.copyWith(
+                            hintText: 'state',
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Please enter The field';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Flexible(
+                        child: TextFormField(
+                          keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            dob = value;
+                          },
+                          decoration: kTextFieldDecorationWhite.copyWith(
+                            hintText: 'DOB',
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Please enter The field';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  RoundButton(
+                    text: "COMPLETE PROFILE",
                     color: themeColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0,
+                    onPressed: () {
+                      createRecord();
+                      if (_formKey.currentState.validate()) {
+                        Navigator.pushNamed(context, HomeScreen.id);
+                      }
+                    },
                   ),
-                ),
-                SizedBox(
-                  height: 30.0,
-                ),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    address = value;
-                  },
-                  decoration: kTextFieldDecorationWhite.copyWith(
-                    hintText: 'address line 1',
-                    hintStyle: TextStyle(color: Colors.grey),
+                  SizedBox(
+                    height: 25,
                   ),
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Row(
-                  children: <Widget>[
-                    Flexible(
-                      child: TextField(
-                        keyboardType: TextInputType.text,
-                        onChanged: (value) {
-                          address = value;
-                        },
-                        decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'city',
-                          hintStyle: TextStyle(color: Colors.grey),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      FloatingActionButton(
+                        backgroundColor: themeColor,
+                        child: Icon(
+                          Icons.arrow_back,
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10.0,
-                    ),
-                    Flexible(
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {
-                          pin = value;
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, CustomerRegistrationScreen.id);
                         },
-                        decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'pincode',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Row(
-                  children: <Widget>[
-                    Flexible(
-                      child: TextField(
-                        keyboardType: TextInputType.text,
-                        onChanged: (value) {
-                          state = value;
-                        },
-                        decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'state',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10.0,
-                    ),
-                    Flexible(
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {
-                          dob = value;
-                        },
-                        decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'DOB',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 24.0,
-                ),
-                RoundButton(
-                  text: "COMPLETE PROFILE",
-                  color: themeColor,
-                  onPressed: () {
-                    createRecord();
-                    Navigator.pushNamed(context, HomeScreen.id);
-                  },
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    FloatingActionButton(
-                      backgroundColor: themeColor,
-                      child: Icon(
-                        Icons.arrow_back,
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context, CustomerRegistrationScreen.id);
-                      },
-                    )
-                  ],
-                ),
-              ],
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
