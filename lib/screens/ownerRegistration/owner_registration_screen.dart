@@ -6,7 +6,6 @@ import 'package:cargoshuttle/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import '../home_screen.dart';
 import 'owner_info_screen1.dart';
 
 class OwnerRegistrationScreen extends StatefulWidget {
@@ -30,14 +29,6 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
   String contactNumber;
 
   final email1 = new TextEditingController();
-
-  bool isNumeric(String s) {
-    if (s == null) {
-      return false;
-    }
-    return double.tryParse(s) != null;
-  }
-
 
   void createRecord() async {
     await userRef
@@ -123,10 +114,6 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                           if (value.isEmpty) {
                             return 'Please enter your full name';
                           }
-                          else if(isNumeric(value.toString()) == true)
-                            {
-                              return 'Please enter name in characters';
-                            }
                           return null;
                         },
                       ),
@@ -198,21 +185,9 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                                 width: 5,
                               ),
                             )),
-                        validator: (value)
-                        {
-                          if(isNumeric(value.toString()) == false)
-                            {
-                              return "Please enter contact number in digits";
-                            }
-                          else if(isNumeric(value.toString()) == true)
-                            {
-                              if(value.length != 10)
-                                {
-                                  return "please enter correct contact number";
-                                }
-                            }
-                          return null;
-                        }
+                        validator: (value) => value.length != 10
+                            ? "Enter Correct Contact Number"
+                            : null,
                       ),
                       SizedBox(
                         height: 10.0,
@@ -242,7 +217,7 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                               ),
                             )),
                         validator: (value) => value.length < 6
-                            ? "Enter Minimum 6 characters password"
+                            ? "Enter Minimum 6 character password"
                             : null,
                       ),
                       SizedBox(
