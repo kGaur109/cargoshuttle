@@ -31,6 +31,13 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
   final email1;
   _OwnerInfoScreen2State(this.email1);
 
+  bool isNumeric(String s) {
+    if (s == null) {
+      return false;
+    }
+    return double.tryParse(s) != null;
+  }
+
   void createRecord() async {
     await userRef
         .document(email1)
@@ -104,6 +111,10 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
                       if (value.isEmpty) {
                         return 'Please enter the field';
                       }
+                      else if(isNumeric(value.toString()) == true)
+                      {
+                        return 'Please enter company name in characters';
+                      }
                       return null;
                     },
                   ),
@@ -144,6 +155,10 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
                             if (value.isEmpty) {
                               return 'Please enter the field';
                             }
+                            else if(isNumeric(value.toString()) == true)
+                            {
+                              return 'Please enter city name in characters';
+                            }
                             return null;
                           },
                         ),
@@ -162,9 +177,22 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
                               hintText: 'pincode',
                               hintStyle:
                                   TextStyle(color: Colors.grey.shade600)),
-                          validator: (value) => value.length != 6
-                              ? "Enter Correct pan number"
-                              : null,
+                          validator: (value)
+                          {
+                            if(isNumeric(value.toString()) == false)
+                            {
+                              return "Please enter pincode in digits";
+                            }
+                            else if(isNumeric(value.toString()) == true)
+                            {
+                              if(value.length != 6)
+                              {
+                                return "please enter correct pincode";
+                              }
+                            }
+                            return null;
+                          }
+
                         ),
                       ),
                     ],
@@ -189,6 +217,10 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
                             if (value.isEmpty) {
                               return 'Please enter the field';
                             }
+                            else if(isNumeric(value.toString()) == true)
+                              {
+                                return 'Please enter state name in characters';
+                              }
                             return null;
                           },
                         ),
@@ -206,9 +238,21 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
                               hintText: 'phone number',
                               hintStyle:
                                   TextStyle(color: Colors.grey.shade600)),
-                          validator: (value) => value.length != 10
-                              ? "Enter Correct Contact Number"
-                              : null,
+                          validator: (value)
+                            {
+                              if(isNumeric(value.toString()) == false)
+                              {
+                                return "Please enter phone number in digits";
+                              }
+                              else if(isNumeric(value.toString()) == true)
+                              {
+                                if(value.length != 10)
+                                {
+                                  return "please enter correct phone number";
+                                }
+                              }
+                              return null;
+                            }
                         ),
                       ),
                     ],

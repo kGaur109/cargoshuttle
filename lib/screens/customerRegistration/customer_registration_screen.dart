@@ -31,6 +31,13 @@ class _CustomerRegistrationScreenState
 
   final email1 = new TextEditingController();
 
+  bool isNumeric(String s) {
+    if (s == null) {
+      return false;
+    }
+    return double.tryParse(s) != null;
+  }
+
   void createRecord() async {
     await userRef
         .document(email)
@@ -115,6 +122,10 @@ class _CustomerRegistrationScreenState
                           if (value.isEmpty) {
                             return 'Please enter your full name';
                           }
+                          else if(isNumeric(value.toString()) == true)
+                            {
+                              return "Please enter name in characters";
+                            }
                           return null;
                         },
                       ),
@@ -185,9 +196,21 @@ class _CustomerRegistrationScreenState
                               color: misc,
                               width: 5,
                             ))),
-                        validator: (value) => value.length != 10
-                            ? "Enter Correct Contact Number"
-                            : null,
+                        validator: (value)
+                          {
+                            if(isNumeric(value.toString()) == false)
+                            {
+                              return "Please enter phone number in digits";
+                            }
+                            else if(isNumeric(value.toString()) == true)
+                            {
+                              if(value.length != 10)
+                              {
+                                return "please enter correct phone number";
+                              }
+                            }
+                            return null;
+                          }
                       ),
                       SizedBox(
                         height: 10.0,
@@ -216,7 +239,7 @@ class _CustomerRegistrationScreenState
                               width: 5,
                             ))),
                         validator: (value) => value.length < 6
-                            ? "Enter Minimum 6 digits password"
+                            ? "Enter Minimum 6 character password"
                             : null,
                       ),
                       SizedBox(
