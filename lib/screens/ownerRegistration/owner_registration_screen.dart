@@ -30,6 +30,13 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
 
   final email1 = new TextEditingController();
 
+  bool isNumeric(String s) {
+    if (s == null) {
+      return false;
+    }
+    return double.tryParse(s) != null;
+  }
+
   void createRecord() async {
     await userRef
         .document(email)
@@ -114,6 +121,10 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                           if (value.isEmpty) {
                             return 'Please enter your full name';
                           }
+                          else if(isNumeric(value.toString()) == true)
+                            {
+                              return "Please enter name in characters";
+                            }
                           return null;
                         },
                       ),
@@ -185,9 +196,21 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                                 width: 5,
                               ),
                             )),
-                        validator: (value) => value.length != 10
-                            ? "Enter Correct Contact Number"
-                            : null,
+                        validator: (value)
+                          {
+                            if(isNumeric(value.toString()) == false)
+                              {
+                                return "Please enter contact no in digits";
+                              }
+                            else if(isNumeric(value.toString()) == true)
+                              {
+                                if(value.length != 10)
+                                  {
+                                    return "Please enter 10 digitphone no";
+                                  }
+                              }
+                            return null;
+                          }
                       ),
                       SizedBox(
                         height: 10.0,
