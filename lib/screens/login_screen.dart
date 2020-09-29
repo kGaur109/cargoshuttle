@@ -2,6 +2,7 @@ import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'home_screen.dart';
@@ -130,7 +131,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         try {
                           final currentUser =
                               await _auth.signInWithEmailAndPassword(
-                                  email: email, password: password);
+                                  email: email, password: password).then((value) async {
+                                SharedPreferences pref = await SharedPreferences.getInstance();
+                                pref.setString('email', email);
+                              });
                           if (currentUser != null) {
                             Navigator.pushNamed(context, HomeScreen.id);
                           }

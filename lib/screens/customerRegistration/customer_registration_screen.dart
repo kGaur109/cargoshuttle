@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'customer_info_screen.dart';
 
 class CustomerRegistrationScreen extends StatefulWidget {
@@ -48,6 +49,9 @@ class _CustomerRegistrationScreenState
       'name': name,
       'email': email,
       'phone': phone
+    }).then((value) async {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      pref.setString('email', email);
     });
   }
 

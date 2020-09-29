@@ -1,4 +1,5 @@
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
+import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cargoshuttle/screens/registration_home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:cargoshuttle/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'owner_info_screen1.dart';
 
 class OwnerRegistrationScreen extends StatefulWidget {
@@ -37,6 +39,7 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
     return double.tryParse(s) != null;
   }
 
+
   void createRecord() async {
     await userRef
         .document(email)
@@ -47,6 +50,9 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
       'name': name,
       'email': email,
       'contact_no': contactNumber
+    }).then((value) async {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      pref.setString('email', email);
     });
   }
 

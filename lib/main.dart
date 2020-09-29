@@ -1,9 +1,13 @@
+import 'package:cargoshuttle/check_login.dart';
 import 'package:cargoshuttle/screens/customerRegistration/customer_info_screen.dart';
 import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cargoshuttle/screens/ownerRegistration/owner_info_screen1.dart';
 import 'package:cargoshuttle/screens/ownerRegistration/owner_info_screen2.dart';
 import 'package:cargoshuttle/screens/staticScreens/static_fleet_screen.dart';
+import 'package:firebase_admin/firebase_admin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/registration_home_screen.dart';
@@ -12,15 +16,22 @@ import 'screens/ownerRegistration/owner_registration_screen.dart';
 import 'screens/chat_screen.dart';
 import 'screens/staticScreens/static_screen_customer.dart';
 
-void main() {
-  runApp(Cargoshuttle());
-}
+Future <void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  var email = pref.getString('email');
 
+  runApp(Cargoshuttle(email));
+}
 class Cargoshuttle extends StatelessWidget {
+
+  var email;
+  Cargoshuttle(this.email);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: WelcomeScreen.id,
+      initialRoute: email == null ? WelcomeScreen.id : HomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
