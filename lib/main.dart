@@ -19,12 +19,12 @@ Future<void> main() async {
   SharedPreferences pref = await SharedPreferences.getInstance();
   var email = pref.getString('email');
 
-  runApp(Cargoshuttle(email));
+  runApp(Cargoshuttle(email: email));
 }
 
 class Cargoshuttle extends StatelessWidget {
-  var email;
-  Cargoshuttle(this.email);
+  final String email;
+  Cargoshuttle({this.email});
 
   @override
   Widget build(BuildContext context) {

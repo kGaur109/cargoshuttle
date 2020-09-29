@@ -1,5 +1,4 @@
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
-import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cargoshuttle/screens/registration_home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

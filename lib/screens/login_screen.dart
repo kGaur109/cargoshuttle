@@ -2,7 +2,6 @@ import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'home_screen.dart';

@@ -1,9 +1,7 @@
-import 'package:cargoshuttle/main.dart';
 import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cargoshuttle/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SplashPage extends StatefulWidget {
   SplashPage({Key key}) : super(key: key);

@@ -1,7 +1,6 @@
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/login_screen.dart';
 import 'package:cargoshuttle/screens/registration_home_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';
