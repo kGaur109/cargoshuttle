@@ -41,15 +41,16 @@ class _ChatScreenState extends State<ChatScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: null,
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () {
-                _auth.signOut();
-                Navigator.pop(context);
-              }),
-        ],
-        title: Text('⚡️Chat'),
+        // actions: <Widget>[
+        //   IconButton(
+        //       icon: Icon(Icons.close),
+        //       onPressed: () {
+        //         // _auth.signOut();
+        //         Navigator.pop(context);
+        //       }),
+        // ],
+        title: Text('Chat'),
+        centerTitle: true,
         backgroundColor: themeColor,
       ),
       body: SafeArea(
@@ -74,11 +75,14 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   FlatButton(
                     onPressed: () {
-                      messageTextController.clear();
-                      _firestore.collection('messages').add({
-                        'text': messageText,
-                        'sender': loggedInUser.email,
-                      });
+                      if (messageText != null) {
+                        messageTextController.clear();
+                        _firestore.collection('messages').add({
+                          'text': messageText,
+                          'sender': loggedInUser.email,
+                        });
+                        messageText = null;
+                      }
                     },
                     child: Text(
                       'Send',
@@ -156,7 +160,7 @@ class MessageBubble extends StatelessWidget {
           Text(
             sender,
             style: TextStyle(
-              fontSize: 12.0,
+              fontSize: 15.0,
               color: Colors.black54,
             ),
           ),
@@ -177,7 +181,7 @@ class MessageBubble extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Text(
-                '$text from $sender',
+                '$text',
                 style: TextStyle(
                   color: isMe ? Colors.white : Colors.white,
                   fontSize: 18.0,

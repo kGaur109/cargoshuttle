@@ -1,11 +1,12 @@
 import 'package:cargoshuttle/constants.dart';
 import 'package:cargoshuttle/screens/chat_screen.dart';
-import 'package:cargoshuttle/screens/ownerRegistration/owner_registration_screen.dart';
+import 'package:cargoshuttle/screens/profile_card_screen.dart';
 import 'package:cargoshuttle/screens/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:cargoshuttle/components/data_card.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -17,23 +18,47 @@ class HomeScreen extends StatefulWidget {
 final _auth = FirebaseAuth.instance;
 
 class _HomeScreenState extends State<HomeScreen> {
-  @override
+  List<DataCard> entries = [
+    DataCard(
+      color: themeColor,
+      userName: "Mridul Swarup",
+      origin: "Aligarh",
+      destination: "Faridabad",
+      loadType: "Part Load",
+      truckType: "10 wheeler",
+      expectedTime: "4-5 days",
+    )
+  ];
 
-  Future <void> _signOut(BuildContext context) async {
+  Future<void> _signOut(BuildContext context) async {
     await _auth.signOut().then((_) {
-      Navigator.push(context, new MaterialPageRoute (
-          builder: (context) =>
-          WelcomeScreen())
-      );
+      Navigator.push(context,
+          new MaterialPageRoute(builder: (context) => WelcomeScreen()));
     });
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("CargoShuttle"),
         backgroundColor: themeColor,
+        actions: <Widget>[
+          FlatButton(
+            child: Text(
+              "Logout",
+              style: TextStyle(color: Colors.white),
+            ),
+            onPressed: () async {
+              SharedPreferences pref = await SharedPreferences.getInstance();
+              pref.remove('email');
+              _signOut(context);
+            },
+          )
+        ],
       ),
+      body: ListView(
+          padding: EdgeInsets.symmetric(vertical: 14.0),
+          scrollDirection: Axis.vertical,
+          children: entries),
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomAppBar(
         color: themeColor,
@@ -76,20 +101,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.account_box,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, ProfileCardScreen.id);
+              },
             )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          SharedPreferences pref = await SharedPreferences.getInstance();
-          pref.remove('email');
-          _signOut(context);
-      },
-        child: Icon(Icons.navigation),
-        backgroundColor: Colors.green,
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     SharedPreferences pref = await SharedPreferences.getInstance();
+      //     pref.remove('email');
+      //     _signOut(context);
+      //   },
+      //   child: Icon(Icons.close),
+      //   backgroundColor: Colors.red,
+      // ),
     );
   }
 }

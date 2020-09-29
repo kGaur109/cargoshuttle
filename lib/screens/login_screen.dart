@@ -44,7 +44,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     Navigator.pushNamed(context, WelcomeScreen.id);
                   },
-                  
                 ),
               ),
               Padding(
@@ -131,10 +130,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         try {
                           final currentUser =
                               await _auth.signInWithEmailAndPassword(
-                                  email: email, password: password).then((value) async {
-                                SharedPreferences pref = await SharedPreferences.getInstance();
-                                pref.setString('email', email);
-                              });
+                                  email: email, password: password);
+                          // .then((value) async {
+                          // SharedPreferences pref =
+                          // await SharedPreferences.getInstance();
+                          // pref.setString('email', email);
+                          // })
                           if (currentUser != null) {
                             Navigator.pushNamed(context, HomeScreen.id);
                           }

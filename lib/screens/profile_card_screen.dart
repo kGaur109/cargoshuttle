@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProfileCardScreen extends StatelessWidget {
+  static const String id = 'profile_card_screen';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
