@@ -71,7 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.home,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, HomeScreen.id);
+              },
             ),
             IconButton(
               icon: Icon(

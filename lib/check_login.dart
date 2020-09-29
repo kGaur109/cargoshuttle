@@ -13,7 +13,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-
   final _auth = FirebaseAuth.instance;
 
   @override
@@ -21,18 +20,15 @@ class _SplashPageState extends State<SplashPage> {
     _auth
         .currentUser()
         .then((currentUser) => {
-      if (currentUser == null)
-        {Navigator.pushNamed(context, WelcomeScreen.id)}
-      else
-        {
-          Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => HomeScreen(
-                      )))
-              .catchError((err) => print(err))
-        }
-    })
+              if (currentUser == null)
+                {Navigator.pushNamed(context, WelcomeScreen.id)}
+              else
+                {
+                  Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()))
+                      .catchError((err) => print(err))
+                }
+            })
         .catchError((err) => print(err));
     super.initState();
   }

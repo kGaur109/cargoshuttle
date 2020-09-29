@@ -1,7 +1,6 @@
 import 'package:cargoshuttle/screens/customerRegistration/customer_info_screen.dart';
 import 'package:cargoshuttle/screens/home_screen.dart';
-import 'package:cargoshuttle/screens/ownerRegistration/owner_info_screen1.dart';
-import 'package:cargoshuttle/screens/ownerRegistration/owner_info_screen2.dart';
+import 'package:cargoshuttle/screens/ownerRegistration/owner_info_screen.dart';
 import 'package:cargoshuttle/screens/profile_card_screen.dart';
 import 'package:cargoshuttle/screens/staticScreens/static_fleet_screen.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +39,6 @@ class Cargoshuttle extends StatelessWidget {
         StaticScreenCustomer.id: (context) => StaticScreenCustomer(),
         CustomerInfoScreen.id: (context) => CustomerInfoScreen(),
         OwnerRegistrationScreen.id: (context) => OwnerRegistrationScreen(),
-        OwnerInfoScreen1.id: (context) => OwnerInfoScreen1(),
         OwnerInfoScreen2.id: (context) => OwnerInfoScreen2(),
         HomeScreen.id: (context) => HomeScreen(),
         ChatScreen.id: (context) => ChatScreen(),

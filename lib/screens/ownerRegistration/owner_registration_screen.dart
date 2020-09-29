@@ -1,4 +1,5 @@
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
+import 'package:cargoshuttle/screens/ownerRegistration/owner_info_screen.dart';
 import 'package:cargoshuttle/screens/registration_home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'owner_info_screen1.dart';
 
 class OwnerRegistrationScreen extends StatefulWidget {
   static const String id = 'owner_registration_screen';
@@ -37,7 +37,6 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
     }
     return double.tryParse(s) != null;
   }
-
 
   void createRecord() async {
     await userRef
@@ -125,11 +124,9 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter your full name';
+                          } else if (isNumeric(value.toString()) == true) {
+                            return "Please enter name in characters";
                           }
-                          else if(isNumeric(value.toString()) == true)
-                            {
-                              return "Please enter name in characters";
-                            }
                           return null;
                         },
                       ),
@@ -178,45 +175,39 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                         height: 10.0,
                       ),
                       TextFormField(
-                        keyboardType: TextInputType.phone,
-                        style: TextStyle(color: Colors.white),
-                        onChanged: (value) {
-                          contactNumber = value;
-                        },
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.phone,
-                              color: Colors.white,
-                            ),
-                            hintText: "contact number",
-                            hintStyle: TextStyle(color: Colors.white),
-                            focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                              color: misc,
-                              width: 5,
-                            )),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
+                          keyboardType: TextInputType.phone,
+                          style: TextStyle(color: Colors.white),
+                          onChanged: (value) {
+                            contactNumber = value;
+                          },
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.phone,
+                                color: Colors.white,
+                              ),
+                              hintText: "contact number",
+                              hintStyle: TextStyle(color: Colors.white),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
                                 color: misc,
                                 width: 5,
-                              ),
-                            )),
-                        validator: (value)
-                          {
-                            if(isNumeric(value.toString()) == false)
-                              {
-                                return "Please enter contact no in digits";
+                              )),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: misc,
+                                  width: 5,
+                                ),
+                              )),
+                          validator: (value) {
+                            if (isNumeric(value.toString()) == false) {
+                              return "Please enter contact no in digits";
+                            } else if (isNumeric(value.toString()) == true) {
+                              if (value.length != 10) {
+                                return "Please enter 10 digitphone no";
                               }
-                            else if(isNumeric(value.toString()) == true)
-                              {
-                                if(value.length != 10)
-                                  {
-                                    return "Please enter 10 digitphone no";
-                                  }
-                              }
+                            }
                             return null;
-                          }
-                      ),
+                          }),
                       SizedBox(
                         height: 10.0,
                       ),
@@ -268,7 +259,7 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => OwnerInfoScreen1(
+                                    builder: (context) => OwnerInfoScreen2(
                                       email1: emailEntered,
                                     ),
                                   ),

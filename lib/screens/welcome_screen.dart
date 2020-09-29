@@ -6,10 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 
-
 class WelcomeScreen extends StatelessWidget {
   static const String id = 'welcome_screen';
-
 
   @override
   Widget build(BuildContext context) {
