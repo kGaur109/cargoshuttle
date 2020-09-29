@@ -1,5 +1,4 @@
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
-import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cargoshuttle/screens/registration_home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'owner_info_screen1.dart';
+import 'owner_info_screen2.dart';
 
 class OwnerRegistrationScreen extends StatefulWidget {
   static const String id = 'owner_registration_screen';
@@ -269,7 +268,7 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => OwnerInfoScreen1(
+                                    builder: (context) => OwnerInfoScreen2(
                                       email1: emailEntered,
                                     ),
                                   ),

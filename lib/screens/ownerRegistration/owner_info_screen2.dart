@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
-import 'owner_info_screen1.dart';
+import 'owner_registration_screen.dart';
 
 final userRef = Firestore.instance.collection('fleet owners');
 final _formKey = GlobalKey<FormState>();
@@ -315,7 +315,7 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
                           Icons.arrow_back,
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(context, OwnerInfoScreen1.id);
+                          Navigator.pushNamed(context, OwnerRegistrationScreen.id);
                         },
                       )
                     ],
