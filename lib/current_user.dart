@@ -37,7 +37,7 @@ class CurrentUser {
     this.currentEmail = email;
   }
 
-  Future<FleetOwner> findFleetOwner() async
+  findFleetOwner() async
   {
     final DocumentSnapshot docs = await fleetOwnerData.document(currentEmail).collection('Basic Data').document(currentEmail).get();
     this.fleetOwner.name = docs.data['name'];
@@ -55,10 +55,9 @@ class CurrentUser {
     this.fleetOwner.pan = docs2.data['pan'];
     this.fleetOwner.gst = docs2.data['gst'];
 
-    return fleetOwner;
   }
 
-  Future<Customer> findCustomer() async
+  findCustomer() async
   {
     final DocumentSnapshot docs = await customerData.document(currentEmail).collection('Basic Data').document(currentEmail).get();
     this.customer.name = docs.data['name'];
@@ -72,8 +71,6 @@ class CurrentUser {
     this.customer.pin = docs2.data['pin'];
     this.customer.state = docs2.data['state'];
     this.customer.dob = docs2.data['dob'];
-
-    return customer;
   }
 
 }
