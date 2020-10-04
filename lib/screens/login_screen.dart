@@ -1,5 +1,6 @@
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/welcome_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../constants.dart';
@@ -41,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     size: 50,
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, WelcomeScreen.id);
+                    Navigator.push(context, CupertinoPageRoute(builder: (context) => WelcomeScreen()));
                   },
                 ),
               ),
@@ -136,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // pref.setString('email', email);
                           // })
                           if (currentUser != null) {
-                            Navigator.pushNamed(context, HomeScreen.id);
+                            Navigator.push(context, CupertinoPageRoute(builder: (context) => HomeScreen()));
                           }
                           setState(() {
                             showSpinner = false;

@@ -1,6 +1,7 @@
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/registration_home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../login_screen.dart';
 import 'customer_info_screen.dart';
 
 class CustomerRegistrationScreen extends StatefulWidget {
@@ -79,7 +81,7 @@ class _CustomerRegistrationScreenState
                       size: 50,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, RegistrationHomeScreen.id);
+                      Navigator.push(context, CupertinoPageRoute(builder: (context) => RegistrationHomeScreen()));
                     },
                   ),
                 ),
@@ -263,13 +265,7 @@ class _CustomerRegistrationScreenState
                               if (newUser != null) {
                                 var emailEntered = email1.text;
                                 createRecord();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => CustomerInfoScreen(
-                                        email1: emailEntered),
-                                  ),
-                                );
+                                Navigator.push(context, CupertinoPageRoute(builder: (context) => CustomerInfoScreen(email1: emailEntered)));
                               }
                               setState(() {
                                 showSpinner = false;

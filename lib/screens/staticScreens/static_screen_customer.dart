@@ -70,7 +70,7 @@ class StaticScreenCustomer extends StatelessWidget {
                   Icons.arrow_forward,
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, CustomerRegistrationScreen.id);
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => CustomerRegistrationScreen()));
                 },
               ),
             ),

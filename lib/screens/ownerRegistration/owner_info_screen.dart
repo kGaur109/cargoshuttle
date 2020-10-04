@@ -298,7 +298,7 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
                     onPressed: () {
                       createRecord();
                       if (_formKey.currentState.validate()) {
-                        Navigator.pushNamed(context, HomeScreen.id);
+                        Navigator.push(context, CupertinoPageRoute(builder: (context) => HomeScreen()));
                       }
                     },
                   ),
@@ -315,7 +315,7 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
                           Icons.arrow_back,
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(context, OwnerRegistrationScreen.id);
+                          Navigator.push(context, CupertinoPageRoute(builder: (context) => OwnerRegistrationScreen()));
                         },
                       )
                     ],

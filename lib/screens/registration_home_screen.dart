@@ -2,6 +2,7 @@ import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/staticScreens/static_fleet_screen.dart';
 import 'package:cargoshuttle/screens/staticScreens/static_screen_customer.dart';
 import 'package:cargoshuttle/screens/welcome_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 import 'package:cargoshuttle/constants.dart';
@@ -30,7 +31,7 @@ class RegistrationHomeScreen extends StatelessWidget {
                     size: 50,
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, WelcomeScreen.id);
+                    Navigator.push(context, CupertinoPageRoute(builder: (context) => WelcomeScreen()));
                   },
                 ),
               ),
@@ -73,14 +74,14 @@ class RegistrationHomeScreen extends StatelessWidget {
               RoundButton_outline(
                 text: "As a fleet owner?",
                 onPressed: () {
-                  Navigator.pushNamed(context, StaticScreenFleet.id);
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => StaticScreenFleet()));
                 },
                 color: Colors.white,
               ),
               RoundButton(
                 text: "As a customer?",
                 onPressed: () {
-                  Navigator.pushNamed(context, StaticScreenCustomer.id);
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => StaticScreenCustomer()));
                 },
                 color: themeColor,
               ),
