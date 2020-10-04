@@ -32,8 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _signOut(BuildContext context) async {
     await _auth.signOut().then((_) {
-      Navigator.push(context,
-          new MaterialPageRoute(builder: (context) => WelcomeScreen()));
+      Navigator.push(context, CupertinoPageRoute(builder: (context) => WelcomeScreen()));
     });
   }
 
@@ -72,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, HomeScreen.id);
+                Navigator.push(context, CupertinoPageRoute(builder: (context) => HomeScreen()));
               },
             ),
             IconButton(
@@ -95,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, ChatScreen.id);
+                Navigator.push(context, CupertinoPageRoute(builder: (context) => ChatScreen()));
               },
             ),
             IconButton(
@@ -104,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, ProfileCardScreen.id);
+                Navigator.push(context, CupertinoPageRoute(builder: (context) => ProfileCardScreen()));
               },
             )
           ],

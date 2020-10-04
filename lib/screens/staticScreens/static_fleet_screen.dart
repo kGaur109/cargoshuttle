@@ -71,7 +71,7 @@ class StaticScreenFleet extends StatelessWidget {
                   Icons.arrow_forward,
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, OwnerRegistrationScreen.id);
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => OwnerRegistrationScreen()));
                 },
               ),
             ),

@@ -227,7 +227,7 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                     onPressed: () {
                       createRecord();
                       if (_formKey.currentState.validate()) {
-                        Navigator.pushNamed(context, HomeScreen.id);
+                        Navigator.push(context, CupertinoPageRoute(builder: (context) => HomeScreen()));
                       }
                     },
                   ),
@@ -244,8 +244,8 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                           Icons.arrow_back,
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(
-                              context, CustomerRegistrationScreen.id);
+                          Navigator.push(
+                              context, CupertinoPageRoute(builder: (context) => CustomerRegistrationScreen()));
                         },
                       )
                     ],
