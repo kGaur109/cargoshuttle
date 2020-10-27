@@ -9,7 +9,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../login_screen.dart';
 import 'customer_info_screen.dart';
 
 class CustomerRegistrationScreen extends StatefulWidget {
@@ -81,7 +80,10 @@ class _CustomerRegistrationScreenState
                       size: 50,
                     ),
                     onPressed: () {
-                      Navigator.push(context, CupertinoPageRoute(builder: (context) => RegistrationHomeScreen()));
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => RegistrationHomeScreen()));
                     },
                   ),
                 ),
@@ -127,11 +129,9 @@ class _CustomerRegistrationScreenState
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter your full name';
+                          } else if (isNumeric(value.toString()) == true) {
+                            return "Please enter name in characters";
                           }
-                          else if(isNumeric(value.toString()) == true)
-                            {
-                              return "Please enter name in characters";
-                            }
                           return null;
                         },
                       ),
@@ -180,44 +180,38 @@ class _CustomerRegistrationScreenState
                         height: 10.0,
                       ),
                       TextFormField(
-                        keyboardType: TextInputType.phone,
-                        style: TextStyle(color: Colors.white),
-                        onChanged: (value) {
-                          phone = value;
-                        },
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.call,
-                              color: Colors.white,
-                            ),
-                            hintText: "contact number",
-                            hintStyle: TextStyle(color: Colors.white),
-                            focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                              color: misc,
-                              width: 5,
-                            )),
-                            enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                              color: misc,
-                              width: 5,
-                            ))),
-                        validator: (value)
-                          {
-                            if(isNumeric(value.toString()) == false)
-                            {
+                          keyboardType: TextInputType.phone,
+                          style: TextStyle(color: Colors.white),
+                          onChanged: (value) {
+                            phone = value;
+                          },
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.call,
+                                color: Colors.white,
+                              ),
+                              hintText: "contact number",
+                              hintStyle: TextStyle(color: Colors.white),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                color: misc,
+                                width: 5,
+                              )),
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                color: misc,
+                                width: 5,
+                              ))),
+                          validator: (value) {
+                            if (isNumeric(value.toString()) == false) {
                               return "Please enter phone number in digits";
-                            }
-                            else if(isNumeric(value.toString()) == true)
-                            {
-                              if(value.length != 10)
-                              {
+                            } else if (isNumeric(value.toString()) == true) {
+                              if (value.length != 10) {
                                 return "please enter correct phone number";
                               }
                             }
                             return null;
-                          }
-                      ),
+                          }),
                       SizedBox(
                         height: 10.0,
                       ),
@@ -265,7 +259,12 @@ class _CustomerRegistrationScreenState
                               if (newUser != null) {
                                 var emailEntered = email1.text;
                                 createRecord();
-                                Navigator.push(context, CupertinoPageRoute(builder: (context) => CustomerInfoScreen(email1: emailEntered)));
+                                Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                        builder: (context) =>
+                                            CustomerInfoScreen(
+                                                email1: emailEntered)));
                               }
                               setState(() {
                                 showSpinner = false;

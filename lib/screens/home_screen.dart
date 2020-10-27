@@ -27,12 +27,22 @@ class _HomeScreenState extends State<HomeScreen> {
       loadType: "Part Load",
       truckType: "10 wheeler",
       expectedTime: "4-5 days",
+    ),
+    DataCard(
+      color: themeColor,
+      userName: "Mridul Swarup",
+      origin: "Aligarh",
+      destination: "Faridabad",
+      loadType: "Part Load",
+      truckType: "10 wheeler",
+      expectedTime: "4-5 days",
     )
   ];
 
   Future<void> _signOut(BuildContext context) async {
     await _auth.signOut().then((_) {
-      Navigator.push(context, CupertinoPageRoute(builder: (context) => WelcomeScreen()));
+      Navigator.push(
+          context, CupertinoPageRoute(builder: (context) => WelcomeScreen()));
     });
   }
 
@@ -71,7 +81,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(context, CupertinoPageRoute(builder: (context) => HomeScreen()));
+                Navigator.push(context,
+                    CupertinoPageRoute(builder: (context) => HomeScreen()));
               },
             ),
             IconButton(
@@ -94,7 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(context, CupertinoPageRoute(builder: (context) => ChatScreen()));
+                Navigator.push(context,
+                    CupertinoPageRoute(builder: (context) => ChatScreen()));
               },
             ),
             IconButton(
@@ -103,21 +115,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(context, CupertinoPageRoute(builder: (context) => ProfileCardScreen()));
+                Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                        builder: (context) => ProfileCardScreen()));
               },
             )
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () async {
-      //     SharedPreferences pref = await SharedPreferences.getInstance();
-      //     pref.remove('email');
-      //     _signOut(context);
-      //   },
-      //   child: Icon(Icons.close),
-      //   backgroundColor: Colors.red,
-      // ),
     );
   }
 }

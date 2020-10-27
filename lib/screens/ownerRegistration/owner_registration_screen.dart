@@ -10,8 +10,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../login_screen.dart';
-
 class OwnerRegistrationScreen extends StatefulWidget {
   static const String id = 'owner_registration_screen';
 
@@ -80,7 +78,10 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                       size: 50,
                     ),
                     onPressed: () {
-                      Navigator.push(context, CupertinoPageRoute(builder: (context) => RegistrationHomeScreen()));
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => RegistrationHomeScreen()));
                     },
                   ),
                 ),
@@ -259,8 +260,11 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
                               if (newUser != null) {
                                 var emailEntered = email1.text;
                                 createRecord();
-                                Navigator.push(context, CupertinoPageRoute(builder: (context) => OwnerInfoScreen2(email1: emailEntered)));
-
+                                Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                        builder: (context) => OwnerInfoScreen2(
+                                            email1: emailEntered)));
                               }
                               setState(() {
                                 showSpinner = false;

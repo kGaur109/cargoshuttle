@@ -22,7 +22,7 @@ class DataCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.0),
+      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
       child: Container(
         child: Material(
           elevation: 5.0,
