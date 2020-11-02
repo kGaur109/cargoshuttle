@@ -43,7 +43,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     size: 50,
                   ),
                   onPressed: () {
-                    Navigator.push(context, CupertinoPageRoute(builder: (context) => WelcomeScreen()));
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => WelcomeScreen()));
                   },
                 ),
               ),
@@ -129,16 +132,19 @@ class _LoginScreenState extends State<LoginScreen> {
                           showSpinner = true;
                         });
                         try {
-                          final currentUser =
-                              await _auth.signInWithEmailAndPassword(
+                          final currentUser = await _auth
+                              .signInWithEmailAndPassword(
                                   email: email, password: password)
-                           .then((value) async {
-                           SharedPreferences pref =
-                           await SharedPreferences.getInstance();
-                           pref.setString('email', email);
-                           });
+                              .then((value) async {
+                            SharedPreferences pref =
+                                await SharedPreferences.getInstance();
+                            pref.setString('email', email);
+                          });
                           if (currentUser != null) {
-                            Navigator.push(context, CupertinoPageRoute(builder: (context) => HomeScreen()));
+                            print("not null");
+                            Navigator.pushNamed(context, HomeScreen.id);
+                          } else {
+                            print("null");
                           }
                           setState(() {
                             showSpinner = false;
