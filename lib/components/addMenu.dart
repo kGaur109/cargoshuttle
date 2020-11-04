@@ -1,6 +1,8 @@
 import 'package:cargoshuttle/components/rounded_button.dart';
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/constants.dart';
+import 'package:cargoshuttle/screens/add_load_screen.dart';
+import 'package:cargoshuttle/screens/add_truck_screen.dart';
 import 'package:flutter/material.dart';
 
 class AddMenu extends StatelessWidget {
@@ -22,12 +24,16 @@ class AddMenu extends StatelessWidget {
             children: [
               RoundButton(
                 text: "Add Load Post",
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, AddLoadScreen.id);
+                },
                 color: themeColor,
               ),
               RoundButton(
                 text: "Add Truck Post",
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, AddTruckScreen.id);
+                },
                 color: themeColor,
               ),
               RoundButton(

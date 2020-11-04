@@ -1,3 +1,5 @@
+import 'package:cargoshuttle/screens/add_load_screen.dart';
+import 'package:cargoshuttle/screens/add_truck_screen.dart';
 import 'package:cargoshuttle/screens/customerRegistration/customer_info_screen.dart';
 import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cargoshuttle/screens/ownerRegistration/owner_info_screen.dart';
@@ -22,15 +24,14 @@ Future<void> main() async {
 }
 
 class Cargoshuttle extends StatelessWidget {
-  //my first commit-mirdul
   final String email;
   Cargoshuttle({this.email});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: HomeScreen.id,
-      // initialRoute: email == null ? WelcomeScreen.id : HomeScreen.id,
+      // initialRoute: HomeScreen.id,
+      initialRoute: email == null ? WelcomeScreen.id : HomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
@@ -45,6 +46,8 @@ class Cargoshuttle extends StatelessWidget {
         HomeScreen.id: (context) => HomeScreen(),
         ChatScreen.id: (context) => ChatScreen(),
         ProfileCardScreen.id: (context) => ProfileCardScreen(),
+        AddLoadScreen.id: (context) => AddLoadScreen(),
+        AddTruckScreen.id: (context) => AddTruckScreen(),
       },
     );
   }

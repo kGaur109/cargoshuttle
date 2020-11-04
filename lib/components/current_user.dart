@@ -21,7 +21,7 @@ class CurrentUser {
     this.userType = type;
     await getEmail();
     if (this.userType == 0) {
-       await findFleetOwner();
+      await findFleetOwner();
     } else if (this.userType == 1) {
       await findCustomer();
     }
@@ -60,7 +60,6 @@ class CurrentUser {
     this.fleetOwner.phone = docs2.data['phone'];
     this.fleetOwner.pan = docs2.data['pan'];
     this.fleetOwner.gst = docs2.data['gst'];
-
   }
 
   Future<void> findCustomer() async {
