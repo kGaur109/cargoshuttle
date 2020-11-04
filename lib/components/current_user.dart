@@ -3,6 +3,7 @@ import 'package:cargoshuttle/components/fleet_owner.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 final customerData = Firestore.instance.collection('customer');
 final fleetOwnerData = Firestore.instance.collection('fleet owners');
@@ -16,34 +17,35 @@ class CurrentUser {
   CurrentUser(
       {this.userType, this.customer, this.fleetOwner, this.currentEmail});
 
-  setUserType(int type) {
+  setUserType(int type) async {
     this.userType = type;
-    getEmail();
-    print(this.currentEmail);
+    await getEmail();
     if (this.userType == 0) {
-      findFleetOwner();
+       await findFleetOwner();
     } else if (this.userType == 1) {
-      findCustomer();
+      await findCustomer();
     }
   }
 
-  Future<void> getEmail() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  Future<String> getEmail() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String email = pref.getString('email');
     this.currentEmail = email;
+    return this.currentEmail;
   }
 
-  findFleetOwner() async {
+  Future<void> findFleetOwner() async {
+    fleetOwner = FleetOwner();
     final DocumentSnapshot docs = await fleetOwnerData
         .document(currentEmail)
         .collection('Basic Data')
         .document(currentEmail)
         .get();
+
     this.fleetOwner.name = docs.data['name'];
     this.fleetOwner.email = docs.data['email'];
     this.fleetOwner.password = docs.data['password'];
-    this.fleetOwner.contactNumber = docs.data['contactNumber'];
+    this.fleetOwner.contactNumber = docs.data['contact_no'];
 
     final DocumentSnapshot docs2 = await fleetOwnerData
         .document(currentEmail)
@@ -58,9 +60,11 @@ class CurrentUser {
     this.fleetOwner.phone = docs2.data['phone'];
     this.fleetOwner.pan = docs2.data['pan'];
     this.fleetOwner.gst = docs2.data['gst'];
+
   }
 
-  findCustomer() async {
+  Future<void> findCustomer() async {
+    customer = Customer();
     final DocumentSnapshot docs = await customerData
         .document(currentEmail)
         .collection('Basic Data')

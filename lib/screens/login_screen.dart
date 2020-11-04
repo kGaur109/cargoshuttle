@@ -22,6 +22,11 @@ class _LoginScreenState extends State<LoginScreen> {
   String email;
   String password;
 
+  Future<void> SP() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('email', email);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,13 +136,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         try {
                           final currentUser =
                               await _auth.signInWithEmailAndPassword(
-                                  email: email, password: password)
-                           .then((value) async {
-                           SharedPreferences pref =
-                           await SharedPreferences.getInstance();
-                           pref.setString('email', email);
-                           });
+                                  email: email, password: password);
                           if (currentUser != null) {
+                            SP();
                             Navigator.push(context, CupertinoPageRoute(builder: (context) => HomeScreen()));
                           }
                           setState(() {

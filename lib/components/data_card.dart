@@ -19,6 +19,7 @@ class DataCard extends StatelessWidget {
   final String truckType;
   final String expectedTime;
 
+
   @override
   Widget build(BuildContext context) {
     return Padding(

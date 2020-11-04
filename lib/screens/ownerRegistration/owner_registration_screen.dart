@@ -52,8 +52,10 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
     }).then((value) async {
       SharedPreferences pref = await SharedPreferences.getInstance();
       pref.setString('email', email);
+      pref.setInt('userType', 0);
     });
   }
+
 
   @override
   Widget build(BuildContext context) {

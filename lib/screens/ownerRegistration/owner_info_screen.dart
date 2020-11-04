@@ -55,6 +55,7 @@ class _OwnerInfoScreen2State extends State<OwnerInfoScreen2> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

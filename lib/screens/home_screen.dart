@@ -39,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     )
   ];
 
+
   Future<void> _signOut(BuildContext context) async {
     await _auth.signOut().then((_) {
       Navigator.push(
