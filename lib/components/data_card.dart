@@ -9,7 +9,8 @@ class DataCard extends StatelessWidget {
       this.destination,
       this.loadType,
       this.truckType,
-      this.expectedTime});
+      // ignore: non_constant_identifier_names
+      this.ETA});
 
   final Color color;
   final String userName;
@@ -17,7 +18,8 @@ class DataCard extends StatelessWidget {
   final String destination;
   final String loadType;
   final String truckType;
-  final String expectedTime;
+  // ignore: non_constant_identifier_names
+  final String ETA;
 
 
   @override
@@ -75,7 +77,7 @@ class DataCard extends StatelessWidget {
                       height: 8.0,
                     ),
                     Text(
-                      "Expected Delivery Time: $expectedTime",
+                      "Expected Delivery Time: $ETA",
                       style: TextStyle(color: Colors.white),
                     ),
                   ],

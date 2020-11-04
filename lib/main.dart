@@ -21,14 +21,16 @@ Future<void> main() async {
   runApp(Cargoshuttle(email: email));
 }
 
-class Cargoshuttle extends StatelessWidget { //my first commit-mirdul 
+class Cargoshuttle extends StatelessWidget {
+  //my first commit-mirdul
   final String email;
   Cargoshuttle({this.email});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: email == null ? WelcomeScreen.id : HomeScreen.id,
+      initialRoute: HomeScreen.id,
+      // initialRoute: email == null ? WelcomeScreen.id : HomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),

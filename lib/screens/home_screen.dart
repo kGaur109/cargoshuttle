@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cargoshuttle/components/data_card.dart';
+import 'package:cargoshuttle/components/addMenu.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       destination: "Faridabad",
       loadType: "Part Load",
       truckType: "10 wheeler",
-      expectedTime: "4-5 days",
+      ETA: "4-5 days",
     ),
     DataCard(
       color: themeColor,
@@ -35,7 +36,25 @@ class _HomeScreenState extends State<HomeScreen> {
       destination: "Faridabad",
       loadType: "Part Load",
       truckType: "10 wheeler",
-      expectedTime: "4-5 days",
+      ETA: "4-5 days",
+    ),
+    DataCard(
+      color: themeColor,
+      userName: "Mridul Swarup",
+      origin: "Aligarh",
+      destination: "Faridabad",
+      loadType: "Part Load",
+      truckType: "10 wheeler",
+      ETA: "4-5 days",
+    ),
+    DataCard(
+      color: themeColor,
+      userName: "Mridul Swarup",
+      origin: "Aligarh",
+      destination: "Faridabad",
+      loadType: "Part Load",
+      truckType: "10 wheeler",
+      ETA: "4-5 days",
     )
   ];
 
@@ -98,7 +117,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.add,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) => SingleChildScrollView(
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom),
+                            child: AddMenu(),
+                          ),
+                        ));
+              },
             ),
             IconButton(
               icon: Icon(
