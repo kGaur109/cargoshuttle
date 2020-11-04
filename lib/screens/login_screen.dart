@@ -22,6 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String email;
   String password;
 
+  // ignore: non_constant_identifier_names
   Future<void> SP() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString('email', email);
@@ -48,7 +49,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     size: 50,
                   ),
                   onPressed: () {
-                    Navigator.push(context, CupertinoPageRoute(builder: (context) => WelcomeScreen()));
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => WelcomeScreen()));
                   },
                 ),
               ),
@@ -139,7 +143,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                   email: email, password: password);
                           if (currentUser != null) {
                             SP();
-                            Navigator.push(context, CupertinoPageRoute(builder: (context) => HomeScreen()));
+                            Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                    builder: (context) => HomeScreen()));
                           }
                           setState(() {
                             showSpinner = false;
