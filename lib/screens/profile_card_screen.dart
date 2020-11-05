@@ -52,7 +52,6 @@ class _ProfileCardScreenState extends State<ProfileCardScreen> {
         email = currentUser?.customer?.email;
       }
 
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(

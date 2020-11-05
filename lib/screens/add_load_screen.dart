@@ -1,3 +1,5 @@
+import 'package:cargoshuttle/components/current_user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
@@ -10,7 +12,12 @@ class AddLoadScreen extends StatefulWidget {
   _AddLoadScreenState createState() => _AddLoadScreenState();
 }
 
+final userRef = Firestore.instance.collection('Load Post');
+
 class _AddLoadScreenState extends State<AddLoadScreen> {
+
+  final CurrentUser currentUser = CurrentUser();
+
   String userName;
   String origin;
   String destination;
@@ -18,8 +25,40 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
   String loadWeight;
   String eta;
 
+  var email;
+
+  void createRecord() async {
+    if(email!= null)
+      {
+        await userRef
+            .document(email)
+            .setData({
+          'userName': userName,
+          'origin': origin,
+          'destination': destination,
+          'loadType': loadType,
+          'loadWeight': loadWeight,
+          'eta': eta
+        });
+      }
+  }
+
+  Future<void> userEmail() async {
+    email = await currentUser.getEmail();
+    setState(() {
+
+    });
+  }
+
+  @override
+  void initState() {
+    userEmail();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: themeColor,
@@ -196,7 +235,9 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                 RoundButton(
                   text: "Post the load",
                   color: themeColor,
-                  onPressed: () {},
+                  onPressed: () {
+                    createRecord();
+                  },
                 ),
                 SizedBox(
                   height: 25,
