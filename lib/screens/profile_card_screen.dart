@@ -32,10 +32,26 @@ class _ProfileCardScreenState extends State<ProfileCardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String name = currentUser?.fleetOwner?.name;
-    String address = currentUser?.fleetOwner?.address;
-    String phone = currentUser?.fleetOwner?.phone;
-    String email = currentUser?.fleetOwner?.email;
+    String name;
+    String address;
+    String phone;
+    String email;
+
+    if(currentUser?.userType == 0)
+      {
+        name = currentUser?.fleetOwner?.name;
+        address = currentUser?.fleetOwner?.address;
+        phone = currentUser?.fleetOwner?.phone;
+        email = currentUser?.fleetOwner?.email;
+      }
+    else if(currentUser?.userType == 1)
+      {
+        name = currentUser?.customer?.name;
+        address = currentUser?.customer?.address;
+        phone = currentUser?.customer?.phone;
+        email = currentUser?.customer?.email;
+      }
+
 
     return Scaffold(
       backgroundColor: Colors.white,
