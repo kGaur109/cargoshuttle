@@ -1,3 +1,5 @@
+import 'package:cargoshuttle/components/current_user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
@@ -10,13 +12,49 @@ class AddTruckScreen extends StatefulWidget {
   _AddTruckScreenState createState() => _AddTruckScreenState();
 }
 
+final userRef = Firestore.instance.collection('Truck Post');
+
 class _AddTruckScreenState extends State<AddTruckScreen> {
+
+  final CurrentUser currentUser = CurrentUser();
+
   String userName;
   String origin;
   String destination;
   String truckType;
   String loadType;
   String eta;
+
+  var email;
+
+  void createRecord() async {
+    if(email!= null)
+    {
+      await userRef
+          .document(email)
+          .setData({
+        'userName': userName,
+        'origin': origin,
+        'destination': destination,
+        'truckType': truckType,
+        'loadType': loadType,
+        'eta': eta
+      });
+    }
+  }
+
+  Future<void> userEmail() async {
+    email = await currentUser.getEmail();
+    setState(() {
+
+    });
+  }
+
+  @override
+  void initState() {
+    userEmail();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -169,7 +207,7 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                 TextFormField(
                   keyboardType: TextInputType.text,
                   onChanged: (value) {
-                    userName = value;
+                    eta = value;
                   },
                   decoration: kTextFieldDecorationWhite.copyWith(
                     hintText: 'Expected Time of Delivery',
@@ -188,7 +226,9 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                 RoundButton(
                   text: "Post the truck",
                   color: themeColor,
-                  onPressed: () {},
+                  onPressed: () {
+                    createRecord();
+                  },
                 ),
                 SizedBox(
                   height: 25,
