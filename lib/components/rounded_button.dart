@@ -12,7 +12,7 @@ class RoundButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
+      padding: EdgeInsets.symmetric(vertical: 10.0),
       child: Container(
         child: Material(
           elevation: 5.0,
@@ -27,7 +27,6 @@ class RoundButton extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18.0,
                 color: (color == themeColor) ? Colors.white : Colors.black,
-
               ),
             ),
           ),
