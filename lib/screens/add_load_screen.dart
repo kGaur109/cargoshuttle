@@ -15,7 +15,6 @@ class AddLoadScreen extends StatefulWidget {
 final userRef = Firestore.instance.collection('Load Post');
 
 class _AddLoadScreenState extends State<AddLoadScreen> {
-
   final CurrentUser currentUser = CurrentUser();
 
   String userName;
@@ -28,26 +27,23 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
   var email;
 
   void createRecord() async {
-    if(email!= null)
-      {
-        await userRef
-            .document(email)
-            .setData({
-          'userName': userName,
-          'origin': origin,
-          'destination': destination,
-          'loadType': loadType,
-          'loadWeight': loadWeight,
-          'eta': eta
-        });
-      }
+    if (email != null) {
+      await userRef.document(email).setData({
+        'userName': userName,
+        'origin': origin,
+        'destination': destination,
+        'loadType': loadType,
+        'loadWeight': loadWeight,
+        'eta': eta
+      });
+    }
   }
+
+  bool _is_Checked = false;
 
   Future<void> userEmail() async {
     email = await currentUser.getEmail();
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
@@ -58,7 +54,6 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: themeColor,
@@ -66,7 +61,7 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+          padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
           child: Flexible(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -79,22 +74,38 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                   "Load Posting Details",
                   style: TextStyle(
                     fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w900,
                     color: themeColor,
+                    decoration: TextDecoration.underline,
                   ),
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 40.0,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.text,
                   onChanged: (value) {
                     userName = value;
                   },
-                  decoration: kTextFieldDecorationWhite.copyWith(
-                    hintText: 'User Name',
-                    hintStyle: TextStyle(color: Colors.grey),
-                  ),
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.perm_identity,
+                        size: 30,
+                        color: themeColor,
+                      ),
+                      hintText: "username",
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 20),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                        color: themeColor,
+                        width: 2,
+                      )),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: themeColor,
+                          width: 2,
+                        ),
+                      )),
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter the username';
@@ -103,20 +114,32 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                   },
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 30.0,
                 ),
                 Row(
                   children: <Widget>[
                     Flexible(
                       child: TextFormField(
                         keyboardType: TextInputType.text,
+                        textAlign: TextAlign.center,
                         onChanged: (value) {
                           origin = value;
                         },
-                        decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'from',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
+                        decoration: InputDecoration(
+                            hintText: "from",
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 20),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: themeColor,
+                              width: 2,
+                            )),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: themeColor,
+                                width: 2,
+                              ),
+                            )),
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Origin City';
@@ -126,26 +149,38 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                       ),
                     ),
                     SizedBox(
-                      width: 10.0,
+                      width: 40.0,
                     ),
                     Icon(
                       Icons.local_shipping_outlined,
-                      size: 32.0,
+                      size: 40.0,
                       color: themeColor,
                     ),
                     SizedBox(
-                      width: 10.0,
+                      width: 40,
                     ),
                     Flexible(
                       child: TextFormField(
                         keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
                         onChanged: (value) {
                           destination = value;
                         },
-                        decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'to',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
+                        decoration: InputDecoration(
+                            hintText: "to",
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 20),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: themeColor,
+                              width: 2,
+                            )),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: themeColor,
+                                width: 2,
+                              ),
+                            )),
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Destination City';
@@ -157,20 +192,32 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 30.0,
                 ),
                 Row(
                   children: <Widget>[
                     Flexible(
                       child: TextFormField(
                         keyboardType: TextInputType.text,
+                        textAlign: TextAlign.center,
                         onChanged: (value) {
                           loadType = value;
                         },
-                        decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'type',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
+                        decoration: InputDecoration(
+                            hintText: "type",
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 20),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: themeColor,
+                              width: 2,
+                            )),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: themeColor,
+                                width: 2,
+                              ),
+                            )),
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Load Type';
@@ -180,26 +227,38 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                       ),
                     ),
                     SizedBox(
-                      width: 10.0,
+                      width: 40.0,
                     ),
                     Icon(
                       Icons.assignment_outlined,
-                      size: 32.0,
+                      size: 40.0,
                       color: themeColor,
                     ),
                     SizedBox(
-                      width: 10.0,
+                      width: 40.0,
                     ),
                     Flexible(
                       child: TextFormField(
                         keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
                         onChanged: (value) {
                           loadWeight = value;
                         },
-                        decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'weight',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
+                        decoration: InputDecoration(
+                            hintText: "weight",
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 20),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: themeColor,
+                              width: 2,
+                            )),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: themeColor,
+                                width: 2,
+                              ),
+                            )),
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Load Weight';
@@ -211,17 +270,32 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 30.0,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.text,
                   onChanged: (value) {
                     eta = value;
                   },
-                  decoration: kTextFieldDecorationWhite.copyWith(
-                    hintText: 'Expected Time of Delivery',
-                    hintStyle: TextStyle(color: Colors.grey),
-                  ),
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.access_time_outlined,
+                        size: 30,
+                        color: themeColor,
+                      ),
+                      hintText: "Expected Time of Delivery",
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 20),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                        color: themeColor,
+                        width: 2,
+                      )),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: themeColor,
+                          width: 2,
+                        ),
+                      )),
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter ETA';
@@ -230,10 +304,27 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                   },
                 ),
                 SizedBox(
-                  height: 24.0,
+                  height: 30.0,
+                ),
+                CheckboxListTile(
+                  title: Text(
+                    "Agree to the terms and conditions",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: themeColor,
+                        decoration: TextDecoration.underline),
+                  ),
+                  value: _is_Checked,
+                  onChanged: (bool value) {
+                    setState(() {
+                      _is_Checked = value;
+                    });
+                  },
+                  controlAffinity:
+                      ListTileControlAffinity.leading, //  <-- leading Checkbox
                 ),
                 RoundButton(
-                  text: "Post the load",
+                  text: "POST THE AD",
                   color: themeColor,
                   onPressed: () {
                     createRecord();
