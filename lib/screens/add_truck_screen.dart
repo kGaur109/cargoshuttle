@@ -15,7 +15,6 @@ class AddTruckScreen extends StatefulWidget {
 final userRef = Firestore.instance.collection('Truck Post');
 
 class _AddTruckScreenState extends State<AddTruckScreen> {
-
   final CurrentUser currentUser = CurrentUser();
 
   String userName;
@@ -26,13 +25,10 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
   String eta;
 
   var email;
-
+  bool _is_Checked = false;
   void createRecord() async {
-    if(email!= null)
-    {
-      await userRef
-          .document(email)
-          .setData({
+    if (email != null) {
+      await userRef.document(email).setData({
         'userName': userName,
         'origin': origin,
         'destination': destination,
@@ -45,9 +41,7 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
 
   Future<void> userEmail() async {
     email = await currentUser.getEmail();
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
@@ -65,7 +59,7 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+          padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
           child: Flexible(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -80,20 +74,36 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
                     color: themeColor,
+                    decoration: TextDecoration.underline,
                   ),
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 25.0,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.text,
                   onChanged: (value) {
                     userName = value;
                   },
-                  decoration: kTextFieldDecorationWhite.copyWith(
-                    hintText: 'User Name',
-                    hintStyle: TextStyle(color: Colors.grey),
-                  ),
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.perm_identity,
+                        size: 30,
+                        color: themeColor,
+                      ),
+                      hintText: "username",
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 20),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                        color: themeColor,
+                        width: 2,
+                      )),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: themeColor,
+                          width: 2,
+                        ),
+                      )),
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter the username';
@@ -102,20 +112,32 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                   },
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 30.0,
                 ),
                 Row(
                   children: <Widget>[
                     Flexible(
                       child: TextFormField(
                         keyboardType: TextInputType.text,
+                        textAlign: TextAlign.center,
                         onChanged: (value) {
                           origin = value;
                         },
-                        decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'from',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
+                        decoration: InputDecoration(
+                            hintText: "from",
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 20),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: themeColor,
+                              width: 2,
+                            )),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: themeColor,
+                                width: 2,
+                              ),
+                            )),
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Origin City';
@@ -125,26 +147,38 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                       ),
                     ),
                     SizedBox(
-                      width: 10.0,
+                      width: 40.0,
                     ),
                     Icon(
                       Icons.local_shipping_outlined,
-                      size: 32.0,
+                      size: 40.0,
                       color: themeColor,
                     ),
                     SizedBox(
-                      width: 10.0,
+                      width: 40.0,
                     ),
                     Flexible(
                       child: TextFormField(
                         keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
                         onChanged: (value) {
                           destination = value;
                         },
-                        decoration: kTextFieldDecorationWhite.copyWith(
-                          hintText: 'to',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
+                        decoration: InputDecoration(
+                            hintText: "to",
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 20),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: themeColor,
+                              width: 2,
+                            )),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: themeColor,
+                                width: 2,
+                              ),
+                            )),
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Destination City';
@@ -156,17 +190,27 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 30.0,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.text,
                   onChanged: (value) {
                     truckType = value;
                   },
-                  decoration: kTextFieldDecorationWhite.copyWith(
-                    hintText: 'Truck Type',
-                    hintStyle: TextStyle(color: Colors.grey),
-                  ),
+                  decoration: InputDecoration(
+                      hintText: "Truck Type",
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 20),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                        color: themeColor,
+                        width: 2,
+                      )),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: themeColor,
+                          width: 2,
+                        ),
+                      )),
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter truck type';
@@ -175,7 +219,7 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                   },
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 30.0,
                 ),
                 // DropdownButton(
                 //   items: [
@@ -190,10 +234,20 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                   onChanged: (value) {
                     loadType = value;
                   },
-                  decoration: kTextFieldDecorationWhite.copyWith(
-                    hintText: 'Load Type',
-                    hintStyle: TextStyle(color: Colors.grey),
-                  ),
+                  decoration: InputDecoration(
+                      hintText: "Load Type",
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 20),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                        color: themeColor,
+                        width: 2,
+                      )),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: themeColor,
+                          width: 2,
+                        ),
+                      )),
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter load type';
@@ -202,17 +256,32 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                   },
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 30.0,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.text,
                   onChanged: (value) {
                     eta = value;
                   },
-                  decoration: kTextFieldDecorationWhite.copyWith(
-                    hintText: 'Expected Time of Delivery',
-                    hintStyle: TextStyle(color: Colors.grey),
-                  ),
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.access_time_outlined,
+                        size: 30,
+                        color: themeColor,
+                      ),
+                      hintText: "Expected Time of Delivery",
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 20),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                        color: themeColor,
+                        width: 2,
+                      )),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: themeColor,
+                          width: 2,
+                        ),
+                      )),
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter ETA';
@@ -221,10 +290,27 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                   },
                 ),
                 SizedBox(
-                  height: 24.0,
+                  height: 15.0,
+                ),
+                CheckboxListTile(
+                  title: Text(
+                    "Agree to the terms and conditions",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: themeColor,
+                        decoration: TextDecoration.underline),
+                  ),
+                  value: _is_Checked,
+                  onChanged: (bool value) {
+                    setState(() {
+                      _is_Checked = value;
+                    });
+                  },
+                  controlAffinity:
+                      ListTileControlAffinity.leading, //  <-- leading Checkbox
                 ),
                 RoundButton(
-                  text: "Post the truck",
+                  text: "POST THE AD",
                   color: themeColor,
                   onPressed: () {
                     createRecord();
