@@ -2,12 +2,16 @@ import 'package:cargoshuttle/constants.dart';
 import 'package:cargoshuttle/screens/chat_screen.dart';
 import 'package:cargoshuttle/screens/profile_card_screen.dart';
 import 'package:cargoshuttle/screens/welcome_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cargoshuttle/components/data_card.dart';
 import 'package:cargoshuttle/components/addMenu.dart';
+
+final _firestore = Firestore.instance;
+FirebaseUser loggedInUser;
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -19,45 +23,23 @@ class HomeScreen extends StatefulWidget {
 final _auth = FirebaseAuth.instance;
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<DataCard> entries = [
-    DataCard(
-      color: themeColor,
-      userName: "Mridul Swarup",
-      origin: "Aligarh",
-      destination: "Faridabad",
-      loadType: "Part Load",
-      truckType: "10 wheeler",
-      ETA: "4-5 days",
-    ),
-    DataCard(
-      color: themeColor,
-      userName: "Mridul Swarup",
-      origin: "Aligarh",
-      destination: "Faridabad",
-      loadType: "Part Load",
-      truckType: "10 wheeler",
-      ETA: "4-5 days",
-    ),
-    DataCard(
-      color: themeColor,
-      userName: "Mridul Swarup",
-      origin: "Aligarh",
-      destination: "Faridabad",
-      loadType: "Part Load",
-      truckType: "10 wheeler",
-      ETA: "4-5 days",
-    ),
-    DataCard(
-      color: themeColor,
-      userName: "Mridul Swarup",
-      origin: "Aligarh",
-      destination: "Faridabad",
-      loadType: "Part Load",
-      truckType: "10 wheeler",
-      ETA: "4-5 days",
-    )
-  ];
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
 
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+      }
+    } catch (e) {
+      print("Error in current user!");
+      print(e);
+    }
+  }
 
   Future<void> _signOut(BuildContext context) async {
     await _auth.signOut().then((_) {
@@ -68,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: themeColor,
         actions: <Widget>[
@@ -84,11 +67,15 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      body: ListView(
-          padding: EdgeInsets.symmetric(vertical: 14.0),
-          scrollDirection: Axis.vertical,
-          children: entries),
-      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            PostsStream(),
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomAppBar(
         color: themeColor,
         child: Row(
@@ -101,8 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(context,
-                    CupertinoPageRoute(builder: (context) => HomeScreen()));
+                Navigator.popAndPushNamed(context, HomeScreen.id);
               },
             ),
             IconButton(
@@ -119,16 +105,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               onPressed: () {
                 showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (context) => SingleChildScrollView(
-                          child: Container(
-                            padding: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom),
-                            child: AddMenu(),
-                          ),
-                        ));
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (context) => SingleChildScrollView(
+                    child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: AddMenu(),
+                    ),
+                  ),
+                );
               },
             ),
             IconButton(
@@ -156,6 +142,60 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class PostsStream extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: _firestore.collection('Load Post').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(
+              backgroundColor: themeColor,
+            ),
+          );
+        }
+        final posts = snapshot.data.documents.reversed;
+        List<DataCard> dataCards = [];
+        for (var post in posts) {
+          final userName = post.data['userName'];
+          final origin = post.data['origin'];
+          final destination = post.data['destination'];
+          final loadType = post.data['loadType'];
+          final loadWeight = post.data['loadWeight'];
+          final eta = post.data['eta'];
+          final email1 = post.data['email'];
+
+          final currentUser = loggedInUser.email;
+
+          if (currentUser != email1) {
+            final card = DataCard(
+              color: themeColor,
+              userName: userName,
+              origin: origin,
+              destination: destination,
+              loadType: loadType,
+              loadWeight: loadWeight,
+              ETA: eta,
+            );
+            dataCards.add(card);
+          }
+        }
+        return Expanded(
+          child: ListView(
+            reverse: true,
+            padding: EdgeInsets.symmetric(
+              horizontal: 10.0,
+              vertical: 20.0,
+            ),
+            children: dataCards,
+          ),
+        );
+      },
     );
   }
 }

@@ -23,6 +23,7 @@ dependencies:
   email_validator: ^1.0.5
   shared_preferences: ^0.5.12
   firebase: ^7.3.0
+  fluttertoast: ^7.1.1
 
 
 dev_dependencies:

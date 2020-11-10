@@ -9,6 +9,7 @@ class DataCard extends StatelessWidget {
       this.destination,
       this.loadType,
       this.truckType,
+      this.loadWeight,
       // ignore: non_constant_identifier_names
       this.ETA});
 
@@ -18,9 +19,9 @@ class DataCard extends StatelessWidget {
   final String destination;
   final String loadType;
   final String truckType;
+  final String loadWeight;
   // ignore: non_constant_identifier_names
   final String ETA;
-
 
   @override
   Widget build(BuildContext context) {

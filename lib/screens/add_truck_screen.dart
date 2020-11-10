@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 import 'package:cargoshuttle/constants.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'home_screen.dart';
 
 class AddTruckScreen extends StatefulWidget {
   static const String id = 'add_truck_screen';
@@ -15,7 +18,6 @@ class AddTruckScreen extends StatefulWidget {
 final userRef = Firestore.instance.collection('Truck Post');
 
 class _AddTruckScreenState extends State<AddTruckScreen> {
-
   final CurrentUser currentUser = CurrentUser();
 
   String userName;
@@ -28,26 +30,22 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
   var email;
 
   void createRecord() async {
-    if(email!= null)
-    {
-      await userRef
-          .document(email)
-          .setData({
+    if (email != null) {
+      await userRef.document().setData({
         'userName': userName,
         'origin': origin,
         'destination': destination,
         'truckType': truckType,
         'loadType': loadType,
-        'eta': eta
+        'eta': eta,
+        'email': email
       });
     }
   }
 
   Future<void> userEmail() async {
     email = await currentUser.getEmail();
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
@@ -228,6 +226,16 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                   color: themeColor,
                   onPressed: () {
                     createRecord();
+                    Fluttertoast.showToast(
+                      msg: "Truck posted successfully",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      backgroundColor: themeColor,
+                      timeInSecForIosWeb: 1,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
+                    Navigator.popAndPushNamed(context, HomeScreen.id);
                   },
                 ),
                 SizedBox(

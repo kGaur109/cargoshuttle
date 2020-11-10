@@ -1,9 +1,11 @@
 import 'package:cargoshuttle/components/current_user.dart';
+import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 import 'package:cargoshuttle/constants.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AddLoadScreen extends StatefulWidget {
   static const String id = 'add_load_screen';
@@ -15,7 +17,6 @@ class AddLoadScreen extends StatefulWidget {
 final userRef = Firestore.instance.collection('Load Post');
 
 class _AddLoadScreenState extends State<AddLoadScreen> {
-
   final CurrentUser currentUser = CurrentUser();
 
   String userName;
@@ -28,26 +29,22 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
   var email;
 
   void createRecord() async {
-    if(email!= null)
-      {
-        await userRef
-            .document(email)
-            .setData({
-          'userName': userName,
-          'origin': origin,
-          'destination': destination,
-          'loadType': loadType,
-          'loadWeight': loadWeight,
-          'eta': eta
-        });
-      }
+    if (email != null) {
+      await userRef.document().setData({
+        'userName': userName,
+        'origin': origin,
+        'destination': destination,
+        'loadType': loadType,
+        'loadWeight': loadWeight,
+        'eta': eta,
+        'email': email
+      });
+    }
   }
 
   Future<void> userEmail() async {
     email = await currentUser.getEmail();
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
@@ -58,7 +55,6 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: themeColor,
@@ -237,6 +233,16 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                   color: themeColor,
                   onPressed: () {
                     createRecord();
+                    Fluttertoast.showToast(
+                      msg: "Load posted successfully",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      backgroundColor: themeColor,
+                      timeInSecForIosWeb: 1,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
+                    Navigator.popAndPushNamed(context, HomeScreen.id);
                   },
                 ),
                 SizedBox(
