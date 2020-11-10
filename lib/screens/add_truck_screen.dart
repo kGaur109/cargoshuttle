@@ -7,8 +7,6 @@ import 'package:cargoshuttle/components/rounded_button.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'home_screen.dart';
-
 class AddTruckScreen extends StatefulWidget {
   static const String id = 'add_truck_screen';
 

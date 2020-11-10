@@ -1,5 +1,4 @@
 import 'package:cargoshuttle/components/current_user.dart';
-import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cargoshuttle/screens/self-posts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
