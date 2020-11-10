@@ -1,4 +1,5 @@
 import 'package:cargoshuttle/components/current_user.dart';
+import 'package:cargoshuttle/screens/self-posts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -235,7 +236,7 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                       textColor: Colors.white,
                       fontSize: 16.0,
                     );
-                    Navigator.popAndPushNamed(context, HomeScreen.id);
+                    Navigator.popAndPushNamed(context, SelfPosts.id);
                   },
                 ),
                 SizedBox(

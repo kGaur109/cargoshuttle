@@ -1,7 +1,7 @@
 import 'package:cargoshuttle/constants.dart';
 import 'package:cargoshuttle/screens/chat_screen.dart';
+import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cargoshuttle/screens/profile_card_screen.dart';
-import 'package:cargoshuttle/screens/self-posts.dart';
 import 'package:cargoshuttle/screens/welcome_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,16 +14,16 @@ import 'package:cargoshuttle/components/addMenu.dart';
 final _firestore = Firestore.instance;
 FirebaseUser loggedInUser;
 
-class HomeScreen extends StatefulWidget {
-  static const String id = 'home_screen';
+class SelfPosts extends StatefulWidget {
+  static const String id = 'self_posts_screen';
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _SelfPostsState createState() => _SelfPostsState();
 }
 
 final _auth = FirebaseAuth.instance;
 
-class _HomeScreenState extends State<HomeScreen> {
+class _SelfPostsState extends State<SelfPosts> {
   @override
   void initState() {
     super.initState();
@@ -53,6 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        title: Text("Your Posts"),
+        centerTitle: true,
         backgroundColor: themeColor,
         actions: <Widget>[
           FlatButton(
@@ -89,7 +91,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.popAndPushNamed(context, HomeScreen.id);
+                // Navigator.popAndPushNamed(context, HomeScreen.id);
+                Navigator.push(context,
+                    CupertinoPageRoute(builder: (context) => HomeScreen()));
               },
             ),
             IconButton(
@@ -98,8 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(context,
-                    CupertinoPageRoute(builder: (context) => SelfPosts()));
+                Navigator.popAndPushNamed(context, SelfPosts.id);
               },
             ),
             IconButton(
@@ -176,7 +179,7 @@ class PostsStream extends StatelessWidget {
 
           final currentUser = loggedInUser.email;
 
-          if (currentUser != email1) {
+          if (currentUser == email1) {
             final card = DataCard(
               color: themeColor,
               userName: userName,

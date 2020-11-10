@@ -10,17 +10,12 @@ import 'package:cargoshuttle/components/current_user.dart';
 import 'package:cargoshuttle/components/customer.dart';
 import 'home_screen.dart';
 
-// final _firestore = Firestore.instance;
-FirebaseUser loggedInUser;
-
 class ProfileCardScreen extends StatefulWidget {
   static const String id = 'profile_card_screen';
 
   @override
   _ProfileCardScreenState createState() => _ProfileCardScreenState();
 }
-
-final _auth = FirebaseAuth.instance;
 
 class _ProfileCardScreenState extends State<ProfileCardScreen> {
   final Customer customer = Customer();
@@ -38,20 +33,7 @@ class _ProfileCardScreenState extends State<ProfileCardScreen> {
   @override
   void initState() {
     userEmail();
-    getCurrentUser();
     super.initState();
-  }
-
-  void getCurrentUser() async {
-    try {
-      final user = await _auth.currentUser();
-      if (user != null) {
-        loggedInUser = user;
-      }
-    } catch (e) {
-      print("Error in current user!");
-      print(e);
-    }
   }
 
   @override
@@ -251,57 +233,3 @@ class _ProfileCardScreenState extends State<ProfileCardScreen> {
     );
   }
 }
-
-// class SelfPostsStream extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return StreamBuilder<QuerySnapshot>(
-//       stream: _firestore.collection('Load Post').snapshots(),
-//       builder: (context, snapshot) {
-//         if (!snapshot.hasData) {
-//           return Center(
-//             child: CircularProgressIndicator(
-//               backgroundColor: themeColor,
-//             ),
-//           );
-//         }
-//         final posts = snapshot.data.documents.reversed;
-//         List<DataCard> dataCards = [];
-//         for (var post in posts) {
-//           final userName = post.data['userName'];
-//           final origin = post.data['origin'];
-//           final destination = post.data['destination'];
-//           final loadType = post.data['loadType'];
-//           final loadWeight = post.data['loadWeight'];
-//           final eta = post.data['eta'];
-//           final email1 = post.data['email'];
-//
-//           final currentUser = loggedInUser.email;
-//
-//           if (currentUser == email1) {
-//             final card = DataCard(
-//               color: themeColor,
-//               userName: userName,
-//               origin: origin,
-//               destination: destination,
-//               loadType: loadType,
-//               loadWeight: loadWeight,
-//               ETA: eta,
-//             );
-//             dataCards.add(card);
-//           }
-//         }
-//         return Expanded(
-//           child: ListView(
-//             reverse: true,
-//             padding: EdgeInsets.symmetric(
-//               horizontal: 10.0,
-//               vertical: 20.0,
-//             ),
-//             children: dataCards,
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
