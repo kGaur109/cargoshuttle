@@ -10,7 +10,7 @@ import 'package:cargoshuttle/components/current_user.dart';
 import 'package:cargoshuttle/components/customer.dart';
 import 'home_screen.dart';
 
-final _firestore = Firestore.instance;
+// final _firestore = Firestore.instance;
 FirebaseUser loggedInUser;
 
 class ProfileCardScreen extends StatefulWidget {
