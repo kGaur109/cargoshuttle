@@ -2,12 +2,10 @@ import 'package:cargoshuttle/constants.dart';
 import 'package:cargoshuttle/screens/chat_screen.dart';
 import 'package:cargoshuttle/screens/home_screen.dart';
 import 'package:cargoshuttle/screens/profile_card_screen.dart';
-import 'package:cargoshuttle/screens/welcome_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cargoshuttle/components/data_card.dart';
 import 'package:cargoshuttle/components/addMenu.dart';
 
@@ -42,13 +40,6 @@ class _SelfPostsState extends State<SelfPosts> {
     }
   }
 
-  Future<void> _signOut(BuildContext context) async {
-    await _auth.signOut().then((_) {
-      Navigator.push(
-          context, CupertinoPageRoute(builder: (context) => WelcomeScreen()));
-    });
-  }
-
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -56,19 +47,6 @@ class _SelfPostsState extends State<SelfPosts> {
         title: Text("Your Posts"),
         centerTitle: true,
         backgroundColor: themeColor,
-        actions: <Widget>[
-          FlatButton(
-            child: Text(
-              "Logout",
-              style: TextStyle(color: Colors.white),
-            ),
-            onPressed: () async {
-              SharedPreferences pref = await SharedPreferences.getInstance();
-              pref.remove('email');
-              _signOut(context);
-            },
-          )
-        ],
       ),
       body: SafeArea(
         child: Column(
