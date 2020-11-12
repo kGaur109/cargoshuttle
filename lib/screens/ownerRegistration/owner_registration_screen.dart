@@ -52,7 +52,7 @@ class _OwnerRegistrationScreenState extends State<OwnerRegistrationScreen> {
     }).then((value) async {
       SharedPreferences pref = await SharedPreferences.getInstance();
       pref.setString('email', email);
-      pref.setInt('userType', 0);
+      pref.setString('userType', '0');
     });
   }
 

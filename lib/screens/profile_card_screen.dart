@@ -25,7 +25,7 @@ class _ProfileCardScreenState extends State<ProfileCardScreen> {
   var email;
 
   Future<void> userEmail() async {
-    await currentUser.setUserType(0);
+    await currentUser.setUserType();
     email = currentUser.currentEmail;
     setState(() {});
   }
@@ -43,12 +43,12 @@ class _ProfileCardScreenState extends State<ProfileCardScreen> {
     String phone;
     String email;
 
-    if (currentUser?.userType == 0) {
+    if (currentUser?.userType == '0') {
       name = currentUser?.fleetOwner?.name;
       address = currentUser?.fleetOwner?.address;
       phone = currentUser?.fleetOwner?.phone;
       email = currentUser?.fleetOwner?.email;
-    } else if (currentUser?.userType == 1) {
+    } else if (currentUser?.userType == '1') {
       name = currentUser?.customer?.name;
       address = currentUser?.customer?.address;
       phone = currentUser?.customer?.phone;

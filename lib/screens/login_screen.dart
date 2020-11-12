@@ -1,3 +1,4 @@
+import 'package:cargoshuttle/components/current_user.dart';
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/welcome_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,10 +23,14 @@ class _LoginScreenState extends State<LoginScreen> {
   String email;
   String password;
 
+  String uType;
+
   // ignore: non_constant_identifier_names
   Future<void> SP() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString('email', email);
+    pref.setString('userType', uType);
+
   }
 
   @override
@@ -121,6 +126,34 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: misc,
                             width: 5,
                           )),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: misc,
+                              width: 5,
+                            ),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 30.0,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.number,
+                      style: TextStyle(color: Colors.white),
+                      onChanged: (value) {
+                        uType = value;
+                      },
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
+                          hintText: "enter 0 for fleetowner and 1 for customer",
+                          hintStyle: TextStyle(color: Colors.white),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: misc,
+                                width: 5,
+                              )),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                               color: misc,

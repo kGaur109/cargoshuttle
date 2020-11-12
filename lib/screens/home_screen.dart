@@ -65,6 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () async {
               SharedPreferences pref = await SharedPreferences.getInstance();
               pref.remove('email');
+              pref.remove('userType');
               _signOut(context);
             },
           )

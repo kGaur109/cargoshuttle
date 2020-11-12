@@ -53,6 +53,7 @@ class _CustomerRegistrationScreenState
     }).then((value) async {
       SharedPreferences pref = await SharedPreferences.getInstance();
       pref.setString('email', email);
+      pref.setString('userType', '1');
     });
   }
 

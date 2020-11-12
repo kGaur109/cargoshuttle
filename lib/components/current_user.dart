@@ -7,7 +7,7 @@ final customerData = Firestore.instance.collection('customer');
 final fleetOwnerData = Firestore.instance.collection('fleet owners');
 
 class CurrentUser {
-  int userType; // 0 for fleet owner and 1 for customer
+  String userType; // 0 for fleet owner and 1 for customer
   Customer customer;
   FleetOwner fleetOwner;
   String currentEmail;
@@ -15,15 +15,24 @@ class CurrentUser {
   CurrentUser(
       {this.userType, this.customer, this.fleetOwner, this.currentEmail});
 
-  setUserType(int type) async {
-    this.userType = type;
+  setUserType() async {
+    await getUserType();
     await getEmail();
-    if (this.userType == 0) {
+    if (this.userType == '0') {
       await findFleetOwner();
-    } else if (this.userType == 1) {
+    } else if (this.userType == '1') {
       await findCustomer();
     }
   }
+
+  Future<String> getUserType() async
+  {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String x = pref.getString('userType');
+    this.userType = x;
+    return this.userType;
+  }
+
 
   Future<String> getEmail() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
