@@ -1,13 +1,16 @@
-import 'package:cargoshuttle/components/current_user.dart';
 import 'package:cargoshuttle/components/rounded_button_outline.dart';
 import 'package:cargoshuttle/screens/welcome_screen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'home_screen.dart';
+
+enum userType { Customer, FleetOwner }
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -22,15 +25,14 @@ class _LoginScreenState extends State<LoginScreen> {
   bool showSpinner = false;
   String email;
   String password;
-
-  String uType;
+  String uType; // 1 for customer, 0 for fleet owner
+  userType _value = userType.Customer;
 
   // ignore: non_constant_identifier_names
   Future<void> SP() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString('email', email);
     pref.setString('userType', uType);
-
   }
 
   @override
@@ -133,36 +135,54 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           )),
                     ),
-                    SizedBox(
-                      height: 30.0,
-                    ),
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      style: TextStyle(color: Colors.white),
-                      onChanged: (value) {
-                        uType = value;
-                      },
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
-                          hintText: "enter 0 for fleetowner and 1 for customer",
-                          hintStyle: TextStyle(color: Colors.white),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: misc,
-                                width: 5,
-                              )),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: misc,
-                              width: 5,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ListTile(
+                          title: Text(
+                            "Customer",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
                             ),
-                          )),
+                          ),
+                          leading: Radio(
+                            value: userType.Customer,
+                            groupValue: _value,
+                            activeColor: CupertinoColors.white,
+                            onChanged: (userType value) {
+                              setState(() {
+                                _value = value;
+                              });
+                              uType = value == userType.Customer ? '1' : '0';
+                            },
+                          ),
+                        ),
+                        ListTile(
+                          title: Text(
+                            "Fleet Owner",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          leading: Radio(
+                            value: userType.FleetOwner,
+                            groupValue: _value,
+                            activeColor: CupertinoColors.white,
+                            onChanged: (userType value) {
+                              setState(() {
+                                _value = value;
+                              });
+                              uType = value == userType.FleetOwner ? '0' : '1';
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
-                      height: 35.0,
+                      height: 20.0,
                     ),
                     RoundButton_outline(
                       text: 'LOGIN',

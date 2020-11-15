@@ -44,8 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _signOut(BuildContext context) async {
     await _auth.signOut().then((_) {
-      Navigator.push(
-          context, CupertinoPageRoute(builder: (context) => WelcomeScreen()));
+      Navigator.popAndPushNamed(context, WelcomeScreen.id);
     });
   }
 
