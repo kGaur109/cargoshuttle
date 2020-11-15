@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cargoshuttle/components/data_card.dart';
 import 'package:cargoshuttle/components/addMenu.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final _firestore = Firestore.instance;
 FirebaseUser loggedInUser;
@@ -131,11 +132,46 @@ class _SelfPostsState extends State<SelfPosts> {
   }
 }
 
-class PostsStream extends StatelessWidget {
+class PostsStream extends StatefulWidget {
+  @override
+  _PostsStreamState createState() => _PostsStreamState();
+}
+
+class _PostsStreamState extends State<PostsStream> {
+
+  var uType;
+  var coll;
+
+  Future<String> getUserType() async
+  {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String x = pref.getString('userType');
+    uType = x;
+    return uType;
+  }
+
+  Future<void> userEmail() async {
+    await getUserType();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    userEmail();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    if(uType == '0')
+      coll = 'Load Post';
+    else if(uType == '1')
+      coll = 'Truck Post';
+
+
     return StreamBuilder<QuerySnapshot>(
-      stream: _firestore.collection('Load Post').snapshots(),
+      stream: _firestore.collection(coll).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(

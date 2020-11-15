@@ -1,3 +1,4 @@
+import 'package:cargoshuttle/components/current_user.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:cargoshuttle/screens/chat_screen.dart';
 import 'package:cargoshuttle/screens/profile_card_screen.dart';
@@ -152,11 +153,46 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class PostsStream extends StatelessWidget {
+class PostsStream extends StatefulWidget {
+  @override
+  _PostsStreamState createState() => _PostsStreamState();
+}
+
+class _PostsStreamState extends State<PostsStream> {
+
+  var uType;
+  var coll;
+
+  Future<String> getUserType() async
+  {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String x = pref.getString('userType');
+    uType = x;
+    return uType;
+  }
+
+  Future<void> userEmail() async {
+    await getUserType();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    userEmail();
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
+
+    if(uType == '0')
+      coll = 'Load Post';
+    else if(uType == '1')
+      coll = 'Truck Post';
+
     return StreamBuilder<QuerySnapshot>(
-      stream: _firestore.collection('Load Post').snapshots(),
+      stream: _firestore.collection(coll).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(
