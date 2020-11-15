@@ -4,6 +4,7 @@ import 'package:cargoshuttle/constants.dart';
 import 'package:cargoshuttle/screens/add_load_screen.dart';
 import 'package:cargoshuttle/screens/add_truck_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:android_intent/android_intent.dart';
 
 class AddMenu extends StatelessWidget {
   @override
@@ -38,7 +39,12 @@ class AddMenu extends StatelessWidget {
               ),
               RoundButton(
                 text: "Calculate Distance",
-                onPressed: () {},
+                onPressed: () {
+                  AndroidIntent intent = AndroidIntent(
+                      package: "com.google.android.apps.maps",
+                      action: "action_view");
+                  intent.launch();
+                },
                 color: themeColor,
               ),
               RoundButton_outline(

@@ -230,74 +230,74 @@ class _ProfileCardScreenState extends State<ProfileCardScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: themeColor,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.home,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                // Navigator.popAndPushNamed(context, HomeScreen.id);
-                Navigator.push(context,
-                    CupertinoPageRoute(builder: (context) => HomeScreen()));
-              },
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.archive,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    CupertinoPageRoute(builder: (context) => SelfPosts()));
-              },
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  builder: (context) => SingleChildScrollView(
-                    child: Container(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: AddMenu(),
-                    ),
-                  ),
-                );
-              },
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.chat,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    CupertinoPageRoute(builder: (context) => ChatScreen()));
-              },
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.account_box,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.popAndPushNamed(context, ProfileCardScreen.id);
-              },
-            )
-          ],
-        ),
-      ),
+      // bottomNavigationBar: BottomAppBar(
+      //   color: themeColor,
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     crossAxisAlignment: CrossAxisAlignment.center,
+      //     children: <Widget>[
+      //       IconButton(
+      //         icon: Icon(
+      //           Icons.home,
+      //           color: Colors.white,
+      //         ),
+      //         onPressed: () {
+      //           // Navigator.popAndPushNamed(context, HomeScreen.id);
+      //           Navigator.push(context,
+      //               CupertinoPageRoute(builder: (context) => HomeScreen()));
+      //         },
+      //       ),
+      //       IconButton(
+      //         icon: Icon(
+      //           Icons.archive,
+      //           color: Colors.white,
+      //         ),
+      //         onPressed: () {
+      //           Navigator.push(context,
+      //               CupertinoPageRoute(builder: (context) => SelfPosts()));
+      //         },
+      //       ),
+      //       IconButton(
+      //         icon: Icon(
+      //           Icons.add,
+      //           color: Colors.white,
+      //         ),
+      //         onPressed: () {
+      //           showModalBottomSheet(
+      //             context: context,
+      //             isScrollControlled: true,
+      //             builder: (context) => SingleChildScrollView(
+      //               child: Container(
+      //                 padding: EdgeInsets.only(
+      //                     bottom: MediaQuery.of(context).viewInsets.bottom),
+      //                 child: AddMenu(),
+      //               ),
+      //             ),
+      //           );
+      //         },
+      //       ),
+      //       IconButton(
+      //         icon: Icon(
+      //           Icons.chat,
+      //           color: Colors.white,
+      //         ),
+      //         onPressed: () {
+      //           Navigator.push(context,
+      //               CupertinoPageRoute(builder: (context) => ChatScreen()));
+      //         },
+      //       ),
+      //       IconButton(
+      //         icon: Icon(
+      //           Icons.account_box,
+      //           color: Colors.white,
+      //         ),
+      //         onPressed: () {
+      //           Navigator.popAndPushNamed(context, ProfileCardScreen.id);
+      //         },
+      //       )
+      //     ],
+      //   ),
+      // ),
     );
   }
 }

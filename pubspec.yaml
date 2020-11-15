@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  android_intent: ^0.3.7+7
   flutter_svg: ^0.18.0
   flutter_datetime_formfield: ^0.1.2
   string_validator: ^0.1.4
