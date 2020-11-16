@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class DataCard extends StatelessWidget {
+import 'current_user.dart';
+
+class DataCard extends StatefulWidget {
   DataCard(
       {this.color,
       this.userName,
@@ -24,13 +27,42 @@ class DataCard extends StatelessWidget {
   final String ETA;
 
   @override
+  _DataCardState createState() => _DataCardState();
+}
+
+class _DataCardState extends State<DataCard> {
+
+  final CurrentUser currentUser = CurrentUser();
+
+  var email;
+  var phone_no;
+
+  Future<void> userEmail() async {
+    await currentUser.setUserType();
+    email = currentUser.currentEmail;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    userEmail();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+    if(currentUser?.userType == '0')
+      phone_no = currentUser.fleetOwner.phone;
+    else if(currentUser?.userType == '1')
+      phone_no = currentUser.customer.phone;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
       child: Container(
         child: Material(
           elevation: 5.0,
-          color: color,
+          color: widget.color,
           borderRadius: BorderRadius.circular(10.0),
           child: Padding(
             padding: EdgeInsets.all(12.0),
@@ -43,42 +75,42 @@ class DataCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "Name: $userName",
+                      "Name: ${widget.userName}",
                       style: TextStyle(color: Colors.white),
                     ),
                     SizedBox(
                       height: 8.0,
                     ),
                     Text(
-                      "From: $origin",
+                      "From: ${widget.origin}",
                       style: TextStyle(color: Colors.white),
                     ),
                     SizedBox(
                       height: 8.0,
                     ),
                     Text(
-                      "To: $destination",
+                      "To: ${widget.destination}",
                       style: TextStyle(color: Colors.white),
                     ),
                     SizedBox(
                       height: 8.0,
                     ),
                     Text(
-                      "Load Type: $loadType",
+                      "Load Type: ${widget.loadType}",
                       style: TextStyle(color: Colors.white),
                     ),
                     SizedBox(
                       height: 8.0,
                     ),
                     Text(
-                      "Truck Type: $truckType",
+                      "Truck Type: ${widget.truckType}",
                       style: TextStyle(color: Colors.white),
                     ),
                     SizedBox(
                       height: 8.0,
                     ),
                     Text(
-                      "Expected Delivery Time: $ETA",
+                      "Expected Delivery Time: ${widget.ETA}",
                       style: TextStyle(color: Colors.white),
                     ),
                   ],
@@ -89,17 +121,23 @@ class DataCard extends StatelessWidget {
                     IconButton(
                       icon: Icon(Icons.phone),
                       color: Colors.red,
-                      onPressed: () {},
+                      onPressed: () {
+                        launch("tel://${phone_no}");
+                      },
                     ),
                     IconButton(
                       icon: Icon(Icons.message),
                       color: Colors.greenAccent,
-                      onPressed: () {},
+                      onPressed: () {
+                        launch("sms:${phone_no}");
+                      },
                     ),
                     IconButton(
-                      icon: Icon(Icons.account_circle),
+                      icon: Icon(Icons.email),
                       color: Colors.white,
-                      onPressed: () {},
+                      onPressed: () {
+                        launch("mailto:${email}");
+                      },
                     )
                   ],
                 )
