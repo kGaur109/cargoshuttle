@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'StarRating.dart';
 
 import 'current_user.dart';
 
@@ -33,7 +34,7 @@ class DataCard extends StatefulWidget {
 class _DataCardState extends State<DataCard> {
 
   final CurrentUser currentUser = CurrentUser();
-
+  final StarRating sRating = StarRating();
   var email;
   var phone_no;
 
@@ -113,6 +114,10 @@ class _DataCardState extends State<DataCard> {
                       "Expected Delivery Time: ${widget.ETA}",
                       style: TextStyle(color: Colors.white),
                     ),
+                    SizedBox(
+                      height: 8.0,
+                    ),
+                    StarRating(),
                   ],
                 ),
                 Column(
@@ -138,7 +143,7 @@ class _DataCardState extends State<DataCard> {
                       onPressed: () {
                         launch("mailto:${email}");
                       },
-                    )
+                    ),
                   ],
                 )
               ],
@@ -149,3 +154,7 @@ class _DataCardState extends State<DataCard> {
     );
   }
 }
+
+
+
+

@@ -146,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       decoration: InputDecoration(
                           prefixIcon: Icon(
-                            Icons.lock,
+                            Icons.account_box_outlined,
                             color: Colors.white,
                           ),
                           hintText: "0 for fleet owner and 1 for customer",
