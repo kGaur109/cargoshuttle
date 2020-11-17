@@ -187,9 +187,9 @@ class _PostsStreamState extends State<PostsStream> {
   Widget build(BuildContext context) {
 
     if(uType == '0')
-      coll = 'Load Post';
-    else if(uType == '1')
       coll = 'Truck Post';
+    else if(uType == '1')
+      coll = 'Load Post';
 
     return StreamBuilder<QuerySnapshot>(
       stream: _firestore.collection(coll).snapshots(),

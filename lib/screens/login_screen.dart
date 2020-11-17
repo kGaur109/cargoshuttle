@@ -10,7 +10,7 @@ import '../constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'home_screen.dart';
 
-enum userType { Customer, FleetOwner }
+//enum userType { Customer, FleetOwner }
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String email;
   String password;
   String uType; // 1 for customer, 0 for fleet owner
-  userType _value = userType.Customer;
+  //userType _value = userType.Customer;
 
   // ignore: non_constant_identifier_names
   Future<void> SP() async {
@@ -135,52 +135,35 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           )),
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ListTile(
-                          title: Text(
-                            "Customer",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                            ),
-                          ),
-                          leading: Radio(
-                            value: userType.Customer,
-                            groupValue: _value,
-                            activeColor: CupertinoColors.white,
-                            onChanged: (userType value) {
-                              setState(() {
-                                _value = value;
-                              });
-                              uType = value == userType.Customer ? '1' : '0';
-                            },
-                          ),
-                        ),
-                        ListTile(
-                          title: Text(
-                            "Fleet Owner",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                            ),
-                          ),
-                          leading: Radio(
-                            value: userType.FleetOwner,
-                            groupValue: _value,
-                            activeColor: CupertinoColors.white,
-                            onChanged: (userType value) {
-                              setState(() {
-                                _value = value;
-                              });
-                              uType = value == userType.FleetOwner ? '0' : '1';
-                            },
-                          ),
-                        ),
-                      ],
+                    SizedBox(
+                      height: 25,
                     ),
+                    TextField(
+                      obscureText: true,
+                      style: TextStyle(color: Colors.white),
+                      onChanged: (value) {
+                        uType = value;
+                      },
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: Colors.white,
+                          ),
+                          hintText: "0 for fleet owner and 1 for customer",
+                          hintStyle: TextStyle(color: Colors.white),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: misc,
+                                width: 5,
+                              )),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: misc,
+                              width: 5,
+                            ),
+                          )),
+                    ),
+
                     SizedBox(
                       height: 20.0,
                     ),

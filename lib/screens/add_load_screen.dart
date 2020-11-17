@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter/services.dart';
 
 class AddLoadScreen extends StatefulWidget {
   static const String id = 'add_load_screen';
@@ -17,6 +18,9 @@ class AddLoadScreen extends StatefulWidget {
 final userRef = Firestore.instance.collection('Load Post');
 
 class _AddLoadScreenState extends State<AddLoadScreen> {
+
+  final _formKey = GlobalKey<FormState>();
+
   final CurrentUser currentUser = CurrentUser();
 
   String userName;
@@ -61,6 +65,8 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
+        child: Form(
+         key: _formKey,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
           child: Flexible(
@@ -84,6 +90,7 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.text,
+                  inputFormatters: [new FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),],
                   onChanged: (value) {
                     userName = value;
                   },
@@ -106,6 +113,7 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                     Flexible(
                       child: TextFormField(
                         keyboardType: TextInputType.text,
+                        inputFormatters: [new FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),],
                         onChanged: (value) {
                           origin = value;
                         },
@@ -135,6 +143,7 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                     Flexible(
                       child: TextFormField(
                         keyboardType: TextInputType.number,
+                        inputFormatters: [new FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),],
                         onChanged: (value) {
                           destination = value;
                         },
@@ -160,6 +169,7 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                     Flexible(
                       child: TextFormField(
                         keyboardType: TextInputType.text,
+                        inputFormatters: [new FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),],
                         onChanged: (value) {
                           loadType = value;
                         },
@@ -189,6 +199,7 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                     Flexible(
                       child: TextFormField(
                         keyboardType: TextInputType.number,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                         onChanged: (value) {
                           loadWeight = value;
                         },
@@ -211,6 +222,7 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.text,
+                  inputFormatters: [new FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),],
                   onChanged: (value) {
                     eta = value;
                   },
@@ -252,6 +264,7 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
             ),
           ),
         ),
+      ),
       ),
     );
   }

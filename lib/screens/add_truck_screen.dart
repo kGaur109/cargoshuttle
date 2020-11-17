@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:cargoshuttle/components/rounded_button.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter/services.dart';
 
 class AddTruckScreen extends StatefulWidget {
   static const String id = 'add_truck_screen';
@@ -17,6 +18,9 @@ class AddTruckScreen extends StatefulWidget {
 final userRef = Firestore.instance.collection('Truck Post');
 
 class _AddTruckScreenState extends State<AddTruckScreen> {
+
+  final _formKey = GlobalKey<FormState>();
+
   final CurrentUser currentUser = CurrentUser();
 
   String userName;
@@ -61,6 +65,8 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
+        child: Form(
+         key: _formKey,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
           child: Flexible(
@@ -84,6 +90,7 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.text,
+                  inputFormatters: [new FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),],
                   onChanged: (value) {
                     userName = value;
                   },
@@ -106,6 +113,7 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                     Flexible(
                       child: TextFormField(
                         keyboardType: TextInputType.text,
+                        inputFormatters: [new FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),],
                         onChanged: (value) {
                           origin = value;
                         },
@@ -135,6 +143,7 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                     Flexible(
                       child: TextFormField(
                         keyboardType: TextInputType.number,
+                        inputFormatters: [new FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),],
                         onChanged: (value) {
                           destination = value;
                         },
@@ -157,6 +166,7 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.text,
+                  inputFormatters: [new FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),],
                   onChanged: (value) {
                     truckType = value;
                   },
@@ -184,6 +194,7 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                 // ),
                 TextFormField(
                   keyboardType: TextInputType.text,
+                  inputFormatters: [new FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),],
                   onChanged: (value) {
                     loadType = value;
                   },
@@ -203,6 +214,7 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.text,
+                  inputFormatters: [new FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),],
                   onChanged: (value) {
                     eta = value;
                   },
@@ -225,6 +237,11 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                   color: themeColor,
                   onPressed: () {
                     createRecord();
+                    if (_formKey.currentState.validate()) {
+                          Scaffold
+                              .of(context)
+                              .showSnackBar(SnackBar(content: Text('Processing Data')));
+                    }
                     Fluttertoast.showToast(
                       msg: "Truck posted successfully",
                       toastLength: Toast.LENGTH_SHORT,
@@ -244,6 +261,7 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
             ),
           ),
         ),
+      ),
       ),
     );
   }
