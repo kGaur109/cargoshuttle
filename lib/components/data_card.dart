@@ -35,7 +35,7 @@ class _DataCardState extends State<DataCard> {
   final CurrentUser currentUser = CurrentUser();
   final StarRating sRating = StarRating();
   var email;
-  var phone_no;
+  var phoneNumber;
 
   Future<void> userEmail() async {
     await currentUser.setUserType();
@@ -52,9 +52,9 @@ class _DataCardState extends State<DataCard> {
   @override
   Widget build(BuildContext context) {
     if (currentUser?.userType == '0')
-      phone_no = currentUser.fleetOwner.phone;
+      phoneNumber = currentUser.fleetOwner.phone;
     else if (currentUser?.userType == '1')
-      phone_no = currentUser.customer.phone;
+      phoneNumber = currentUser.customer.phone;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
@@ -203,21 +203,21 @@ class _DataCardState extends State<DataCard> {
                       icon: Icon(Icons.phone),
                       color: Colors.red,
                       onPressed: () {
-                        launch("tel://${phone_no}");
+                        launch("tel://$phoneNumber");
                       },
                     ),
                     IconButton(
                       icon: Icon(Icons.message),
                       color: Colors.greenAccent,
                       onPressed: () {
-                        launch("sms:${phone_no}");
+                        launch("sms:$phoneNumber");
                       },
                     ),
                     IconButton(
                       icon: Icon(Icons.email),
                       color: Colors.white,
                       onPressed: () {
-                        launch("mailto:${email}");
+                        launch("mailto:$email");
                       },
                     ),
                   ],

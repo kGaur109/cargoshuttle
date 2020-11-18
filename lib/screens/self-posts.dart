@@ -71,7 +71,7 @@ class _SelfPostsState extends State<SelfPosts> {
               ),
               onPressed: () {
                 // Navigator.popAndPushNamed(context, HomeScreen.id);
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     CupertinoPageRoute(builder: (context) => HomeScreen()));
               },
             ),
@@ -81,7 +81,8 @@ class _SelfPostsState extends State<SelfPosts> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.popAndPushNamed(context, SelfPosts.id);
+                Navigator.pushReplacement(context,
+                    CupertinoPageRoute(builder: (context) => SelfPosts()));
               },
             ),
             IconButton(
@@ -109,7 +110,7 @@ class _SelfPostsState extends State<SelfPosts> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     CupertinoPageRoute(builder: (context) => ChatScreen()));
               },
             ),
@@ -119,7 +120,7 @@ class _SelfPostsState extends State<SelfPosts> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     CupertinoPageRoute(
                         builder: (context) => ProfileCardScreen()));
@@ -138,12 +139,10 @@ class PostsStream extends StatefulWidget {
 }
 
 class _PostsStreamState extends State<PostsStream> {
-
   var uType;
   var coll;
 
-  Future<String> getUserType() async
-  {
+  Future<String> getUserType() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String x = pref.getString('userType');
     uType = x;
@@ -163,12 +162,9 @@ class _PostsStreamState extends State<PostsStream> {
 
   @override
   Widget build(BuildContext context) {
-
-    if(uType == '0')
+    if (uType == '0')
       coll = 'Load Post';
-    else if(uType == '1')
-      coll = 'Truck Post';
-
+    else if (uType == '1') coll = 'Truck Post';
 
     return StreamBuilder<QuerySnapshot>(
       stream: _firestore.collection(coll).snapshots(),

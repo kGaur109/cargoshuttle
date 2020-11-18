@@ -31,7 +31,10 @@ class RegistrationHomeScreen extends StatelessWidget {
                     size: 50,
                   ),
                   onPressed: () {
-                    Navigator.push(context, CupertinoPageRoute(builder: (context) => WelcomeScreen()));
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => WelcomeScreen()));
                   },
                 ),
               ),
@@ -74,14 +77,20 @@ class RegistrationHomeScreen extends StatelessWidget {
               RoundButton_outline(
                 text: "As a fleet owner?",
                 onPressed: () {
-                  Navigator.push(context, CupertinoPageRoute(builder: (context) => StaticScreenFleet()));
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => StaticScreenFleet()));
                 },
                 color: Colors.white,
               ),
               RoundButton(
                 text: "As a customer?",
                 onPressed: () {
-                  Navigator.push(context, CupertinoPageRoute(builder: (context) => StaticScreenCustomer()));
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => StaticScreenCustomer()));
                 },
                 color: themeColor,
               ),

@@ -123,9 +123,7 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please enter The field';
-                            }
-                            else if(isNumeric(value.toString()) == true)
-                            {
+                            } else if (isNumeric(value.toString()) == true) {
                               return "Please enter city name in characters";
                             }
                             return null;
@@ -137,30 +135,24 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                       ),
                       Flexible(
                         child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) {
-                            pin = value;
-                          },
-                          decoration: kTextFieldDecorationWhite.copyWith(
-                            hintText: 'pincode',
-                            hintStyle: TextStyle(color: Colors.grey),
-                          ),
-                          validator: (value)
-                            {
-                              if(isNumeric(value.toString()) == false)
-                              {
+                            keyboardType: TextInputType.number,
+                            onChanged: (value) {
+                              pin = value;
+                            },
+                            decoration: kTextFieldDecorationWhite.copyWith(
+                              hintText: 'pincode',
+                              hintStyle: TextStyle(color: Colors.grey),
+                            ),
+                            validator: (value) {
+                              if (isNumeric(value.toString()) == false) {
                                 return "Please enter pincode in digits";
-                              }
-                              else if(isNumeric(value.toString()) == true)
-                              {
-                                if(value.length != 6)
-                                {
+                              } else if (isNumeric(value.toString()) == true) {
+                                if (value.length != 6) {
                                   return "please enter correct pincode";
                                 }
                               }
                               return null;
-                            }
-                        ),
+                            }),
                       ),
                     ],
                   ),
@@ -182,11 +174,9 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please enter The field';
+                            } else if (isNumeric(value.toString()) == true) {
+                              return "Please enter state name in characters";
                             }
-                            else if(isNumeric(value.toString()) == true)
-                              {
-                                return "Please enter state name in characters";
-                              }
                             return null;
                           },
                         ),
@@ -207,11 +197,9 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please enter The field in DDMMYYYY format';
+                            } else if (isNumeric(value.toString()) == false) {
+                              return "Please enter DOB in digits in DDMMYYYY format";
                             }
-                            else if(isNumeric(value.toString()) == false)
-                              {
-                                return "Please enter DOB in digits in DDMMYYYY format";
-                              }
                             return null;
                           },
                         ),
@@ -227,7 +215,10 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                     onPressed: () {
                       createRecord();
                       if (_formKey.currentState.validate()) {
-                        Navigator.push(context, CupertinoPageRoute(builder: (context) => HomeScreen()));
+                        Navigator.pushReplacement(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => HomeScreen()));
                       }
                     },
                   ),
@@ -244,8 +235,11 @@ class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
                           Icons.arrow_back,
                         ),
                         onPressed: () {
-                          Navigator.push(
-                              context, CupertinoPageRoute(builder: (context) => CustomerRegistrationScreen()));
+                          Navigator.pushReplacement(
+                              context,
+                              CupertinoPageRoute(
+                                  builder: (context) =>
+                                      CustomerRegistrationScreen()));
                         },
                       )
                     ],

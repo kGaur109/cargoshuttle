@@ -1,7 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../components/addMenu.dart';
+import 'home_screen.dart';
+import 'profile_card_screen.dart';
+import 'self-posts.dart';
 
 final _firestore = Firestore.instance;
 FirebaseUser loggedInUser;
@@ -92,6 +98,77 @@ class _ChatScreenState extends State<ChatScreen> {
                 ],
               ),
             ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: themeColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.home,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                // Navigator.popAndPushNamed(context, HomeScreen.id);
+                Navigator.pushReplacement(context,
+                    CupertinoPageRoute(builder: (context) => HomeScreen()));
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.archive,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    CupertinoPageRoute(builder: (context) => SelfPosts()));
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (context) => SingleChildScrollView(
+                    child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: AddMenu(),
+                    ),
+                  ),
+                );
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.chat,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    CupertinoPageRoute(builder: (context) => ChatScreen()));
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.account_box,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    CupertinoPageRoute(
+                        builder: (context) => ProfileCardScreen()));
+              },
+            )
           ],
         ),
       ),

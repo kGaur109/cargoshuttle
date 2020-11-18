@@ -1,4 +1,3 @@
-import 'package:cargoshuttle/components/current_user.dart';
 import 'package:cargoshuttle/constants.dart';
 import 'package:cargoshuttle/screens/chat_screen.dart';
 import 'package:cargoshuttle/screens/profile_card_screen.dart';
@@ -92,7 +91,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.popAndPushNamed(context, HomeScreen.id);
+                // Navigator.popAndPushNamed(context, HomeScreen.id);
+                Navigator.pushReplacement(context,
+                    CupertinoPageRoute(builder: (context) => HomeScreen()));
               },
             ),
             IconButton(
@@ -101,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     CupertinoPageRoute(builder: (context) => SelfPosts()));
               },
             ),
@@ -130,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     CupertinoPageRoute(builder: (context) => ChatScreen()));
               },
             ),
@@ -140,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     CupertinoPageRoute(
                         builder: (context) => ProfileCardScreen()));
@@ -159,12 +160,10 @@ class PostsStream extends StatefulWidget {
 }
 
 class _PostsStreamState extends State<PostsStream> {
-
   var uType;
   var coll;
 
-  Future<String> getUserType() async
-  {
+  Future<String> getUserType() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String x = pref.getString('userType');
     uType = x;
@@ -182,14 +181,11 @@ class _PostsStreamState extends State<PostsStream> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-    if(uType == '0')
+    if (uType == '0')
       coll = 'Truck Post';
-    else if(uType == '1')
-      coll = 'Load Post';
+    else if (uType == '1') coll = 'Load Post';
 
     return StreamBuilder<QuerySnapshot>(
       stream: _firestore.collection(coll).snapshots(),

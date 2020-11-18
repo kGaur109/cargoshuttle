@@ -59,14 +59,18 @@ class WelcomeScreen extends StatelessWidget {
             RoundButton(
               text: "REGISTER",
               onPressed: () {
-                Navigator.push(context, CupertinoPageRoute(builder: (context) => RegistrationHomeScreen()));
+                Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                        builder: (context) => RegistrationHomeScreen()));
               },
               color: themeColor,
             ),
             RoundButton_outline(
               text: "LOGIN",
               onPressed: () {
-                Navigator.push(context, CupertinoPageRoute(builder: (context) => LoginScreen()));
+                Navigator.push(context,
+                    CupertinoPageRoute(builder: (context) => LoginScreen()));
               },
               color: Colors.white,
             ),
