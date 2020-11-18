@@ -237,11 +237,6 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                   color: themeColor,
                   onPressed: () {
                     createRecord();
-                    if (_formKey.currentState.validate()) {
-                          Scaffold
-                              .of(context)
-                              .showSnackBar(SnackBar(content: Text('Processing Data')));
-                    }
                     Fluttertoast.showToast(
                       msg: "Truck posted successfully",
                       toastLength: Toast.LENGTH_SHORT,
