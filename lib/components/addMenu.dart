@@ -5,6 +5,7 @@ import 'package:cargoshuttle/screens/add_load_screen.dart';
 import 'package:cargoshuttle/screens/add_truck_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:android_intent/android_intent.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AddMenu extends StatelessWidget {
   @override
@@ -47,6 +48,14 @@ class AddMenu extends StatelessWidget {
                 },
                 color: themeColor,
               ),
+              RoundButton(
+                text: "Calculate Toll",
+                onPressed: () {
+                  const url = 'https://transportguru.in/';
+                  launchURL(url);
+                },
+                color: themeColor,
+              ),
               RoundButton_outline(
                 text: "Back",
                 onPressed: () {
@@ -57,5 +66,14 @@ class AddMenu extends StatelessWidget {
             ],
           ),
         ));
+  }
+}
+
+//function to launch the toll website url.
+launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url, forceWebView: true);
+  } else {
+    throw 'Could not launch $url';
   }
 }
