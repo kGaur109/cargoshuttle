@@ -22,6 +22,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
 
+  final _formKey = GlobalKey<FormState>();
+
+
   bool showSpinner = false;
   String email;
   String password;
@@ -42,6 +45,8 @@ class _LoginScreenState extends State<LoginScreen> {
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: SingleChildScrollView(
+        child: Form(
+        key: _formKey,
           child: Column(
             children: [
               SizedBox(
@@ -138,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: 25,
                     ),
-                    TextField(
+                    TextFormField(
                       obscureText: true,
                       style: TextStyle(color: Colors.white),
                       onChanged: (value) {
@@ -162,6 +167,16 @@ class _LoginScreenState extends State<LoginScreen> {
                               width: 5,
                             ),
                           )),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter correct user type';
+                        }
+                        else if((value != '0') && (value != '1'))
+                          {
+                            return 'Please enter 0 or 1 for user type';
+                          }
+                        return null;
+                      },
                     ),
 
                     SizedBox(
@@ -170,26 +185,35 @@ class _LoginScreenState extends State<LoginScreen> {
                     RoundButton_outline(
                       text: 'LOGIN',
                       onPressed: () async {
+                        if (_formKey.currentState.validate()) {
+                          _formKey.currentState.save();
+
+                          try {
+                            final currentUser =
+                            await _auth.signInWithEmailAndPassword(
+                                email: email, password: password);
+                            if (currentUser != null) {
+                              SP();
+                              Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                      builder: (context) => HomeScreen()));
+                            }
+                            setState(() {
+                              showSpinner = false;
+                            });
+                          } catch (e) {
+                            print(e);
+                          }
+
+                          //Scaffold.of(context).showSnackBar(SnackBar(content: Text('This is valid!')));
+                        }
+                        else {
+                          Scaffold.of(context).showSnackBar(SnackBar(content: Text('Not valid!')));}
                         setState(() {
                           showSpinner = true;
                         });
-                        try {
-                          final currentUser =
-                              await _auth.signInWithEmailAndPassword(
-                                  email: email, password: password);
-                          if (currentUser != null) {
-                            SP();
-                            Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                    builder: (context) => HomeScreen()));
-                          }
-                          setState(() {
-                            showSpinner = false;
-                          });
-                        } catch (e) {
-                          print(e);
-                        }
+
                       },
                     ),
                   ],
@@ -198,6 +222,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
         ),
+      ),
       ),
     );
   }
