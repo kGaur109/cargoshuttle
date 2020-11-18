@@ -32,7 +32,6 @@ class DataCard extends StatefulWidget {
 }
 
 class _DataCardState extends State<DataCard> {
-
   final CurrentUser currentUser = CurrentUser();
   final StarRating sRating = StarRating();
   var email;
@@ -52,10 +51,9 @@ class _DataCardState extends State<DataCard> {
 
   @override
   Widget build(BuildContext context) {
-
-    if(currentUser?.userType == '0')
+    if (currentUser?.userType == '0')
       phone_no = currentUser.fleetOwner.phone;
-    else if(currentUser?.userType == '1')
+    else if (currentUser?.userType == '1')
       phone_no = currentUser.customer.phone;
 
     return Padding(
@@ -75,44 +73,122 @@ class _DataCardState extends State<DataCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      "Name: ${widget.userName}",
-                      style: TextStyle(color: Colors.white),
+                    Text.rich(
+                      TextSpan(
+                        text: '', // default text style
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Name: ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.white)),
+                          TextSpan(
+                              text: '${widget.userName}',
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.white)),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 8.0,
                     ),
-                    Text(
-                      "From: ${widget.origin}",
-                      style: TextStyle(color: Colors.white),
+                    Text.rich(
+                      TextSpan(
+                        text: '', // default text style
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'From: ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.white)),
+                          TextSpan(
+                              text: '${widget.origin}',
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.white)),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 8.0,
                     ),
-                    Text(
-                      "To: ${widget.destination}",
-                      style: TextStyle(color: Colors.white),
+                    Text.rich(
+                      TextSpan(
+                        text: '', // default text style
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'To: ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.white)),
+                          TextSpan(
+                              text: '${widget.destination}',
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.white)),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 8.0,
                     ),
-                    Text(
-                      "Load Type: ${widget.loadType}",
-                      style: TextStyle(color: Colors.white),
+                    Text.rich(
+                      TextSpan(
+                        text: '', // default text style
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Load Type: ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.white)),
+                          TextSpan(
+                              text: '${widget.loadType}',
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.white)),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 8.0,
                     ),
-                    Text(
-                      "Truck Type: ${widget.truckType}",
-                      style: TextStyle(color: Colors.white),
+                    Text.rich(
+                      TextSpan(
+                        text: '', // default text style
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Truck Type: ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.white)),
+                          TextSpan(
+                              text: '${widget.truckType}',
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.white)),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 8.0,
                     ),
-                    Text(
-                      "Expected Delivery Time: ${widget.ETA}",
-                      style: TextStyle(color: Colors.white),
+                    Text.rich(
+                      TextSpan(
+                        text: '', // default text style
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Expected Delivery Time: ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.white)),
+                          TextSpan(
+                              text: '${widget.ETA}',
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.white)),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 8.0,
@@ -154,7 +230,3 @@ class _DataCardState extends State<DataCard> {
     );
   }
 }
-
-
-
-
