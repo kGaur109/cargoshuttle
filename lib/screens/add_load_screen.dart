@@ -244,17 +244,10 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                   text: "Post the load",
                   color: themeColor,
                   onPressed: () {
-                    createRecord();
-
                     if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    Scaffold.of(context).showSnackBar(SnackBar(content: Text('This is valid!')));}
-                    else {
-                    Scaffold.of(context).showSnackBar(SnackBar(content: Text('Not valid!')));}
 
-
-
-
+                    createRecord();
 
                     Fluttertoast.showToast(
                       msg: "Load posted successfully",
@@ -266,6 +259,11 @@ class _AddLoadScreenState extends State<AddLoadScreen> {
                       fontSize: 16.0,
                     );
                     Navigator.popAndPushNamed(context, SelfPosts.id);
+
+                    Scaffold.of(context).showSnackBar(SnackBar(content: Text('This is valid!')));}
+                    else {
+                    Scaffold.of(context).showSnackBar(SnackBar(content: Text('Not valid!')));}
+
                   },
                 ),
                 SizedBox(

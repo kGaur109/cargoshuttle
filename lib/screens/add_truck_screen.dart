@@ -236,22 +236,25 @@ class _AddTruckScreenState extends State<AddTruckScreen> {
                   text: "Post the truck",
                   color: themeColor,
                   onPressed: () {
-                    createRecord();
                     if (_formKey.currentState.validate()) {
                       _formKey.currentState.save();
+
+                      createRecord();
+
+                      Fluttertoast.showToast(
+                        msg: "Truck posted successfully",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: themeColor,
+                        timeInSecForIosWeb: 1,
+                        textColor: Colors.white,
+                        fontSize: 16.0,
+                      );
+                      Navigator.popAndPushNamed(context, SelfPosts.id);
+
                       Scaffold.of(context).showSnackBar(SnackBar(content: Text('This is valid!')));}
                     else {
                       Scaffold.of(context).showSnackBar(SnackBar(content: Text('Not valid!')));}
-                    Fluttertoast.showToast(
-                      msg: "Truck posted successfully",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.CENTER,
-                      backgroundColor: themeColor,
-                      timeInSecForIosWeb: 1,
-                      textColor: Colors.white,
-                      fontSize: 16.0,
-                    );
-                    Navigator.popAndPushNamed(context, SelfPosts.id);
                   },
                 ),
                 SizedBox(
