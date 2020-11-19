@@ -53,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Home"),
+        automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: themeColor,
         actions: <Widget>[
