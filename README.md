@@ -6,7 +6,7 @@
   <li>At cheaper rates💰💴</li>
   <li>With all the latest features😎🤩</li>
 <hr color="red">
-<h2><u>A middleman to connect all the small scale fleet owners and growing MSMEs.</u></h2>
+<h3><u>A middleman to connect all the small scale fleet owners and growing MSMEs.</u></h3>
 <h4>Fully packed with features like -</h4> 
 <ul type="disc">
   <li>Inbuilt Chat option📱</li>
@@ -14,7 +14,7 @@
   <li>Toll calculation🚥🚏</li>
 </ul>
 <hr>
-<h2>Made with latest technolgoies to adapt every os</h2>
+<h3>Made with latest technolgoies to adapt every os</h3>
 <a href="https://ibb.co/FJrpw9p"><img src="https://i.ibb.co/MpvdVbd/Poster.png" alt="Poster" border="0"></a>
 <hr>
 <p>Cargoshuttle is a handcrafed platform with it's most user friendly interface, 
