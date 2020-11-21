@@ -12,3 +12,4 @@
   <li>Inbuilt Chat option</li>
   <li>Live tracking of cargo</li>
   <li>Toll calculation</li>
+</ul>
