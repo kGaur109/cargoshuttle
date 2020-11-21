@@ -18,5 +18,5 @@
 <a href="https://ibb.co/FJrpw9p"><img src="https://i.ibb.co/MpvdVbd/Poster.png" alt="Poster" border="0"></a>
 <hr>
 <p>Cargoshuttle is a handcrafed platform with it's most user friendly interface, 
-<br>build to serve the needs of people in logistics sector, using real time data and APIs Cargoshuttle is 
-<br>ahead of its competitors in every area.</p>
+<br>build to serve the needs of people in logistics sector, using real time 
+<br>data and APIs Cargoshuttle is ahead of its competitors in every area.</p>
