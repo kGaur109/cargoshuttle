@@ -16,7 +16,7 @@
 <hr>
 <h2>Made with latest technolgoies to adapt every os</h2>
   
-| col 1      | col 2      |
+| <center>FLUTTER</center> | <center>FIREBASE</center>|
 |------------|-------------|
 | image 1 | image 2 |
 
