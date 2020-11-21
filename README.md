@@ -13,7 +13,7 @@
   <li>Live tracking of cargo🗺</li>
   <li>Toll calculation🚥🚏</li>
 </ul>
-
+<hr>
 <h2>Made with latest technolgoies to adapt every os</h2>
 
 
