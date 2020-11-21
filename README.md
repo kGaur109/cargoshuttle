@@ -15,6 +15,5 @@
 </ul>
 <hr>
 <h2>Made with latest technolgoies to adapt every os</h2>
-<img src="https://images.app.goo.gl/D8ULhm1hxzgnSb39A"></img>
-
+<a href="https://ibb.co/hCQKrvj"><img src="https://i.ibb.co/CWCn4FZ/Poster.png" alt="Poster" border="0"></a>
 
