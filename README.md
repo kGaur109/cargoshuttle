@@ -22,4 +22,5 @@
 <br>data and APIs Cargoshuttle is ahead of its competitors in every area.</p>
 <h5>Read about us:</h5>
 <a href="https://twitter.com/cargo_shuttle"><img src="https://i.ibb.co/48fbfhB/twiiter.png" alt="twiiter" border="0" width="50"></a>
+<br>
 <a href="https://medium.com/@cargoshuttle.dt"><img src="https://i.ibb.co/w4X4bb5/medium-logo-85-ADDD8507-seeklogo-com.png" alt="medium-logo-85-ADDD8507-seeklogo-com" border="0" width="30"></a>
