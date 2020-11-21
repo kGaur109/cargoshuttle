@@ -9,7 +9,7 @@
   <h2><u>A middleman to connect all the small scale fleet owners and growing MSMEs.</u></h2>
 <h4>Fully packed with features like -</h4> 
 <ul type="disc">
-  <li> - Inbuilt Chat option📱</li>
+  <li>Inbuilt Chat option📱</li>
   <li>Live tracking of cargo🗺</li>
   <li>Toll calculation🚥🚏</li>
 </ul>
