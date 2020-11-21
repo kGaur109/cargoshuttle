@@ -21,4 +21,4 @@
 <br>build to serve the needs of people in logistics sector, using real time 
 <br>data and APIs Cargoshuttle is ahead of its competitors in every area.</p>
 <h5>Read about us:</h5>
-<img src="https://www.flaticon.com/free-icon/twitter_733579?term=twitter%20logo&page=1&position=1&related_item_id=733579"></img>
+<a href="https://ibb.co/0CX0XHP"><img src="https://i.ibb.co/48fbfhB/twiiter.png" alt="twiiter" border="0"></a>
