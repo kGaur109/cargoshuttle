@@ -6,7 +6,7 @@
   <li>At cheaper rates💰💴</li>
   <li>With all the latest features😎🤩</li>
 <hr color="red">
-  <h2><u>A middleman to connect all the small scale fleet owners and growing MSMEs.</u></h2>
+<h2><u>A middleman to connect all the small scale fleet owners and growing MSMEs.</u></h2>
 <h4>Fully packed with features like -</h4> 
 <ul type="disc">
   <li>Inbuilt Chat option📱</li>
