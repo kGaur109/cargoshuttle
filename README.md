@@ -1,12 +1,12 @@
 <h1> <font color="violet">Welcome to the world of <b><em>easier</em></b> and <b><em>efficinet</em></b> Logistics 🚚</font></h1>
 <a href="https://ibb.co/ZMP8vYj"><img src="https://i.ibb.co/NyPjfmv/ppt.png" alt="ppt" border="0" width="800px"></a>
-<h2>Hey👋, CargoShuttle is the one stop destination to-<h2>
+<h3>Hey👋, CargoShuttle is the one stop destination to-<h3>
 <ul>
   <li>All the Logistics needs🛥🛩🚃</li>
   <li>At cheaper rates💰💴</li>
   <li>With all the latest features😎🤩</li>
 <hr color="red">
-<h3><u>A middleman to connect all the small scale fleet owners and growing MSMEs.</u></h3>
+<h3>A middleman to connect all the small scale fleet owners and growing MSMEs.</h3>
 <h4>Fully packed with features like -</h4> 
 <ul type="disc">
   <li>Inbuilt Chat option📱</li>
