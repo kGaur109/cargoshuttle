@@ -15,7 +15,7 @@
 </ul>
 <hr>
 <h3>Made with latest technolgoies to adapt every os</h3>
-<a href="https://ibb.co/FJrpw9p"><img src="https://i.ibb.co/MpvdVbd/Poster.png" alt="Poster" border="0" width="600"></a>
+<a href="https://ibb.co/FJrpw9p"><img src="https://i.ibb.co/MpvdVbd/Poster.png" alt="Poster" border="0" width="400"></a>
 <hr>
 <p>Cargoshuttle is a handcrafed platform with it's most user friendly interface, 
 <br>build to serve the needs of people in logistics sector, using real time 
