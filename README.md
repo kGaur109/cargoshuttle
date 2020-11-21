@@ -5,7 +5,7 @@
   <li>All the Logistics needs🛥🛩🚃</li>
   <li>At cheaper rates💰💴</li>
   <li>With all the latest features😎🤩</li>
-<hr color="black">
+<hr color="red">
   <h3><u>A middleman to connect all the small scale fleet owners and growing MSMEs.</u></h3->
 <h4>Fully packed with features like -</h4> 
 <ul>
