@@ -15,6 +15,7 @@
 </ul>
 <hr>
 <h2>Made with latest technolgoies to adapt every os</h2>
+  
 | col 1      | col 2      |
 |------------|-------------|
 | image 1 | image 2 |
