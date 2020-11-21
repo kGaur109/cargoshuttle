@@ -1,5 +1,5 @@
 <h1> <font color="violet">Welcome to the world of <b><em>easier</em></b> and <b><em>efficinet</em></b> Logistics 🚚</font></h1>
-<a href="https://ibb.co/ZMP8vYj"><img src="https://i.ibb.co/NyPjfmv/ppt.png" alt="ppt" border="0" width="800px"></a>
+<a href="https://ibb.co/ZMP8vYj"><img src="https://i.ibb.co/NyPjfmv/ppt.png" alt="ppt" border="0" width="600px"></a>
 <h3>Hey👋, CargoShuttle is the one stop destination to-<h3>
 <ul>
   <li>All the Logistics needs🛥🛩🚃</li>
@@ -15,7 +15,7 @@
 </ul>
 <hr>
 <h3>Made with latest technolgoies to adapt every os</h3>
-<a href="https://ibb.co/FJrpw9p"><img src="https://i.ibb.co/MpvdVbd/Poster.png" alt="Poster" border="0"></a>
+<a href="https://ibb.co/FJrpw9p"><img src="https://i.ibb.co/MpvdVbd/Poster.png" alt="Poster" border="0" width="600"></a>
 <hr>
 <p>Cargoshuttle is a handcrafed platform with it's most user friendly interface, 
 <br>build to serve the needs of people in logistics sector, using real time 
