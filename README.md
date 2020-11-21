@@ -15,6 +15,6 @@
 </ul>
 <hr>
 <h2>Made with latest technolgoies to adapt every os</h2>
-  
+<img src="https://images.app.goo.gl/D8ULhm1hxzgnSb39A"></img>
 
 
