@@ -7,7 +7,7 @@ import 'package:cargoshuttle/components/customer.dart';
 import '../components/addMenu.dart';
 import 'chat_screen.dart';
 import 'home_screen.dart';
-import 'self-posts.dart';
+import 'self_posts_screen.dart';
 
 class ProfileCardScreen extends StatefulWidget {
   static const String id = 'profile_card_screen';

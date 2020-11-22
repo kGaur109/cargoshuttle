@@ -170,7 +170,7 @@ class _DataCardState extends State<DataCard> {
                                   color: Colors.white)),
                           TextSpan(
                               text: widget.callType == 'Truck Post'
-                                  ? '${widget.truckType}'
+                                  ? '${widget.truckType} wheeler'
                                   : '${widget.loadWeight} kg',
                               style:
                                   TextStyle(fontSize: 16, color: Colors.white)),
@@ -191,7 +191,7 @@ class _DataCardState extends State<DataCard> {
                                   fontSize: 16,
                                   color: Colors.white)),
                           TextSpan(
-                              text: '${widget.ETA}',
+                              text: '${widget.ETA} days',
                               style:
                                   TextStyle(fontSize: 16, color: Colors.white)),
                         ],

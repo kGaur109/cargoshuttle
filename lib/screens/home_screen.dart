@@ -1,7 +1,7 @@
 import 'package:cargoshuttle/constants.dart';
 import 'package:cargoshuttle/screens/chat_screen.dart';
 import 'package:cargoshuttle/screens/profile_card_screen.dart';
-import 'package:cargoshuttle/screens/self-posts.dart';
+import 'package:cargoshuttle/screens/self_posts_screen.dart';
 import 'package:cargoshuttle/screens/welcome_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

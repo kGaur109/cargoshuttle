@@ -1,5 +1,5 @@
 import 'package:cargoshuttle/components/current_user.dart';
-import 'package:cargoshuttle/screens/self-posts.dart';
+import 'package:cargoshuttle/screens/self_posts_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';

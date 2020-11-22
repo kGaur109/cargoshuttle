@@ -7,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../components/addMenu.dart';
 import 'home_screen.dart';
 import 'profile_card_screen.dart';
-import 'self-posts.dart';
+import 'self_posts_screen.dart';
 
 final _firestore = Firestore.instance;
 FirebaseUser loggedInUser;
