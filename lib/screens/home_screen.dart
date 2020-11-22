@@ -184,8 +184,8 @@ class _PostsStreamState extends State<PostsStream> {
   @override
   Widget build(BuildContext context) {
     if (uType == '0')
-      coll = 'Truck Post';
-    else if (uType == '1') coll = 'Load Post';
+      coll = 'Load Post';
+    else if (uType == '1') coll = 'Truck Post';
 
     return StreamBuilder<QuerySnapshot>(
       stream: _firestore.collection(coll).snapshots(),
@@ -205,21 +205,34 @@ class _PostsStreamState extends State<PostsStream> {
           final destination = post.data['destination'];
           final loadType = post.data['loadType'];
           final loadWeight = post.data['loadWeight'];
+          final truckType = post.data['truckType'];
           final eta = post.data['eta'];
           final email1 = post.data['email'];
 
           final currentUser = loggedInUser.email;
 
           if (currentUser != email1) {
-            final card = DataCard(
-              color: themeColor,
-              userName: userName,
-              origin: origin,
-              destination: destination,
-              loadType: loadType,
-              loadWeight: loadWeight,
-              ETA: eta,
-            );
+            final card = coll == 'Load Post'
+                ? DataCard(
+                    color: themeColor,
+                    userName: userName,
+                    origin: origin,
+                    destination: destination,
+                    loadType: loadType,
+                    loadWeight: loadWeight,
+                    ETA: eta,
+                    callType: coll,
+                  )
+                : DataCard(
+                    color: themeColor,
+                    userName: userName,
+                    origin: origin,
+                    destination: destination,
+                    loadType: loadType,
+                    truckType: truckType,
+                    ETA: eta,
+                    callType: coll,
+                  );
             dataCards.add(card);
           }
         }

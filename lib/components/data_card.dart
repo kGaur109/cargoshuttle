@@ -6,16 +6,18 @@ import 'StarRating.dart';
 import 'current_user.dart';
 
 class DataCard extends StatefulWidget {
-  DataCard(
-      {this.color,
-      this.userName,
-      this.origin,
-      this.destination,
-      this.loadType,
-      this.truckType,
-      this.loadWeight,
-      // ignore: non_constant_identifier_names
-      this.ETA});
+  DataCard({
+    this.color,
+    this.userName,
+    this.origin,
+    this.destination,
+    this.loadType,
+    this.truckType,
+    this.loadWeight,
+    // ignore: non_constant_identifier_names
+    this.ETA,
+    this.callType,
+  });
 
   final Color color;
   final String userName;
@@ -24,6 +26,7 @@ class DataCard extends StatefulWidget {
   final String loadType;
   final String truckType;
   final String loadWeight;
+  final String callType;
   // ignore: non_constant_identifier_names
   final String ETA;
 
@@ -158,13 +161,17 @@ class _DataCardState extends State<DataCard> {
                         text: '', // default text style
                         children: <TextSpan>[
                           TextSpan(
-                              text: 'Truck Type: ',
+                              text: widget.callType == 'Truck Post'
+                                  ? 'Truck Type: '
+                                  : 'Load Weight: ',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,
                                   color: Colors.white)),
                           TextSpan(
-                              text: '${widget.truckType}',
+                              text: widget.callType == 'Truck Post'
+                                  ? '${widget.truckType}'
+                                  : '${widget.loadWeight} kg',
                               style:
                                   TextStyle(fontSize: 16, color: Colors.white)),
                         ],
