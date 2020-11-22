@@ -46,6 +46,7 @@ class _SelfPostsState extends State<SelfPosts> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Your Posts"),
+        automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: themeColor,
       ),

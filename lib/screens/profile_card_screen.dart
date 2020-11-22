@@ -57,6 +57,7 @@ class _ProfileCardScreenState extends State<ProfileCardScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Your Profile"),
+        automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: themeColor,
       ),
